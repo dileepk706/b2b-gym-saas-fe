@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import {
   TypedUseSelectorHook,
-  useDispatch as useAppDispatch,
+  useDispatch as useAppDispatchRedux,
   useSelector as useAppSelectorRedux,
 } from 'react-redux';
 import { persistStore, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
@@ -27,4 +27,4 @@ export const persistor = persistStore(store);
 
 export const useAppSelector: TypedUseSelectorHook<RootState> = useAppSelectorRedux;
 
-export const useDispatch = () => useAppDispatch<AppDispatch>();
+export const useAppDispatch = () => useAppDispatchRedux<AppDispatch>();

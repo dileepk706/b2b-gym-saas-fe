@@ -3,7 +3,7 @@ import { Box, CircularProgress, ListItemText, Typography, TypographyProps } from
 import { memo } from 'react';
 import { formatCamelCase } from '@utils/helperFunctions';
 import Iconify from '../iconify';
-import ImagePopup from '../image-popup/ImagePopup';
+// import ImagePopup from '../image-popup/ImagePopup';
 
 type Props = TypographyProps & {
   apiHandler: () => void;
@@ -30,7 +30,7 @@ function ViewButton({ apiHandler, imageUrl, loading, value, ...other }: Props) {
               />
             ) : (
               <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                {imageUrl && <ImagePopup imageUrl={imageUrl} />}
+                {/* {imageUrl && <ImagePopup imageUrl={imageUrl} />} */}
                 <Typography variant="body2" noWrap {...other}>
                   {formatCamelCase(value ? value.toString() : '')}
                 </Typography>
@@ -47,4 +47,3 @@ function ViewButton({ apiHandler, imageUrl, loading, value, ...other }: Props) {
 }
 
 export default memo(ViewButton);
-

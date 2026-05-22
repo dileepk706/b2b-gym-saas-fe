@@ -1,8 +1,8 @@
 import { logout } from './slices/auth';
-import { persistor, useDispatch } from './store';
+import { persistor, useAppDispatch } from './store';
 
 export const useReduxPersisterManage = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const clearPersistedState = () => {
     persistor.purge();

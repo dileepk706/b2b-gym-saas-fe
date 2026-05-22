@@ -14,7 +14,7 @@ export const authRoutes: RouteObject = {
   element: (
     <LoginPageGuard>
       <AuthLayout>
-        <Suspense fallback={<SplashScreen />}>
+        <Suspense fallback={<SplashScreen loadingText="Almost there! Hang tight.." />}>
           <Outlet />
         </Suspense>
       </AuthLayout>

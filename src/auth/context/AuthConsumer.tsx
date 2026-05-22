@@ -12,8 +12,7 @@ export function AuthConsumer({ children }: Props) {
     <AuthContext.Consumer>
       {(auth) => {
         if (auth.loading) {
-          // return <SplashScreen />;
-          return <h1>Profile Loading</h1>;
+          return <SplashScreen loadingText="Retrieving your data" />;
         }
         return children;
       }}

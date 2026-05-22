@@ -1,6 +1,6 @@
 import axios, { AxiosError } from 'axios';
-import { store } from '@redux/store';
-import { setSessionExpired, login } from '@redux/slices/auth';
+import { useAuthStore } from '@stores/auth.store';
+import { useGymStore } from '@stores/gym.store';
 import { SERVER_BASE_URL } from 'config-global';
 import { ApiErrorDataDtoSchema } from './api.contracts';
 import { normalizeValidationErrors } from './api.lib';
@@ -37,9 +37,13 @@ export const api = axios.create({
 
 api.interceptors.request.use(
   (config) => {
-    const { accessToken } = store.getState().auth;
+    const { accessToken } = useAuthStore.getState();
+    const { selectedGymId } = useGymStore.getState();
     if (accessToken) {
       config.headers.Authorization = `Bearer ${accessToken}`;
+    }
+    if (selectedGymId) {
+      config.headers['X-Gym-Id'] = selectedGymId;
     }
     return config;
   },
@@ -76,14 +80,17 @@ api.interceptors.response.use(
         // Use full URL and base axios to avoid interceptor loop
         const accessToken = await getRefreshToken();
 
-        store.dispatch(login({ accessToken }));
+        useAuthStore.getState().login({ accessToken });
 
         originalRequest.headers.Authorization = `Bearer ${accessToken}`;
         processQueue(null, accessToken);
         return await api(originalRequest);
       } catch (refreshError) {
         processQueue(refreshError, null);
-        store.dispatch(setSessionExpired(true));
+        useAuthStore.getState().setSessionExpired(true);
+        useAuthStore.getState().logout();
+        window.location.href = '/login';
+        console.log('refreshError', refreshError);
         return await Promise.reject(refreshError);
       } finally {
         isRefreshing = false;

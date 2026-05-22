@@ -19,7 +19,7 @@ import {
 import TextField from '@components/text-field/text-field';
 import { ICONS, inconString } from '@components/iconify/icons';
 import Button from '@components/button/Button';
-import AuthViewWraper from 'module/auth/components/AuthVIewWraper';
+import AuthViewWraper from 'features/auth/components/AuthVIewWraper';
 import Iconify from '@components/iconify';
 import { useRouter } from '@routes/hook';
 import { LogoPng } from '@components/logo';

@@ -22,7 +22,9 @@
       "@theme": ["theme/index"],
       "@theme/*": ["theme/*"],
       "@hooks": ["hooks/index"],
-      "@hooks/*": ["hooks/*"]
+      "@hooks/*": ["hooks/*"],
+      "@stores/*": ["stores/*"],
+      "features/*": ["features/*"]
     },
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],

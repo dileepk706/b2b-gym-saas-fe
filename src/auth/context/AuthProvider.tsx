@@ -2,15 +2,8 @@ import { useEffect, useCallback, useMemo, useState } from 'react';
 // auth utils
 import { getUserProfile, loginUser, logoutUser, registerUser } from 'shared/api/api.services';
 import { LoginUserDto, RegisterUserDto } from 'shared/api/api.types';
-// redux
-import { useDispatch, useAppSelector } from '@redux/store';
 import { User } from 'entities/user/user.entity';
-import {
-  login as loginAction,
-  logout as logoutAction,
-  setLoading,
-  setSessionExpired,
-} from '@redux/slices/auth';
+import { useAuthStore } from '@stores/auth.store';
 import { AuthContext } from './AuthContext';
 
 // ----------------------------------------------------------------------
@@ -20,10 +13,14 @@ type Props = {
 };
 
 export function AuthProvider({ children }: Props) {
-  const dispatch = useDispatch();
   const [user, setUser] = useState<User | null>(null);
 
-  const { accessToken, loading } = useAppSelector((state) => state.auth);
+  const accessToken = useAuthStore((state) => state.accessToken);
+  const loading = useAuthStore((state) => state.loading);
+  const loginStore = useAuthStore((state) => state.login);
+  const logoutStore = useAuthStore((state) => state.logout);
+  const setLoading = useAuthStore((state) => state.setLoading);
+  const setSessionExpired = useAuthStore((state) => state.setSessionExpired);
 
   const fetchUserProfile = useCallback(async () => {
     try {
@@ -36,17 +33,17 @@ export function AuthProvider({ children }: Props) {
   }, []);
 
   const initialize = useCallback(async () => {
-    dispatch(setLoading(true));
+    setLoading(true);
     try {
       if (accessToken) {
         await fetchUserProfile();
       } else {
-        dispatch(logoutAction());
+        logoutStore();
       }
     } finally {
-      dispatch(setLoading(false));
+      setLoading(false);
     }
-  }, [accessToken, dispatch, fetchUserProfile]);
+  }, [accessToken, fetchUserProfile, logoutStore, setLoading]);
 
   useEffect(() => {
     initialize();
@@ -58,12 +55,12 @@ export function AuthProvider({ children }: Props) {
       const response = await loginUser(loginUserDto);
       const { accessToken: token, user: loggedInUser } = response.data.data;
 
-      dispatch(loginAction({ accessToken: token }));
-      dispatch(setSessionExpired(false));
+      loginStore({ accessToken: token });
+      setSessionExpired(false);
       setUser(loggedInUser);
       return response.data;
     },
-    [dispatch]
+    [loginStore, setSessionExpired]
   );
 
   const register = useCallback(async (registerUserDto: RegisterUserDto) => {
@@ -73,9 +70,9 @@ export function AuthProvider({ children }: Props) {
 
   const logout = useCallback(async () => {
     await logoutUser();
-    dispatch(logoutAction());
-    dispatch(setSessionExpired(false));
-  }, [dispatch]);
+    logoutStore();
+    setSessionExpired(false);
+  }, [logoutStore, setSessionExpired]);
 
   const checkAuthenticated = accessToken && user ? 'authenticated' : 'unauthenticated';
 

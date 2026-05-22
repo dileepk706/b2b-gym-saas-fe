@@ -2,7 +2,7 @@ import { useEffect, useCallback, useState } from 'react';
 import { pathKeys } from 'shared/routes';
 import { useRouter } from '@routes/hook';
 import { Dialog, DialogTitle, DialogContent, DialogActions, Typography } from '@mui/material';
-import { useAppSelector } from '@redux/store';
+import { useAuthStore } from '@stores/auth.store';
 import Button from '@components/button/Button';
 import { SplashScreen } from '@components/loading-screen';
 import { useAuthContext } from '../hooks';
@@ -16,7 +16,7 @@ export default function AuthGuard({ children }: Props) {
   const router = useRouter();
   const { authenticated, loading } = useAuthContext();
   const [checked, setChecked] = useState(false);
-  const { sessionExpired } = useAppSelector((state) => state.auth);
+  const sessionExpired = useAuthStore((state) => state.sessionExpired);
 
   const check = useCallback(() => {
     if (loading) {
@@ -40,9 +40,8 @@ export default function AuthGuard({ children }: Props) {
   }, [check]);
 
   if (loading || !checked) {
-    return <SplashScreen />;
+    return <SplashScreen loadingText="Authenticating..." />;
   }
-
 
   if (sessionExpired) {
     return <RefreshError />;

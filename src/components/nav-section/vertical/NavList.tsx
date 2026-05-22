@@ -22,11 +22,10 @@ export default function NavList({ data, depth, hasChild, config }: NavListRootPr
 
   const active = useActiveLink(data.path, hasChild);
 
-  const externalLink = data.path.includes('http');
+  // const externalLink = data.path.includes('http');
 
   // const [open, setOpen] = useState(active);
   const [open, setOpen] = useState(true);
-
 
   // useEffect(() => {
   //   if (!active) {
@@ -51,16 +50,13 @@ export default function NavList({ data, depth, hasChild, config }: NavListRootPr
         // onClick={handleToggle}
         open
         active={active}
-        externalLink={externalLink}
+        // externalLink={externalLink}
         config={config}
         sx={{ pl: 3 }}
       />
 
       {hasChild && (
-        <Collapse
-          in={open}
-          unmountOnExit
-        >
+        <Collapse in={open} unmountOnExit>
           <NavSubList data={data.children} depth={depth} config={config} />
         </Collapse>
       )}
@@ -91,4 +87,3 @@ function NavSubList({ data, depth, config }: NavListSubProps) {
     </>
   );
 }
-

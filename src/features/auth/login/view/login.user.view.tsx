@@ -9,12 +9,12 @@ import { Alert, Box, CircularProgress, Typography, Stack, Divider } from '@mui/m
 import TextField from '@components/text-field/text-field';
 import { ICONS, inconString } from '@components/iconify/icons';
 import Button from '@components/button/Button';
-import AuthViewWraper from 'module/auth/components/AuthVIewWraper';
 import Iconify from '@components/iconify';
 import { useSearchParams, useRouter } from '@routes/hook';
 import CustomLink from '@components/link/CustomeLink';
 import { LogoPng } from '@components/logo';
 import { getErrorMessages } from 'shared/api/api.lib';
+import AuthViewWraper from 'features/auth/components/AuthVIewWraper';
 import { LoginUser } from '../login.types';
 import { LoginUserSchema } from '../login.contracts';
 import { useLoginMutation } from '../login.user.mutation';

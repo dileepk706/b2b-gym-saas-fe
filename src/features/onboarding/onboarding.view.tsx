@@ -3,7 +3,7 @@ import { Box } from '@mui/material';
 import { useForm, FormProvider } from 'react-hook-form';
 import { standardSchemaResolver } from '@hookform/resolvers/standard-schema';
 import { getErrorMessages } from 'shared/api/api.lib';
-import AuthViewWraper from 'module/auth/components/AuthVIewWraper';
+import AuthViewWraper from 'features/auth/components/AuthVIewWraper';
 import { useAuthContext } from '@auth/hooks';
 import { pathKeys } from 'shared/routes';
 import { useRouter } from '@routes/hook';
@@ -39,7 +39,7 @@ export default function OnboardingView() {
   } = useOnboardingMutation({
     async onSuccess() {
       await refreshProfile();
-      router.push(pathKeys.dashboard.root);
+      router.push(pathKeys.dashboard().root);
     },
   });
   const mutationErrors = getErrorMessages(error);

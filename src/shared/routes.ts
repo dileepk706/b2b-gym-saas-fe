@@ -1,5 +1,5 @@
 const memberRoot = `/members`;
-const gymRoot = `/gym`;
+const gymRoot = `gym`;
 const accountRoot = `/account`;
 
 export const pathKeys = {
@@ -9,31 +9,36 @@ export const pathKeys = {
   page404: '/404/',
   onboarding: '/onboarding/',
   // dashboard
-  dashboard: {
-    root: '/',
+  dashboard(root?: boolean) {
+    return {
+      root: `dashboard`,
+    };
   },
 
-  // gym
-  gym: {
-    root: gymRoot,
-    schedule: `${gymRoot}/schedule/`,
-    staffs: {
-      root: `${gymRoot}/staffs/`,
-      byStaffId: (id: string) => `${gymRoot}/staffs/${id}/`,
-    },
+  gym(root?: boolean) {
+    return {
+      root: gymRoot,
+      schedule: root ? `${gymRoot}/schedule` : `schedule`,
+      staffs: root ? `${gymRoot}/staffs` : `staffs`,
+      byStaffId: (id: string) => (root ? `${gymRoot}/staffs/${id}` : `staffs/${id}`),
+    };
   },
 
   // members
-  members: {
-    root: memberRoot,
-    checkIn: `${memberRoot}/check-in/`,
-    byMemberId: (id: string) => `${memberRoot}/${id}/`,
+  members(root?: boolean) {
+    return {
+      root: memberRoot,
+      checkIn: root ? `${memberRoot}/check-in/` : `check-in/`,
+      byMemberId: (id: string) => (root ? `${memberRoot}/${id}/` : `${id}/`),
+    };
   },
 
   // account
-  account: {
-    root: accountRoot,
-    setting: `${accountRoot}/setting/`,
+  account(root?: boolean) {
+    return {
+      root: accountRoot,
+      setting: root ? `${accountRoot}/setting/` : `setting/`,
+    };
   },
 
   // auth

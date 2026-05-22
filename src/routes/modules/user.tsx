@@ -1,25 +1,27 @@
 import { Suspense } from 'react';
 import { Outlet, RouteObject } from 'react-router-dom';
-import { LoadingScreen, SplashScreen } from '@components/loading-screen';
+import { SplashScreen } from '@components/loading-screen';
 import AuthGuard from '@auth/guard/AuthGuard';
-import GymGuard from '@auth/guard/GymGuard';
+import GymGuard from '@layouts/guard/GymGuard';
 import AppLayout from '@layouts/app/AppLayout';
 import { pathKeys } from 'shared/routes';
-import { useAuthContext } from '@auth/hooks';
-import Button from '@mui/material/Button';
-import { getUserProfile } from 'shared/api/api.services';
 import AuthLayout from '@layouts/auth/classic';
 import { onboardingUserPageRoute } from '@pages/onboarding/onboarding-user.page.route';
+import { ErrorBoundary } from 'react-error-boundary';
+import { ErrorHandler } from '@components/error-handler/error-handler.ui';
+import { logError } from '@components/error-handler/error-handler.lib';
+import { LoadGyms } from '@routes/loader';
 // ----------------------------------------------------------------------
 
 export const userRoutes: RouteObject = {
   path: '/',
+  loader: LoadGyms,
   element: (
     <AuthGuard>
       <GymGuard>
         <AppLayout>
           {/* <PaymentGuard> */}
-          <Suspense fallback={<LoadingScreen />}>
+          <Suspense fallback={<SplashScreen loadingText="Loading you gym details" />}>
             <Outlet />
           </Suspense>
           {/* </PaymentGuard> */}
@@ -29,90 +31,36 @@ export const userRoutes: RouteObject = {
   ),
 
   children: [
-    // gym
     {
-      path: pathKeys.gym.root,
       element: (
-        // <GymLayout>
-        <Suspense fallback={<LoadingScreen />}>
-          <Outlet />
-        </Suspense>
-        // </GymLayout>
+        <ErrorBoundary FallbackComponent={ErrorHandler} onError={logError}>
+          <Suspense fallback={<SplashScreen />}>
+            <Outlet />
+          </Suspense>
+        </ErrorBoundary>
       ),
       children: [
-        {
-          path: pathKeys.gym.schedule,
-          element: <h1>Schedule</h1>,
-        },
-        {
-          path: pathKeys.gym.staffs.root,
-          element: <h1>Staffs</h1>,
-        },
-        {
-          path: pathKeys.gym.staffs.byStaffId(':id'),
-          element: <h1>Staff</h1>,
-        },
-      ],
-    },
+        // gym tab
 
-    // members
-    {
-      path: pathKeys.members.root,
-      element: (
-        // <MemberLayout>
-        <Suspense fallback={<LoadingScreen />}>
-          <Outlet />
-        </Suspense>
-        // </MemberLayout>
-      ),
-      children: [
         {
-          path: pathKeys.members.root,
-          element: <Test />,
-        },
-        {
-          path: pathKeys.members.checkIn,
-          element: <h1>Check In</h1>,
-        },
-        {
-          path: pathKeys.members.byMemberId(':id'),
-          element: <h1>Member</h1>,
-        },
-      ],
-    },
-
-    // dashboard
-    {
-      path: pathKeys.dashboard.root,
-      element: (
-        // <DashboardLayout>
-        <Suspense fallback={<LoadingScreen />}>
-          <Outlet />
-        </Suspense>
-        // </DashboardLayout>
-      ),
-      children: [
-        {
-          path: pathKeys.dashboard.root,
-          element: <h1>Dashboard</h1>,
-        },
-      ],
-    },
-
-    // account
-    {
-      path: pathKeys.account.root,
-      element: (
-        // <AccountLayout>
-        <Suspense fallback={<LoadingScreen />}>
-          <Outlet />
-        </Suspense>
-        // </AccountLayout>
-      ),
-      children: [
-        {
-          path: pathKeys.account.setting,
-          element: <h1>Account Setting</h1>,
+          path: pathKeys.gym(true).root,
+          element: (
+            // <GymLayout>
+            <Suspense fallback={<SplashScreen />}>
+              <Outlet />
+            </Suspense>
+            // </GymLayout>
+          ),
+          children: [
+            {
+              path: pathKeys.gym().schedule,
+              element: <h1>Schedule</h1>,
+            },
+            {
+              path: pathKeys.gym().staffs,
+              element: <h1>Staffs</h1>,
+            },
+          ],
         },
       ],
     },
@@ -131,49 +79,3 @@ export const onboardingRoutes: RouteObject = {
   ),
   children: [onboardingUserPageRoute],
 };
-
-function Test() {
-  const { user } = useAuthContext();
-
-  const handleRefresh = async () => {
-    try {
-      // console.log('Manual refresh triggered...');
-      // const response = await api.post('/refresh-token/refresh');
-      // console.log('Refresh successful:', response.data);
-      // alert('Token Refresh Success! Check Console.');
-      await getUserProfile();
-    } catch (error: any) {
-      console.error('Refresh failed:', error.response?.data || error);
-      alert('Token Refresh Failed! Check Console.');
-    }
-  };
-
-  return (
-    <div style={{ padding: 20 }}>
-      <h1>Members</h1>
-      <div
-        style={{
-          marginBottom: 20,
-          padding: 15,
-          background: '#f4f4f4',
-          borderRadius: 8,
-          color: 'black',
-        }}
-      >
-        <p>
-          <strong>Name:</strong> {user?.name}
-        </p>
-        <p>
-          <strong>Email:</strong> {user?.email}
-        </p>
-        <p>
-          <strong>ID:</strong> {user?.id}
-        </p>
-      </div>
-
-      <Button variant="contained" color="secondary" onClick={handleRefresh}>
-        Debug: Manual Refresh Token
-      </Button>
-    </div>
-  );
-}

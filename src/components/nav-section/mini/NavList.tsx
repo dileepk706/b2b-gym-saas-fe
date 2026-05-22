@@ -27,7 +27,7 @@ export default function NavList({ data, depth, hasChild, config }: NavListRootPr
 
   const active = useActiveLink(data.path, hasChild);
 
-  const externalLink = data.path.includes('http');
+  // const externalLink = data.path.includes('http');
 
   const [open, setOpen] = useState(false);
 
@@ -77,7 +77,7 @@ export default function NavList({ data, depth, hasChild, config }: NavListRootPr
         depth={depth}
         open={open}
         active={active}
-        externalLink={externalLink}
+        // externalLink={externalLink}
         onMouseEnter={handleOpen}
         onMouseLeave={handleClose}
         config={config}
@@ -122,12 +122,14 @@ type NavListSubProps = {
 };
 
 function NavSubList({ data, depth, config }: NavListSubProps) {
-  const router = useRouter()
+  const router = useRouter();
   return (
     <Stack spacing={0.5}>
       {data.map((list) => (
         <Box
-          onClick={() => { router.push(list.path) }}
+          onClick={() => {
+            router.push(list.path);
+          }}
         >
           <NavList
             key={list.title + list.path}
@@ -141,4 +143,3 @@ function NavSubList({ data, depth, config }: NavListSubProps) {
     </Stack>
   );
 }
-

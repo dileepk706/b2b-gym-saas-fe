@@ -2,12 +2,19 @@ import { m } from 'framer-motion';
 // @mui
 import { alpha } from '@mui/material/styles';
 import Box, { BoxProps } from '@mui/material/Box';
-import { LogoText } from '@components/logo';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
+import LinearProgress from '@mui/material/LinearProgress';
+import { LogoPng } from '@components/logo';
 //
 
 // ----------------------------------------------------------------------
 
-export default function SplashScreen({ sx, ...other }: BoxProps) {
+export default function SplashScreen({
+  loadingText,
+  sx,
+  ...other
+}: BoxProps & { loadingText?: string }) {
   return (
     <Box
       sx={{
@@ -20,64 +27,124 @@ export default function SplashScreen({ sx, ...other }: BoxProps) {
         position: 'fixed',
         alignItems: 'center',
         justifyContent: 'center',
-        bgcolor: 'background.default',
+        bgcolor: (theme) =>
+          theme.palette.mode === 'light' ? 'background.default' : 'background.paper',
         ...sx,
       }}
       {...other}
     >
-      <>
-        <m.div
-          animate={{
-            scale: [1, 0.9, 0.9, 1, 1],
-            opacity: [1, 0.48, 0.48, 1, 1],
-          }}
-          transition={{
-            duration: 2,
-            ease: 'easeInOut',
-            repeatDelay: 1,
-            repeat: Infinity,
+      <Stack
+        alignItems="center"
+        spacing={3}
+        sx={{
+          position: 'relative',
+          width: 1,
+          maxWidth: 360,
+          px: 3,
+        }}
+      >
+        <Box
+          sx={{
+            position: 'relative',
+            width: 132,
+            height: 132,
+            display: 'grid',
+            placeItems: 'center',
           }}
         >
-          <LogoText disabledLink sx={{ width: 64, height: 64 }} />
+          <Box
+            component={m.div}
+            animate={{ rotate: 360 }}
+            transition={{ duration: 4.8, ease: 'linear', repeat: Infinity }}
+            sx={{
+              position: 'absolute',
+              inset: 0,
+              borderRadius: '50%',
+              background: (theme) =>
+                `conic-gradient(from 90deg, ${alpha(theme.palette.secondary.main, 0)} 0deg, ${alpha(
+                  theme.palette.secondary.main,
+                  0.85
+                )} 95deg, ${alpha(theme.palette.primary.main, 0.08)} 180deg, ${alpha(
+                  theme.palette.secondary.main,
+                  0
+                )} 360deg)`,
+              mask: 'radial-gradient(farthest-side, transparent calc(100% - 3px), #000 0)',
+              WebkitMask: 'radial-gradient(farthest-side, transparent calc(100% - 3px), #000 0)',
+            }}
+          />
+
+          <Box
+            component={m.div}
+            animate={{ scale: [1, 1.035, 1], opacity: [0.92, 1, 0.92] }}
+            transition={{ duration: 2.4, ease: 'easeInOut', repeat: Infinity }}
+            sx={{
+              width: 92,
+              height: 92,
+              borderRadius: 3,
+              display: 'grid',
+              placeItems: 'center',
+              bgcolor: (theme) => alpha(theme.palette.common.white, 0.88),
+              border: (theme) => `1px solid ${alpha(theme.palette.primary.main, 0.1)}`,
+              boxShadow: (theme) => `0 24px 64px ${alpha(theme.palette.primary.darker, 0.14)}`,
+            }}
+          >
+            <LogoPng size="large" color="primary" />
+          </Box>
+        </Box>
+
+        <m.div
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.45, ease: 'easeOut' }}
+          style={{
+            width: '100%',
+          }}
+        >
+          <Stack alignItems="center" spacing={0.75}>
+            <Typography
+              variant="h4"
+              sx={{
+                color: (theme) =>
+                  theme.palette.mode === 'light' ? 'primary.dark' : 'common.white',
+                fontWeight: 800,
+                lineHeight: 1,
+              }}
+            >
+              Gymsaas24
+              <Box component="span" sx={{ color: 'error.main' }}>
+                .
+              </Box>
+            </Typography>
+
+            {loadingText && (
+              <Typography
+                variant="caption"
+                sx={{
+                  color: 'text.secondary',
+                  fontWeight: 600,
+                  letterSpacing: 0,
+                }}
+              >
+                {loadingText}
+              </Typography>
+            )}
+          </Stack>
         </m.div>
 
-        <Box
-          component={m.div}
-          animate={{
-            scale: [1.6, 1, 1, 1.6, 1.6],
-            rotate: [270, 0, 0, 270, 270],
-            opacity: [0.25, 1, 1, 1, 0.25],
-            borderRadius: ['25%', '25%', '50%', '50%', '25%'],
-          }}
-          transition={{ ease: 'linear', duration: 3.2, repeat: Infinity }}
+        <LinearProgress
+          color="secondary"
           sx={{
-            width: 100,
-            height: 100,
-            position: 'absolute',
-            border: (theme) => `solid 3px ${alpha(theme.palette.primary.dark, 0.24)}`,
+            width: 1,
+            maxWidth: 220,
+            height: 4,
+            borderRadius: 999,
+            bgcolor: (theme) => alpha(theme.palette.primary.main, 0.1),
+            '& .MuiLinearProgress-bar': {
+              borderRadius: 999,
+            },
           }}
         />
-        <Box
-          component={m.div}
-          animate={{
-            scale: [1, 1.2, 1.2, 1, 1],
-            rotate: [0, 270, 270, 0, 0],
-            opacity: [1, 0.25, 0.25, 0.25, 1],
-            borderRadius: ['25%', '25%', '50%', '50%', '25%'],
-          }}
-          transition={{
-            ease: 'linear',
-            duration: 3.2,
-            repeat: Infinity,
-          }}
-          sx={{
-            width: 120,
-            height: 120,
-            position: 'absolute',
-            border: (theme) => `solid 8px ${alpha(theme.palette.primary.dark, 0.24)}`,
-          }}
-        />
-      </>
+      </Stack>
     </Box>
   );
 }

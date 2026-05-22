@@ -28,8 +28,6 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 // @mui
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-// redux
-import ReduxProvider from '@redux/ReduxProvider';
 // routes
 // theme
 // hooks
@@ -50,32 +48,30 @@ export default function App() {
   // useScrollToTop();
 
   return (
-    <ReduxProvider>
-      <AuthProvider>
-        <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={enLocale}>
-          <SettingsProvider
-            defaultSettings={{
-              themeMode: 'light', // 'light' | 'dark'
-              themeDirection: 'ltr', //  'rtl' | 'ltr'
-              themeContrast: 'bold', // 'default' | 'bold'
-              themeLayout: 'vertical', // 'vertical' | 'horizontal' | 'mini'
-              themeColorPresets: 'default', // 'default' | 'cyan' | 'purple' | 'blue' | 'orange' | 'red'
-              themeStretch: true,
-            }}
-          >
-            <ThemeProvider>
-              <MotionLazy>
-                <SnackbarProvider>
-                  <SettingsDrawer />
-                  <AuthConsumer>
-                    <BootstrappedRouter />
-                  </AuthConsumer>
-                </SnackbarProvider>
-              </MotionLazy>
-            </ThemeProvider>
-          </SettingsProvider>
-        </LocalizationProvider>
-      </AuthProvider>
-    </ReduxProvider>
+    <AuthProvider>
+      <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={enLocale}>
+        <SettingsProvider
+          defaultSettings={{
+            themeMode: 'light', // 'light' | 'dark'
+            themeDirection: 'ltr', //  'rtl' | 'ltr'
+            themeContrast: 'bold', // 'default' | 'bold'
+            themeLayout: 'vertical', // 'vertical' | 'horizontal' | 'mini'
+            themeColorPresets: 'default', // 'default' | 'cyan' | 'purple' | 'blue' | 'orange' | 'red'
+            themeStretch: true,
+          }}
+        >
+          <ThemeProvider>
+            <MotionLazy>
+              <SnackbarProvider>
+                <SettingsDrawer />
+                <AuthConsumer>
+                  <BootstrappedRouter />
+                </AuthConsumer>
+              </SnackbarProvider>
+            </MotionLazy>
+          </ThemeProvider>
+        </SettingsProvider>
+      </LocalizationProvider>
+    </AuthProvider>
   );
 }

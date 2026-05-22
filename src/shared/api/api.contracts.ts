@@ -1,4 +1,5 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
+import { GymSchema } from 'entities/gym/gym.contracts';
 import { UserSchema } from 'entities/user/user.contracts';
 import { z } from 'zod';
 
@@ -44,8 +45,26 @@ export const OnboardingDtoSchema = z.object({
   gym_url: z.string(),
 });
 
+export const createGymDtoSchema = z.object({
+  name: z.string().min(3, 'Name must be at least 3 characters'),
+  gym_url: z.string().min(3, 'Gym URL must be at least 3 characters'),
+  city: z.string().min(3, 'City must be at least 3 characters'),
+  address: z.string().min(3, 'Address must be at least 3 characters').optional(),
+  email: z.email().optional(),
+  state: z.string().optional(),
+  logo_url: z.string().optional(),
+});
+
+export const GymDataSchema = z.object({
+  gyms: z.array(GymSchema),
+});
+
 // Full response schemas
 export const LoginResponseSchema = createApiResponseSchema(LoginDataSchema);
 export const ProfileResponseSchema = createApiResponseSchema(ProfileDataSchema);
 export const RegisterResponseSchema = createApiResponseSchema(ProfileDataSchema);
 export const OnboardingResponseSchema = createApiResponseSchema(OnboardingDtoSchema);
+export const GymResponseSchema = createApiResponseSchema(GymDataSchema);
+export const GymByIdResponseSchema = createApiResponseSchema(GymSchema);
+
+// impliment auto complete

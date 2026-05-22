@@ -15,22 +15,22 @@ export function useNavData() {
         items: [
           {
             title: t('dashboard'),
-            path: pathKeys.dashboard.root,
+            path: pathKeys.dashboard().root,
             icon: ICONS.dashboard,
           },
           {
             title: t('members'),
-            path: pathKeys.members.root,
+            path: pathKeys.members(true).root,
             icon: ICONS.users,
           },
           {
             title: t('gym'),
-            path: pathKeys.gym.root,
+            path: pathKeys.gym(true).schedule,
             icon: ICONS.gym,
           },
           {
             title: t('account'),
-            path: pathKeys.account.root,
+            path: pathKeys.account(true).root,
             icon: ICONS.account,
           },
         ],

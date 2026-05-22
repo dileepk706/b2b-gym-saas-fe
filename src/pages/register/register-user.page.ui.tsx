@@ -1,4 +1,4 @@
-import RegisterFormView from 'module/auth/register/register.form.view';
+import RegisterFormView from 'features/auth/register/register.form.view';
 import { Helmet } from 'react-helmet-async';
 
 export default function UserRegisterPage() {

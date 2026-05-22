@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useCallback } from 'react';
 // @mui
 import { m } from 'framer-motion';
 import { alpha } from '@mui/material/styles';
@@ -12,49 +12,48 @@ import ButtonBase from '@mui/material/ButtonBase';
 import Iconify from '@components/iconify';
 import { varHover } from '@components/animate';
 import CustomPopover, { usePopover } from '@components/custom-popover';
+import { useQueryClient } from '@tanstack/react-query';
+import { gymByIdQueryOptions } from 'entities/gym/gym.api';
+import { Gym } from 'entities/gym/gym.type';
+import { useGymStore } from '@stores/gym.store';
 
 // ----------------------------------------------------------------------
-
-const OPTIONS = [
-  {
-    id: 'g1',
-    name: 'Elite Fitness Center',
-    address: 'Delhi, India',
-    logo: 'solar:dumbbell-outline',
-  },
-  {
-    id: 'g2',
-    name: 'Power Gym - Mumbai',
-    address: 'Mumbai, India',
-    logo: 'solar:kick-boxing-outline',
-  },
-  {
-    id: 'g3',
-    name: 'Fit Pro Studio',
-    address: 'Bangalore, India',
-    logo: 'solar:users-group-rounded-outline',
-  },
-];
 
 type Props = {
   mini?: boolean;
 };
 
 export default function GymSelect({ mini }: Props) {
-  const [selectedGym, setSelectedGym] = useState(OPTIONS[0]);
-
   const popover = usePopover();
+  const queryClient = useQueryClient();
+
+  const selectedGymId = useGymStore((state) => state.selectedGymId);
+  const setSelectedGymId = useGymStore((state) => state.setSelectedGymId);
+
+  const gyms = queryClient.getQueryData<Gym[]>(['gyms']) ?? [];
+  const selectedGym =
+    (selectedGymId ? queryClient.getQueryData<Gym>(['gym', selectedGymId]) : null) ??
+    gyms.find((g) => g.id === selectedGymId) ??
+    gyms[0];
 
   const handleSelectGym = useCallback(
-    (gymId: string) => {
-      const gym = OPTIONS.find((g) => g.id === gymId);
-      if (gym) {
-        setSelectedGym(gym);
-      }
+    async (gymId: string) => {
+      await queryClient.ensureQueryData(gymByIdQueryOptions(gymId));
+      setSelectedGymId(gymId);
+      await queryClient.invalidateQueries({
+        predicate: (query) => {
+          const [scope] = query.queryKey;
+          return scope !== 'gyms' && scope !== 'gym';
+        },
+      });
       popover.onClose();
     },
-    [popover]
+    [popover, queryClient, setSelectedGymId]
   );
+
+  if (!selectedGym) {
+    return null;
+  }
 
   const renderContent = mini ? (
     <ButtonBase
@@ -66,12 +65,12 @@ export default function GymSelect({ mini }: Props) {
         border: (theme) => `solid 1px ${alpha(theme.palette.secondary.main, 0.1)}`,
         bgcolor: alpha('#ffffff', 0.05),
         ...(popover.open && {
-           bgcolor: alpha('#ffffff', 0.12),
+          bgcolor: alpha('#ffffff', 0.12),
         }),
       }}
     >
       <Avatar
-        src={selectedGym.logo.includes(':') ? '' : selectedGym.logo}
+        src={selectedGym.logo_url || ''}
         alt={selectedGym.name}
         sx={{
           width: 32,
@@ -80,7 +79,7 @@ export default function GymSelect({ mini }: Props) {
           color: 'secondary.main',
         }}
       >
-        <Iconify icon={selectedGym.logo} width={24} />
+        <Iconify icon="solar:dumbbell-outline" width={24} />
       </Avatar>
     </ButtonBase>
   ) : (
@@ -100,12 +99,12 @@ export default function GymSelect({ mini }: Props) {
         border: (theme) => `solid 1px ${alpha(theme.palette.divider, 0.1)}`,
         bgcolor: alpha('#ffffff', 0.03),
         ...(popover.open && {
-           bgcolor: alpha('#ffffff', 0.08),
+          bgcolor: alpha('#ffffff', 0.08),
         }),
       }}
     >
       <Avatar
-        src={selectedGym.logo.includes(':') ? '' : selectedGym.logo}
+        src={selectedGym.logo_url || ''}
         alt={selectedGym.name}
         sx={{
           width: 36,
@@ -115,7 +114,7 @@ export default function GymSelect({ mini }: Props) {
           border: (theme) => `solid 1px ${alpha(theme.palette.secondary.main, 0.2)}`,
         }}
       >
-        <Iconify icon={selectedGym.logo} width={24} />
+        <Iconify icon="solar:dumbbell-outline" width={24} />
       </Avatar>
 
       <Stack sx={{ ml: 1.5, flexGrow: 1, overflow: 'hidden' }}>
@@ -123,7 +122,7 @@ export default function GymSelect({ mini }: Props) {
           {selectedGym.name}
         </Typography>
         <Typography variant="caption" noWrap sx={{ color: 'grey.500' }}>
-          {selectedGym.address}
+          {selectedGym.city}
         </Typography>
       </Stack>
 
@@ -141,10 +140,13 @@ export default function GymSelect({ mini }: Props) {
 
       <CustomPopover open={popover.open} onClose={popover.onClose} sx={{ width: 220, p: 0 }}>
         <Box sx={{ p: 1 }}>
-          <Typography variant="overline" sx={{ px: 1, py: 0.5, color: 'text.disabled', display: 'block' }}>
+          <Typography
+            variant="overline"
+            sx={{ px: 1, py: 0.5, color: 'text.disabled', display: 'block' }}
+          >
             Switch Branch
           </Typography>
-          {OPTIONS.map((option) => (
+          {gyms.map((option) => (
             <MenuItem
               key={option.id}
               selected={option.id === selectedGym.id}
@@ -152,14 +154,24 @@ export default function GymSelect({ mini }: Props) {
               sx={{ borderRadius: 0.75, my: 0.5 }}
             >
               <Avatar
-                 src={option.logo.includes(':') ? '' : option.logo}
-                 sx={{ width: 28, height: 28, mr: 1.5, bgcolor: 'action.hover', color: 'primary.main' }}
+                src={option.logo_url || ''}
+                sx={{
+                  width: 28,
+                  height: 28,
+                  mr: 1.5,
+                  bgcolor: 'action.hover',
+                  color: 'primary.main',
+                }}
               >
-                <Iconify icon={option.logo} width={18} />
+                <Iconify icon="solar:dumbbell-outline" width={18} />
               </Avatar>
               <Stack>
-                <Typography variant="body2" sx={{ fontWeight: 600 }}>{option.name}</Typography>
-                <Typography variant="caption" sx={{ color: 'text.secondary' }}>{option.address}</Typography>
+                <Typography variant="body2" sx={{ fontWeight: 600 }}>
+                  {option.name}
+                </Typography>
+                <Typography variant="caption" sx={{ color: 'text.secondary' }}>
+                  {option.city}
+                </Typography>
               </Stack>
             </MenuItem>
           ))}

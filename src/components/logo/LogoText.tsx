@@ -30,34 +30,14 @@ const LogoText = forwardRef<HTMLDivElement, LogoProps>(
       primary: 'primary.main',
     };
 
-    const logo = (
-      <Box
-        ref={ref}
-        component="img"
-        src={colorMap[color]}
-        sx={{
-          width: sizeMap[size],
-          height: sizeMap[size],
-          cursor: 'pointer',
-          objectFit: 'contain',
-          ...sx,
-        }}
-        {...other}
-      />
-    );
-
-    if (disabledLink) {
-      return logo;
-    }
-
     const sizeDot = {
       small: 'h3',
       medium: 'h1',
       large: 'h1',
     };
-    return (
-      <Link component={RouterLink} href="/" sx={{ display: 'contents' }}>
-        {/* {logo} */}
+
+    const logo = (
+      <Box ref={ref} {...other} sx={sx}>
         <Box
           sx={{
             display: 'flex',
@@ -76,6 +56,16 @@ const LogoText = forwardRef<HTMLDivElement, LogoProps>(
               .
             </Typography> */}
         </Box>
+      </Box>
+    );
+
+    if (disabledLink) {
+      return logo;
+    }
+
+    return (
+      <Link component={RouterLink} href="/" sx={{ display: 'contents' }}>
+        {logo}
       </Link>
     );
   }

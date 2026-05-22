@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from '@routes/hook';
 import { pathKeys } from 'shared/routes';
+import { SplashScreen } from '@components/loading-screen';
 import { useAuthContext } from '../hooks';
 
 type Props = {
@@ -17,15 +18,14 @@ export default function LoginPageGuard({ children }: Props) {
 
   useEffect(() => {
     if (authenticated && !loading) {
-      router.replace(returnTo || pathKeys.dashboard.root);
+      router.replace(returnTo || pathKeys.dashboard().root);
     } else {
       setChecked(true);
     }
   }, [authenticated, loading, router, returnTo]);
 
-
   if (loading || !checked) {
-    return <h1>Checking authentication...</h1>;
+    return <SplashScreen loadingText="Authenticate..." />;
   }
 
   return <>{children}</>;

@@ -7,6 +7,8 @@ import {
   RegisterResponseSchema,
   ProfileResponseSchema,
   OnboardingDtoSchema,
+  GymResponseSchema,
+  GymByIdResponseSchema,
 } from './api.contracts';
 import { LoginUserDto, OnboardingDto, RegisterUserDto } from './api.types';
 import { responseContract } from './api.lib';
@@ -40,4 +42,12 @@ export function onboardingCreateWorkSpace(
 ) {
   const data = OnboardingDtoSchema.parse(onboardingData);
   return api.post('/onboarding/create-workspace', data, config);
+}
+
+export function getGymsGlobal(config?: AxiosRequestConfig) {
+  return api.get('/gyms/global', config).then(responseContract(GymResponseSchema));
+}
+
+export function getGymByIdGlobal(gymId: string, config?: AxiosRequestConfig) {
+  return api.get(`/gyms/global/${gymId}`, config).then(responseContract(GymByIdResponseSchema));
 }

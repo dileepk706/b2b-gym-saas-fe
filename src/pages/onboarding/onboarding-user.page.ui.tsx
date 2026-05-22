@@ -1,4 +1,4 @@
-import OnboardingView from 'module/onboarding/onboarding.view';
+import OnboardingView from 'features/onboarding/onboarding.view';
 import { Helmet } from 'react-helmet-async';
 
 export default function OnboardingUserPage() {

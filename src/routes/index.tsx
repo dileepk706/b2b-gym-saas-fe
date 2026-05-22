@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { RouterProvider, createBrowserRouter, redirect, useRouteError } from 'react-router-dom';
-import { LoadingScreen } from '@components/loading-screen';
+import { SplashScreen } from '@components/loading-screen';
 import NotFoundPage from '@pages/404';
 import { pathKeys } from '../shared/routes';
 import { authRoutes } from './modules/auth';
@@ -14,10 +14,10 @@ export function BootstrappedRouter() {
   }, []);
 
   if (!router) {
-    return <h1>Initaillizing routers</h1>;
+    return <SplashScreen loadingText="Initializing routes" />;
   }
 
-  return <RouterProvider router={router} fallbackElement={<LoadingScreen />} />;
+  return <RouterProvider router={router} fallbackElement={<SplashScreen />} />;
 }
 
 const browserRouter = () =>

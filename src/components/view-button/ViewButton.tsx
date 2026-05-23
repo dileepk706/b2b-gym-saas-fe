@@ -2,7 +2,7 @@
 import { Box, CircularProgress, ListItemText, Typography, TypographyProps } from '@mui/material';
 import { memo } from 'react';
 import { formatCamelCase } from '@utils/helperFunctions';
-import Iconify from '../iconify';
+import Iconify from '../../shared/ui/iconify';
 // import ImagePopup from '../image-popup/ImagePopup';
 
 type Props = TypographyProps & {

@@ -9,7 +9,7 @@ import Typography from '@mui/material/Typography';
 // routes
 import { RouterLink } from '@routes/components';
 //
-import Iconify from '../iconify';
+import Iconify from '../../shared/ui/iconify';
 //
 import { ParentItemProps, MegaMenuItemProps } from './types';
 import MenuHotProducts from './_common/MenuHotProducts';
@@ -175,4 +175,3 @@ function ParentItem({ title, path = '', icon, open, hasSub, ...other }: ParentIt
     </Link>
   );
 }
-

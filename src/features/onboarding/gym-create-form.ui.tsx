@@ -2,8 +2,8 @@ import { useFormContext, useWatch } from 'react-hook-form';
 import { Box, Stack, Typography, Button, Alert } from '@mui/material';
 import { TextFieldLabel } from 'shared/ui/text-field';
 import { LoadingButton } from 'shared/ui/button';
-import { ICONS } from '@components/iconify/icons';
-import Iconify from '@components/iconify';
+import { ICONS } from 'shared/ui/iconify/icons';
+import Iconify from 'shared/ui/iconify';
 import { HOST_URL } from 'config-global';
 import { TOnboarding } from './onboarding.types';
 

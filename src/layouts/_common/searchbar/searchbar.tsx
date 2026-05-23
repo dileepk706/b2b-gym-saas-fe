@@ -16,7 +16,7 @@ import { useResponsive } from '@hooks/useResponsive';
 import { useEventListener } from '@hooks/useIsomorphicLayoutEffect';
 // components
 import Label from '@components/label';
-import Iconify from '@components/iconify';
+import Iconify from 'shared/ui/iconify';
 import Scrollbar from '@components/scrollbar';
 import { useRouter } from '@routes/hook';
 import SearchNotFound from '@components/search-not-found';

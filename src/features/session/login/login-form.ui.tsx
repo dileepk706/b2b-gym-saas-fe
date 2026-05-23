@@ -2,8 +2,8 @@ import { Alert, Box, CircularProgress, Divider, Stack, Typography } from '@mui/m
 import { pathKeys } from 'shared/routes';
 import { Button } from 'shared/ui/button';
 import { TextField } from 'shared/ui/text-field';
-import { ICONS, inconString } from '@components/iconify/icons';
-import Iconify from '@components/iconify';
+import { ICONS, inconString } from 'shared/ui/iconify/icons';
+import Iconify from 'shared/ui/iconify';
 import CustomLink from '@components/link/CustomeLink';
 import { LogoPng } from '@components/logo';
 import { useLoginForm } from './use-login-form';

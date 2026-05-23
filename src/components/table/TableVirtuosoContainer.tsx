@@ -3,7 +3,7 @@ import { TableVirtuoso } from 'react-virtuoso';
 import TableHeadRowVirtuoso from '@components/table/TableHeadRowVirtuoso';
 import { Stack } from '@mui/material';
 import { useTableHeight } from './use-table-height';
-import EmptyContent from '../empty-content';
+import EmptyContent from '../../shared/ui/empty-content';
 import TableComponentsVirtuoso from './TableComponentsVirtuoso';
 import LinearProgressLoading from '../loading-screen/LinearProgressLoading';
 

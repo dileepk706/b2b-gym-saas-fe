@@ -10,7 +10,7 @@ import Drawer, { drawerClasses } from '@mui/material/Drawer';
 // theme
 import { paper } from '@theme/css';
 //
-import Iconify from '../../iconify';
+import Iconify from '../../../shared/ui/iconify';
 import Scrollbar from '../../scrollbar';
 //
 import { useSettingsContext } from '../context';

@@ -8,8 +8,8 @@ import { pathKeys } from 'shared/routes';
 import AuthLayout from '@layouts/auth/classic';
 import { onboardingUserPageRoute } from '@pages/onboarding/onboarding-user.page.route';
 import { ErrorBoundary } from 'react-error-boundary';
-import { ErrorHandler } from '@components/error-handler/error-handler.ui';
-import { logError } from '@components/error-handler/error-handler.lib';
+import { ErrorHandler } from 'shared/ui/error-handler/error-handler.ui';
+import { logError } from 'shared/ui/error-handler/error-handler.lib';
 import { LoadGyms } from '@routes/loader';
 // ----------------------------------------------------------------------
 

@@ -3,8 +3,8 @@ import { pathKeys } from 'shared/routes';
 import { useRouter } from '@routes/hook';
 import { Dialog, DialogTitle, DialogContent, DialogActions, Typography } from '@mui/material';
 import { useSessionStore } from 'entities/session';
-import Button from '@components/button/Button';
 import { SplashScreen } from '@components/loading-screen';
+import { Button } from 'shared/ui';
 import { useAuthContext } from '../hooks';
 // ----------------------------------------------------------------------
 

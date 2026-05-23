@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 import { Button } from '@mui/material';
 import { useState } from 'react';
 import { useBoolean } from '@hooks/useBoolean';
-import Iconify from '../iconify';
+import Iconify from '../../shared/ui/iconify';
 import Image from '../image';
 //
 import { UploadProps } from './types';
@@ -213,4 +213,3 @@ export default function UploadAvatar({
     </>
   );
 }
-

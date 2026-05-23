@@ -44,7 +44,8 @@ export default ({
   const secondDataValueProvider = (seriesIndex: number, dataPointIndex: number) => {
     if (seriesIndex === 0) {
       return formatLabel(currentDataSecond[dataPointIndex], 's');
-    } if (seriesIndex === 1) {
+    }
+    if (seriesIndex === 1) {
       return formatLabel(comparedDataSecond[dataPointIndex], 's');
     }
     return formatLabel(0);
@@ -52,7 +53,8 @@ export default ({
   const formatTooltipTitle = (dataPointIndex: number, seriesIndex: number) => {
     if (seriesIndex === 0) {
       return categories[dataPointIndex];
-    } if (seriesIndex === 1) {
+    }
+    if (seriesIndex === 1) {
       return categoriesCompared[dataPointIndex];
     }
   };
@@ -88,7 +90,7 @@ export default ({
         text: firstDataName,
       },
       labels: {
-        formatter (value) {
+        formatter(value) {
           return formatLabel(value);
         },
       },
@@ -100,11 +102,11 @@ export default ({
       followCursor: true,
       // shared: true,
       y: {
-        formatter (val) {
+        formatter(val) {
           return val.toString();
         },
       },
-      custom ({ series, seriesIndex, dataPointIndex, w }) {
+      custom({ series, seriesIndex, dataPointIndex, w }) {
         // const seriesName = w.globals.seriesNames[seriesIndex];
 
         const value = formatLabel(series[seriesIndex][dataPointIndex]);
@@ -119,7 +121,7 @@ export default ({
               seriesIndex === 0 ? '#3B82F6' : '#94A3B8'
             };"></span>
             <div class="apexcharts-tooltip-text" style="display: flex; justify-content: space-between; width: 100%;">
-              <span class="apexcharts-tooltip-text-label">${`${firstDataName  } `}: </span>
+              <span class="apexcharts-tooltip-text-label">${`${firstDataName} `}: </span>
               <span class="apexcharts-tooltip-text-value" style="font-weight: bold;">${value}</span>
             </div>
           </div>
@@ -130,7 +132,7 @@ export default ({
               seriesIndex === 0 ? '#3B82F6' : '#94A3B8'
             };"></span>
             <div class="apexcharts-tooltip-text" style="display: flex; justify-content: space-between; width: 100%;">
-              <span class="apexcharts-tooltip-text-label">${`${secondDataName  } `}: </span>
+              <span class="apexcharts-tooltip-text-label">${`${secondDataName} `}: </span>
               <span class="apexcharts-tooltip-text-value" style="font-weight: bold;">${secondDataValueProvider(
                 seriesIndex,
                 dataPointIndex
@@ -181,4 +183,3 @@ export default ({
     </Card>
   );
 };
-

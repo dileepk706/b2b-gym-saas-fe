@@ -3,13 +3,13 @@ import { alpha, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 
 // assets
-import Button from '@components/button/Button';
 import { Grid, Stack, Typography } from '@mui/material';
 import { useResponsive } from '@hooks/useResponsive';
 import { LogoText } from '@components/logo';
 import { usePathname } from '@routes/hook';
 import { pathKeys } from 'shared/routes';
 import CustomLink from '@components/link/CustomeLink';
+import { Button } from 'shared/ui';
 import bgImage from '../../assets/webp/auth.bgi.webp';
 
 // ----------------------------------------------------------------------

@@ -17,7 +17,7 @@ import { usePathname } from '@routes/hook';
 import { RouterLink } from '@routes/components';
 //
 import { LogoText } from '@components/logo';
-import Iconify from '../iconify';
+import Iconify from '../../shared/ui/iconify';
 import Scrollbar from '../scrollbar';
 //
 import { ParentItemProps, MegaMenuItemProps } from './types';

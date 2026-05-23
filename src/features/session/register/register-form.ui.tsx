@@ -12,8 +12,8 @@ import {
 import { pathKeys } from 'shared/routes';
 import { Button } from 'shared/ui/button';
 import { TextField, TextFieldLabel } from 'shared/ui/text-field';
-import { ICONS, inconString } from '@components/iconify/icons';
-import Iconify from '@components/iconify';
+import { ICONS, inconString } from 'shared/ui/iconify/icons';
+import Iconify from 'shared/ui/iconify';
 import { LogoPng } from '@components/logo';
 import CustomLink from '@components/link/CustomeLink';
 import { useRegisterForm } from './use-register-form';
@@ -193,7 +193,10 @@ export default function RegisterForm() {
             </Typography>
           </Stack>
           <Stack direction="row" spacing={1} alignItems="center">
-            <Iconify icon="solar:users-group-rounded-bold-duotone" sx={{ color: 'text.disabled' }} />
+            <Iconify
+              icon="solar:users-group-rounded-bold-duotone"
+              sx={{ color: 'text.disabled' }}
+            />
             <Typography
               variant="caption"
               color="text.secondary"

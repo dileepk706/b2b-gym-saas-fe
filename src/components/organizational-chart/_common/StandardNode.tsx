@@ -6,8 +6,8 @@ import MenuItem from '@mui/material/MenuItem';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 //
-import Iconify from '../../iconify';
-import CustomPopover, { usePopover } from '../../custom-popover';
+import Iconify from '../../../shared/ui/iconify';
+import CustomPopover, { usePopover } from '../../../shared/ui/custom-popover';
 //
 import { ItemProps } from '../types';
 

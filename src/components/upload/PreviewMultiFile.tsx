@@ -1,6 +1,6 @@
 import { Box, IconButton, Stack } from '@mui/material';
 import { useEffect } from 'react';
-import Iconify from '../iconify';
+import Iconify from '../../shared/ui/iconify';
 
 type MultiFilePreviewProps = {
   files: (File & { preview?: string })[];
@@ -9,11 +9,14 @@ type MultiFilePreviewProps = {
 };
 
 export default function MultiFilePreview({ files = [], onRemove }: MultiFilePreviewProps) {
-  useEffect(() => () => {
+  useEffect(
+    () => () => {
       files.forEach((file) => {
         if (file.preview) URL.revokeObjectURL(file.preview);
       });
-    }, [files]);
+    },
+    [files]
+  );
 
   return (
     <Stack direction="row" spacing={2} flexWrap="wrap">

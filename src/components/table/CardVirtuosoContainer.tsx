@@ -1,8 +1,7 @@
 import React, { useCallback, useRef } from 'react';
 import { Virtuoso } from 'react-virtuoso';
 import { Stack } from '@mui/material';
-import EmptyContent from '../empty-content';
-
+import EmptyContent from '../../shared/ui/empty-content';
 
 type CardListVirtuosoProps = {
   data: any[];

@@ -1,5 +1,5 @@
 import { IS_DEV } from 'config-global';
-import Button from '@components/button/Button';
+import { Button } from 'shared/ui';
 
 type ErrorHandlerProps = {
   error: any;

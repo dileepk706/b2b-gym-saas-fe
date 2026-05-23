@@ -22,7 +22,7 @@ export default function StackedColumnChart({
   }[];
   colors?: string[];
 }) {
-  const formatLabel = (val: number) => isDataCurrency ? fCurrency(val) : fNumber(val);
+  const formatLabel = (val: number) => (isDataCurrency ? fCurrency(val) : fNumber(val));
 
   const chartOptions: ApexOptions = {
     chart: {
@@ -116,4 +116,3 @@ export default function StackedColumnChart({
     </Card>
   );
 }
-

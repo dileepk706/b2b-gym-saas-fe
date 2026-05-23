@@ -1,8 +1,8 @@
 import { Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { Helmet } from 'react-helmet-async';
-import { logError } from '@components/error-handler/error-handler.lib';
-import { ErrorHandler } from '@components/error-handler/error-handler.ui';
+import { logError } from 'shared/ui/error-handler/error-handler.lib';
+import { ErrorHandler } from 'shared/ui/error-handler/error-handler.ui';
 import { SplashScreen } from 'shared/ui/loading-screen';
 import { OnboardingFormWidget } from 'widgets/onboarding-form';
 

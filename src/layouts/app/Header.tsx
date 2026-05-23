@@ -8,7 +8,7 @@ import IconButton from '@mui/material/IconButton';
 import { bgBlur } from '@theme/css';
 // components
 import { LogoPng } from '@components/logo';
-import Iconify from '@components/iconify';
+import Iconify from 'shared/ui/iconify';
 //
 import { HEADER } from '../configLayout';
 import GymSelect from '../_common/GymSelect';

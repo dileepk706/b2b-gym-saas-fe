@@ -22,7 +22,7 @@ export default function ({
   }[];
   colors?: string[];
 }) {
-  const formatLabel = (val: number) => isDataCurrency ? fCurrency(val) : fNumber(val);
+  const formatLabel = (val: number) => (isDataCurrency ? fCurrency(val) : fNumber(val));
 
   const chartOptions: ApexOptions = {
     chart: {
@@ -102,4 +102,3 @@ export default function ({
     </Card>
   );
 }
-

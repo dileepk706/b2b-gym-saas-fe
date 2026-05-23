@@ -8,7 +8,7 @@ import DraggableScroller from '@components/table/DraggableTableContainer';
 import TableHeadRowVirtuoso from '@components/table/TableHeadRowVirtuoso';
 import { Paper, Stack, TableContainer } from '@mui/material';
 import { useTableHeight } from './use-table-height';
-import EmptyContent from '../empty-content';
+import EmptyContent from '../../shared/ui/empty-content';
 
 type TableVirtuosoContainerWithHScrolling = {
   data: any[];

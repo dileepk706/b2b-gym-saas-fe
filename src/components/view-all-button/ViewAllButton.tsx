@@ -1,7 +1,7 @@
 import { Box, Button } from '@mui/material';
 import { useRouter } from '@routes/hook';
 import { Link, useNavigate } from 'react-router-dom';
-import Iconify from '../iconify';
+import Iconify from '../../shared/ui/iconify';
 
 type Props = {
   url: string;
@@ -33,4 +33,3 @@ function ViewAllButton({ url, dataToPassNewRoute }: Props) {
 }
 
 export default ViewAllButton;
-

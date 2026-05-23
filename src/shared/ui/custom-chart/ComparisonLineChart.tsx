@@ -47,7 +47,8 @@ export default function LineComparisonChart({
     return formatLabel(0, 's');
   };
 
-  const getCategoryLabel = (index: number, seriesIndex: number) => seriesIndex === 0 ? categories[index] : categoriesCompared[index];
+  const getCategoryLabel = (index: number, seriesIndex: number) =>
+    seriesIndex === 0 ? categories[index] : categoriesCompared[index];
 
   const chartOptions: ApexOptions = {
     chart: {
@@ -147,4 +148,3 @@ export default function LineComparisonChart({
     </Card>
   );
 }
-

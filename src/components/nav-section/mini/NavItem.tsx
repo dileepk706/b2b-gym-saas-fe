@@ -8,7 +8,7 @@ import ListItemText from '@mui/material/ListItemText';
 import { RouterLink } from '@routes/components';
 //
 import { Box } from '@mui/material';
-import Iconify from '../../iconify';
+import Iconify from '../../../shared/ui/iconify';
 //
 import { NavItemProps, NavConfigProps } from '../types';
 import { StyledItem, StyledIcon } from './styles';
@@ -17,11 +17,11 @@ import { StyledItem, StyledIcon } from './styles';
 
 type Props = NavItemProps & {
   config: NavConfigProps;
-  hasChild:boolean
+  hasChild: boolean;
 };
 
 const NavItem = forwardRef<HTMLDivElement, Props>(
-  ({ item, depth, open, active, externalLink, config,hasChild, ...other }, ref) => {
+  ({ item, depth, open, active, externalLink, config, hasChild, ...other }, ref) => {
     const theme = useTheme();
 
     const { title, path, icon, children, disabled, caption, roles } = item;
@@ -135,21 +135,19 @@ const NavItem = forwardRef<HTMLDivElement, Props>(
         </Link>
       );
 
-
     if (hasChild) {
-      return(
+      return (
         <Box
-        sx={{
-          width: 1,
-          ...(disabled && {
-            cursor: 'default',
-          }),
-        }}
-      >
-        {renderContent}
-      </Box>
-      )
-      
+          sx={{
+            width: 1,
+            ...(disabled && {
+              cursor: 'default',
+            }),
+          }}
+        >
+          {renderContent}
+        </Box>
+      );
     }
     // Default
     return (
@@ -171,4 +169,3 @@ const NavItem = forwardRef<HTMLDivElement, Props>(
 );
 
 export default NavItem;
-

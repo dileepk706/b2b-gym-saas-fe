@@ -9,13 +9,13 @@ import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
 import ButtonBase from '@mui/material/ButtonBase';
 // components
-import Iconify from '@components/iconify';
-import { varHover } from '@components/animate';
-import CustomPopover, { usePopover } from '@components/custom-popover';
+import Iconify from 'shared/ui/iconify';
+import CustomPopover, { usePopover } from 'shared/ui/custom-popover';
 import { useQueryClient } from '@tanstack/react-query';
 import { gymByIdQueryOptions } from 'entities/gym/gym.api';
 import { Gym } from 'entities/gym/gym.type';
 import { useGymStore } from '@stores/gym.store';
+import { varHover } from 'shared/ui/animate';
 
 // ----------------------------------------------------------------------
 

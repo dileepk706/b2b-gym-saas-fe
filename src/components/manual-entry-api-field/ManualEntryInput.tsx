@@ -1,7 +1,7 @@
 import { CircularProgress, InputAdornment, TextField, TextFieldProps } from '@mui/material';
 import React from 'react';
 import { useBoolean } from '@hooks/useBoolean';
-import Iconify from '../iconify';
+import Iconify from '../../shared/ui/iconify';
 
 type Props = TextFieldProps & {
   inputValue: any;
@@ -31,9 +31,7 @@ function ManualEntryInput({
     if (!loading && isInputValueChange.value) {
       apiCallHandler(inputValue);
       isInputValueChange.onFalse();
-      
     }
-    
   };
   return (
     <form onSubmit={onsubmit}>
@@ -89,4 +87,3 @@ function ManualEntryInput({
 }
 
 export default ManualEntryInput;
-

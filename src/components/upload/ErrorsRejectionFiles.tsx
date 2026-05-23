@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 // utils
 import { fData } from '@utils/format-number';
 //
-import { fileData } from '../file-thumbnail';
+import { fileData } from '../../shared/ui/file-thumbnail';
 
 // ----------------------------------------------------------------------
 
@@ -51,4 +51,3 @@ export default function RejectionFiles({ fileRejections }: Props) {
     </Paper>
   );
 }
-

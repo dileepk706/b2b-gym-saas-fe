@@ -7,7 +7,7 @@ import { RouterLink } from '@routes/components';
 //
 import Image from '../../image';
 import TextMaxLine from '../../text-max-line';
-import Carousel, { CarouselDots, CarouselArrows, useCarousel } from '../../carousel';
+import Carousel, { CarouselDots, CarouselArrows, useCarousel } from '../../../shared/ui/carousel';
 //
 import { MenuCarouselProps } from '../types';
 
@@ -72,4 +72,3 @@ export default function MenuCarousel({ products, numberShow, sx }: MenuCarouselP
     </Box>
   );
 }
-

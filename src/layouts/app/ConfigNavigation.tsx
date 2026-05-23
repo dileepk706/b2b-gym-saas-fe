@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { useLocales } from '@locales';
 import { pathKeys } from 'shared/routes';
-import { ICONS } from '@components/iconify/icons';
+import { ICONS } from 'shared/ui/iconify/icons';
 
 // ----------------------------------------------------------------------
 

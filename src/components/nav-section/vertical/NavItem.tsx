@@ -6,7 +6,7 @@ import ListItemText from '@mui/material/ListItemText';
 // routes
 import { RouterLink } from '@routes/components';
 //
-import Iconify from '../../iconify';
+import Iconify from '../../../shared/ui/iconify';
 //
 import { NavItemProps, NavConfigProps } from '../types';
 import { StyledItem, StyledIcon } from './styles';
@@ -69,7 +69,6 @@ export default function NavItem({
             typography: 'caption',
             textTransform: 'capitalize',
             fontWeight: active ? 'fontWeightSemiBold' : 'fontWeightMedium',
-
           }}
           secondaryTypographyProps={{
             noWrap: true,
@@ -142,4 +141,3 @@ export default function NavItem({
     </Link>
   );
 }
-

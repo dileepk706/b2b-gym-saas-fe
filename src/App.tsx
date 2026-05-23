@@ -33,7 +33,6 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 // hooks
 // import { useScrollToTop } from '@hooks/useScrollToTop';
 // components
-import MotionLazy from '@components/animate/MotionLazy';
 import SnackbarProvider from '@components/snackbar/SnackbarProvider';
 import { SettingsProvider, SettingsDrawer } from '@components/settings';
 // auth
@@ -41,6 +40,7 @@ import { AuthProvider, AuthConsumer } from '@auth/context';
 import enLocale from 'date-fns/locale/en-GB';
 import ThemeProvider from '@theme/index';
 import { BootstrappedRouter } from './routes';
+import MotionLazy from 'shared/ui/animate/MotionLazy';
 
 // ----------------------------------------------------------------------
 

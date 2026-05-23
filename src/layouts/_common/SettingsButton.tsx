@@ -5,9 +5,9 @@ import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import Badge, { badgeClasses } from '@mui/material/Badge';
 // components
-import Iconify from '@components/iconify';
-import { varHover } from '@components/animate';
+import Iconify from 'shared/ui/iconify';
 import { useSettingsContext } from '@components/settings';
+import { varHover } from 'shared/ui/animate';
 
 // ----------------------------------------------------------------------
 

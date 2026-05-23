@@ -1,4 +1,4 @@
-import { SplashScreen } from '@components/loading-screen';
+import { SplashScreen } from 'shared/ui';
 import { AuthContext } from './AuthContext';
 
 // ----------------------------------------------------------------------

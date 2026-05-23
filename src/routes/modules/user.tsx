@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 import { Outlet, RouteObject } from 'react-router-dom';
-import { SplashScreen } from '@components/loading-screen';
+import { SplashScreen } from 'shared/ui/loading-screen';
 import AuthGuard from '@auth/guard/AuthGuard';
 import GymGuard from '@layouts/guard/GymGuard';
 import AppLayout from '@layouts/app/AppLayout';

@@ -2,7 +2,7 @@ import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import { hideScroll } from '@theme/css';
-import { NavSectionMini } from '@components/nav-section';
+import { NavSectionMini } from 'shared/ui/nav-section';
 import { NAV } from '../configLayout';
 import { useNavData } from './ConfigNavigation';
 import NavToggleButton from '../_common/NavToggleButton';

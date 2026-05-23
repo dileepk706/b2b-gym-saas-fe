@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { RouterProvider, createBrowserRouter, redirect, useRouteError } from 'react-router-dom';
-import { SplashScreen } from '@components/loading-screen';
+import { SplashScreen } from 'shared/ui/loading-screen';
 import NotFoundPage from '@pages/404';
 import { pathKeys } from '../shared/routes';
 import { authRoutes } from './modules/auth';

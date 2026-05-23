@@ -5,7 +5,7 @@ import Box, { BoxProps } from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import LinearProgress from '@mui/material/LinearProgress';
-import { LogoPng } from '@components/logo';
+import { LogoPng } from 'shared/ui/logo';
 //
 
 // ----------------------------------------------------------------------

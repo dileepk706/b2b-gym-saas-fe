@@ -5,10 +5,10 @@ import Box from '@mui/material/Box';
 // assets
 import { Grid, Stack, Typography } from '@mui/material';
 import { useResponsive } from '@hooks/useResponsive';
-import { LogoText } from '@components/logo';
+import { LogoText } from 'shared/ui/logo';
 import { usePathname } from '@routes/hook';
 import { pathKeys } from 'shared/routes';
-import CustomLink from '@components/link/CustomeLink';
+import CustomLink from 'shared/ui/link/CustomeLink';
 import { Button } from 'shared/ui';
 import bgImage from '../../assets/webp/auth.bgi.webp';
 

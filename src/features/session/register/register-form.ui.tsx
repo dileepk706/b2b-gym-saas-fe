@@ -14,8 +14,8 @@ import { Button } from 'shared/ui/button';
 import { TextField, TextFieldLabel } from 'shared/ui/text-field';
 import { ICONS, inconString } from 'shared/ui/iconify/icons';
 import Iconify from 'shared/ui/iconify';
-import { LogoPng } from '@components/logo';
-import CustomLink from '@components/link/CustomeLink';
+import CustomLink from 'shared/ui/link/CustomeLink';
+import { LogoPng } from 'shared/ui/logo';
 import { useRegisterForm } from './use-register-form';
 
 export default function RegisterForm() {

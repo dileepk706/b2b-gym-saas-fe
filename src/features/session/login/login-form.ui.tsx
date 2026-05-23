@@ -4,8 +4,8 @@ import { Button } from 'shared/ui/button';
 import { TextField } from 'shared/ui/text-field';
 import { ICONS, inconString } from 'shared/ui/iconify/icons';
 import Iconify from 'shared/ui/iconify';
-import CustomLink from '@components/link/CustomeLink';
-import { LogoPng } from '@components/logo';
+import CustomLink from 'shared/ui/link/CustomeLink';
+import { LogoPng } from 'shared/ui/logo';
 import { useLoginForm } from './use-login-form';
 
 export default function LoginForm() {

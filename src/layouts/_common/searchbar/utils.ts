@@ -1,7 +1,7 @@
 // utils
 import { flattenArray } from '@utils/flatten-array';
 // components
-import { NavListProps, NavSectionProps } from '@components/nav-section';
+import { NavListProps, NavSectionProps } from 'shared/ui/nav-section';
 
 // ----------------------------------------------------------------------
 
@@ -105,4 +105,3 @@ export function groupedData(array: ItemProps[]) {
 
   return group;
 }
-

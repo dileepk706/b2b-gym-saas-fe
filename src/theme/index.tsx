@@ -6,7 +6,7 @@ import { createTheme, ThemeProvider as MuiThemeProvider, ThemeOptions } from '@m
 // locales
 // components
 // system
-import { useSettingsContext } from '@components/settings';
+import { useSettingsContext } from 'shared/ui/settings';
 import useLocales from '@locales/use-locales';
 import { palette } from './palette';
 import { shadows } from './shadows';

@@ -2,8 +2,6 @@
   "compilerOptions": {
     "baseUrl": "./src", // Base directory for absolute paths
     "paths": {
-      "@components": ["components/index"],
-      "@components/*": ["components/*"], // Alias for the components folder
       "@utils": ["utils/index"],
       "@utils/*": ["utils/*"], // Alias for the utils folder
       "@auth": ["auth/index"],

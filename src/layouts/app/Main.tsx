@@ -3,7 +3,7 @@ import Box, { BoxProps } from '@mui/material/Box';
 // hooks
 import { useResponsive } from '@hooks/useResponsive';
 // components
-import { useSettingsContext } from '@components/settings';
+import { useSettingsContext } from 'shared/ui/settings';
 //
 import { NAV, HEADER } from '../configLayout';
 

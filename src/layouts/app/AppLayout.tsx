@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box';
 import { useBoolean } from '@hooks/useBoolean';
 import { useResponsive } from '@hooks/useResponsive';
-import { useSettingsContext } from '@components/settings';
+import { useSettingsContext } from 'shared/ui/settings';
 import Header from './Header';
 import NavVertical from './NavVertical';
 import NavMini from './NavMini';

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from '@routes/hook';
 import { pathKeys } from 'shared/routes';
-import { SplashScreen } from '@components/loading-screen';
+import { SplashScreen } from 'shared/ui/loading-screen';
 import { useAuthContext } from '../../auth/hooks';
 
 type Props = {

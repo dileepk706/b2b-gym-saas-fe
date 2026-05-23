@@ -15,11 +15,11 @@ import { useBoolean } from '@hooks/useBoolean';
 import { useResponsive } from '@hooks/useResponsive';
 import { useEventListener } from '@hooks/useIsomorphicLayoutEffect';
 // components
-import Label from '@components/label';
+import Label from 'shared/ui/label';
 import Iconify from 'shared/ui/iconify';
-import Scrollbar from '@components/scrollbar';
+import Scrollbar from 'shared/ui/scrollbar';
 import { useRouter } from '@routes/hook';
-import SearchNotFound from '@components/search-not-found';
+import SearchNotFound from 'shared/ui/search-not-found';
 //
 import ResultItem from './ResultItem';
 import { useNavData } from '../../app/ConfigNavigation';

@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { useCallback } from 'react';
 import { localStorageGetItem } from '@utils/storage-available';
-import { useSettingsContext } from '@components/settings';
+import { useSettingsContext } from 'shared/ui/settings';
 import { allLangs, defaultLang } from './config-lang';
 
 // ----------------------------------------------------------------------
@@ -30,4 +30,3 @@ export default function useLocales() {
     onChangeLang,
   };
 }
-

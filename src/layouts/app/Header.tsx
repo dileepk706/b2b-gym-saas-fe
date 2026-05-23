@@ -7,7 +7,7 @@ import IconButton from '@mui/material/IconButton';
 // theme
 import { bgBlur } from '@theme/css';
 // components
-import { LogoPng } from '@components/logo';
+import { LogoPng } from 'shared/ui/logo';
 import Iconify from 'shared/ui/iconify';
 //
 import { HEADER } from '../configLayout';

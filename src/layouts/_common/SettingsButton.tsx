@@ -6,7 +6,7 @@ import IconButton from '@mui/material/IconButton';
 import Badge, { badgeClasses } from '@mui/material/Badge';
 // components
 import Iconify from 'shared/ui/iconify';
-import { useSettingsContext } from '@components/settings';
+import { useSettingsContext } from 'shared/ui/settings';
 import { varHover } from 'shared/ui/animate';
 
 // ----------------------------------------------------------------------

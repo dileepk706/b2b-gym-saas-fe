@@ -1,5 +1,5 @@
 import { DefaultError, useMutation, UseMutationOptions } from '@tanstack/react-query';
-import { onboardingCreateWorkSpace } from 'shared/api/api.services';
+import { onboardingRequest } from './onboarding.api';
 import { TOnboarding } from './onboarding.types';
 
 export function useOnboardingMutation(
@@ -10,7 +10,7 @@ export function useOnboardingMutation(
   return useMutation({
     mutationKey: ['session', 'onboarding-user', ...mutationKey],
     mutationFn: async (onboardingData: TOnboarding) => {
-      const data = await onboardingCreateWorkSpace(onboardingData);
+      const data = await onboardingRequest(onboardingData);
       return data;
     },
     onMutate,

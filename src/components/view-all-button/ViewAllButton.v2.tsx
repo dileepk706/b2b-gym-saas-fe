@@ -5,5 +5,9 @@ type Props = LinkProps & {
   url: string;
 };
 export default function ({ url, ...other }: Props) {
-  return <CustomLink href={url} input="View all" {...other} />;
+  return (
+    <CustomLink href={url} {...other}>
+      View all
+    </CustomLink>
+  );
 }

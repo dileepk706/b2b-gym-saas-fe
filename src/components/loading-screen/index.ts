@@ -1,1 +1,1 @@
-export { default as SplashScreen } from './SplashScreen';
+export { SplashScreen } from 'shared/ui/loading-screen';

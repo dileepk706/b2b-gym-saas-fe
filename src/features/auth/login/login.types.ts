@@ -1,4 +1,1 @@
-import { z } from 'zod';
-import { LoginUserSchema } from './login.contracts';
-
-export type LoginUser = z.infer<typeof LoginUserSchema>;
+export type { LoginUser } from 'features/session/login';

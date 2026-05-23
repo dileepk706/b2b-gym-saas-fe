@@ -1,5 +1,5 @@
 import axios, { AxiosError } from 'axios';
-import { useAuthStore } from '@stores/auth.store';
+import { useSessionStore } from 'entities/session';
 import { useGymStore } from '@stores/gym.store';
 import { SERVER_BASE_URL } from 'config-global';
 import { ApiErrorDataDtoSchema } from './api.contracts';
@@ -37,7 +37,7 @@ export const api = axios.create({
 
 api.interceptors.request.use(
   (config) => {
-    const { accessToken } = useAuthStore.getState();
+    const { accessToken } = useSessionStore.getState();
     const { selectedGymId } = useGymStore.getState();
     if (accessToken) {
       config.headers.Authorization = `Bearer ${accessToken}`;
@@ -80,15 +80,15 @@ api.interceptors.response.use(
         // Use full URL and base axios to avoid interceptor loop
         const accessToken = await getRefreshToken();
 
-        useAuthStore.getState().login({ accessToken });
+        useSessionStore.getState().setAccessToken(accessToken);
 
         originalRequest.headers.Authorization = `Bearer ${accessToken}`;
         processQueue(null, accessToken);
         return await api(originalRequest);
       } catch (refreshError) {
         processQueue(refreshError, null);
-        useAuthStore.getState().setSessionExpired(true);
-        useAuthStore.getState().logout();
+        useSessionStore.getState().setSessionExpired(true);
+        useSessionStore.getState().clearSession();
         window.location.href = '/login';
         console.log('refreshError', refreshError);
         return await Promise.reject(refreshError);

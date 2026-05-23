@@ -1,4 +1,1 @@
-import { z } from 'zod';
-import { RegisterUserSchema } from './register.contracts';
-
-export type TRegisterUser = z.infer<typeof RegisterUserSchema>;
+export type { TRegisterUser } from 'features/session/register';

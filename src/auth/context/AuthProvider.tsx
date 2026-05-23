@@ -1,9 +1,8 @@
-import { useEffect, useCallback, useMemo, useState } from 'react';
+import { useEffect, useCallback, useMemo } from 'react';
 // auth utils
 import { getUserProfile, loginUser, logoutUser, registerUser } from 'shared/api/api.services';
 import { LoginUserDto, RegisterUserDto } from 'shared/api/api.types';
-import { User } from 'entities/user/user.entity';
-import { useAuthStore } from '@stores/auth.store';
+import { User, useSessionStore } from 'entities/session';
 import { AuthContext } from './AuthContext';
 
 // ----------------------------------------------------------------------
@@ -13,14 +12,14 @@ type Props = {
 };
 
 export function AuthProvider({ children }: Props) {
-  const [user, setUser] = useState<User | null>(null);
-
-  const accessToken = useAuthStore((state) => state.accessToken);
-  const loading = useAuthStore((state) => state.loading);
-  const loginStore = useAuthStore((state) => state.login);
-  const logoutStore = useAuthStore((state) => state.logout);
-  const setLoading = useAuthStore((state) => state.setLoading);
-  const setSessionExpired = useAuthStore((state) => state.setSessionExpired);
+  const user = useSessionStore((state) => state.user);
+  const accessToken = useSessionStore((state) => state.accessToken);
+  const loading = useSessionStore((state) => state.loading);
+  const setAccessToken = useSessionStore((state) => state.setAccessToken);
+  const setUser = useSessionStore((state) => state.setUser);
+  const clearSession = useSessionStore((state) => state.clearSession);
+  const setLoading = useSessionStore((state) => state.setLoading);
+  const setSessionExpired = useSessionStore((state) => state.setSessionExpired);
 
   const fetchUserProfile = useCallback(async () => {
     try {
@@ -38,12 +37,12 @@ export function AuthProvider({ children }: Props) {
       if (accessToken) {
         await fetchUserProfile();
       } else {
-        logoutStore();
+        clearSession();
       }
     } finally {
       setLoading(false);
     }
-  }, [accessToken, fetchUserProfile, logoutStore, setLoading]);
+  }, [accessToken, clearSession, fetchUserProfile, setLoading]);
 
   useEffect(() => {
     initialize();
@@ -55,12 +54,12 @@ export function AuthProvider({ children }: Props) {
       const response = await loginUser(loginUserDto);
       const { accessToken: token, user: loggedInUser } = response.data.data;
 
-      loginStore({ accessToken: token });
+      setAccessToken(token);
       setSessionExpired(false);
       setUser(loggedInUser);
       return response.data;
     },
-    [loginStore, setSessionExpired]
+    [setAccessToken, setSessionExpired, setUser]
   );
 
   const register = useCallback(async (registerUserDto: RegisterUserDto) => {
@@ -70,9 +69,9 @@ export function AuthProvider({ children }: Props) {
 
   const logout = useCallback(async () => {
     await logoutUser();
-    logoutStore();
+    clearSession();
     setSessionExpired(false);
-  }, [logoutStore, setSessionExpired]);
+  }, [clearSession, setSessionExpired]);
 
   const checkAuthenticated = accessToken && user ? 'authenticated' : 'unauthenticated';
 

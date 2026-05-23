@@ -1,11 +1,11 @@
-import { useAuthStore } from '@stores/auth.store';
+import { useSessionStore } from 'entities/session';
 import { useGymStore } from '@stores/gym.store';
 import { gymByIdQueryOptions, gymsQueryOptions } from 'entities/gym/gym.api';
 import { queryClient } from 'shared/queryClient';
 
 export async function LoadGyms() {
   await new Promise((resolve) => setTimeout(resolve, 5000));
-  if (!useAuthStore.getState().accessToken) {
+  if (!useSessionStore.getState().accessToken) {
     return null;
   }
 

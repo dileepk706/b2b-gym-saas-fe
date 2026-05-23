@@ -13,3 +13,4 @@ export const OnboardingSchema = z.object({
   address: z.string().optional(),
 });
 
+export type TOnboarding = z.infer<typeof OnboardingSchema>;

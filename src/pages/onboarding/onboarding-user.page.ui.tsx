@@ -1,5 +1,10 @@
-import OnboardingView from 'features/onboarding/onboarding.view';
+import { Suspense } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
 import { Helmet } from 'react-helmet-async';
+import { logError } from '@components/error-handler/error-handler.lib';
+import { ErrorHandler } from '@components/error-handler/error-handler.ui';
+import { SplashScreen } from 'shared/ui/loading-screen';
+import { OnboardingFormWidget } from 'widgets/onboarding-form';
 
 export default function OnboardingUserPage() {
   return (
@@ -7,7 +12,11 @@ export default function OnboardingUserPage() {
       <Helmet>
         <title>Onboarding</title>
       </Helmet>
-      <OnboardingView />
+      <ErrorBoundary FallbackComponent={ErrorHandler} onError={logError}>
+        <Suspense fallback={<SplashScreen />}>
+          <OnboardingFormWidget />
+        </Suspense>
+      </ErrorBoundary>
     </>
   );
 }

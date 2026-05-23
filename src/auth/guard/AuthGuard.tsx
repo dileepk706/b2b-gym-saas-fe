@@ -2,7 +2,7 @@ import { useEffect, useCallback, useState } from 'react';
 import { pathKeys } from 'shared/routes';
 import { useRouter } from '@routes/hook';
 import { Dialog, DialogTitle, DialogContent, DialogActions, Typography } from '@mui/material';
-import { useAuthStore } from '@stores/auth.store';
+import { useSessionStore } from 'entities/session';
 import Button from '@components/button/Button';
 import { SplashScreen } from '@components/loading-screen';
 import { useAuthContext } from '../hooks';
@@ -16,7 +16,7 @@ export default function AuthGuard({ children }: Props) {
   const router = useRouter();
   const { authenticated, loading } = useAuthContext();
   const [checked, setChecked] = useState(false);
-  const sessionExpired = useAuthStore((state) => state.sessionExpired);
+  const sessionExpired = useSessionStore((state) => state.sessionExpired);
 
   const check = useCallback(() => {
     if (loading) {

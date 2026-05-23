@@ -24,7 +24,8 @@
       "@hooks": ["hooks/index"],
       "@hooks/*": ["hooks/*"],
       "@stores/*": ["stores/*"],
-      "features/*": ["features/*"]
+      "features/*": ["features/*"],
+      "widgets/*": ["widgets/*"]
     },
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],

@@ -24,6 +24,7 @@ export default defineConfig({
       module: path.resolve(__dirname, './src/module'),
       entities: path.resolve(__dirname, './src/entities'),
       features: path.resolve(__dirname, './src/features'),
+      widgets: path.resolve(__dirname, './src/widgets'),
       'config-global': path.resolve(__dirname, './src/config-global'),
     },
   },

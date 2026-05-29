@@ -1,4 +1,4 @@
-🏋️ B2B Gym SaaS Frontend 🍰 Feature-Sliced Design
+🏋️ B2B Gym SaaS Frontend, Feature-Sliced Design
 
 A modern B2B Gym management SaaS application built with React, TypeScript, Vite, React Router, TanStack React Query, and Zod, following the Feature-Sliced Design (FSD) architectural methodology.
 

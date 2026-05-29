@@ -36,6 +36,7 @@ src/
 ├── shared/           — Reusable API layer, utilities, hooks, router helpers, shared UI
 ├── features/         — Independent business features (if using full FSD structure)
 └── entities/         — Domain entities and models (if using full FSD structure)
+└── widgets/          — widgets
 ```
 
 ### Key Directories
@@ -77,6 +78,7 @@ The codebase implements a **page-scoped Feature-Sliced Design** structure optimi
 ## Scripts
 
 ### Development
+
 ```bash
 yarn dev              # Start development server
 yarn build            # Build production bundle
@@ -85,6 +87,7 @@ yarn start            # Preview production build locally
 ```
 
 ### Code Quality
+
 ```bash
 yarn lint             # Run ESLint
 yarn lint:fix         # Fix linting issues automatically
@@ -92,6 +95,7 @@ yarn prettier         # Format code with Prettier
 ```
 
 ### Maintenance
+
 ```bash
 yarn clear-all        # Remove all generated files and dependencies
 yarn re-start         # Clean install and start development
@@ -108,18 +112,21 @@ yarn re-build         # Clean build for production
 ### Installation
 
 1. Clone the repository:
+
 ```bash
 git clone https://github.com/dileepk706/b2b-gym-saas-fe.git
 cd b2b-gym-saas-fe
 ```
 
 2. Install dependencies:
+
 ```bash
 yarn install
 ```
 
 3. Configure environment variables:
-Create a `.env.local` file in the project root:
+   Create a `.env.local` file in the project root:
+
 ```env
 VITE_API_URL=http://localhost:3000/api
 VITE_AUTH0_DOMAIN=your-auth0-domain.auth0.com
@@ -127,6 +134,7 @@ VITE_AUTH0_CLIENT_ID=your-auth0-client-id
 ```
 
 4. Start the development server:
+
 ```bash
 yarn dev
 ```
@@ -167,6 +175,7 @@ yarn prettier
 ## Project Features
 
 ### Core Functionality
+
 - 💪 **Membership Management** — Track and manage gym memberships
 - 📅 **Class Scheduling** — Schedule and manage fitness classes
 - 👥 **Member Portal** — Member dashboard and profile management
@@ -178,6 +187,7 @@ yarn prettier
 - 🗺️ **Location Mapping** — Mapbox integration for branch locations
 
 ### Technical Features
+
 - 🔐 **Secure Authentication** — Auth0 integration
 - 🚀 **High Performance** — Optimized with Vite and code splitting
 - 📱 **Responsive Design** — Mobile-friendly UI with MUI

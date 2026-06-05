@@ -38,9 +38,11 @@ export const api = axios.create({
 api.interceptors.request.use(
   (config) => {
     const { accessToken } = useSessionStore.getState();
-    const { selectedGymId } = useGymStore.getState();
+    const { selectedGymId, clearSelectedGym } = useGymStore.getState();
     if (accessToken) {
       config.headers.Authorization = `Bearer ${accessToken}`;
+    } else {
+      clearSelectedGym();
     }
     if (selectedGymId) {
       config.headers['X-Gym-Id'] = selectedGymId;

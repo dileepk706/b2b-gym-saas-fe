@@ -11,7 +11,7 @@ export const pathKeys = {
   // dashboard
   dashboard(root?: boolean) {
     return {
-      root: `dashboard`,
+      root: `/`,
     };
   },
 

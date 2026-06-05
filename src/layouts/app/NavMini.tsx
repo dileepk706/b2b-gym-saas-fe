@@ -7,6 +7,7 @@ import { NAV } from '../configLayout';
 import { useNavData } from './ConfigNavigation';
 import NavToggleButton from '../_common/NavToggleButton';
 import GymSelect from '../_common/GymSelect';
+import LogoutButton from '../_common/LogoutButton';
 
 // ----------------------------------------------------------------------
 
@@ -64,6 +65,8 @@ export default function NavMini() {
             },
           }}
         />
+
+        <LogoutButton mini />
       </Stack>
     </Box>
   );

@@ -32,6 +32,10 @@ export const userRoutes: RouteObject = {
 
   children: [
     {
+      element: <h1>Dashboard coming soon..</h1>,
+      index: true,
+    },
+    {
       element: (
         <ErrorBoundary FallbackComponent={ErrorHandler} onError={logError}>
           <Suspense fallback={<SplashScreen />}>
@@ -70,11 +74,13 @@ export const userRoutes: RouteObject = {
 export const onboardingRoutes: RouteObject = {
   element: (
     <AuthGuard>
-      <AuthLayout>
-        <Suspense fallback={<SplashScreen />}>
-          <Outlet />
-        </Suspense>
-      </AuthLayout>
+      <GymGuard>
+        <AuthLayout>
+          <Suspense fallback={<SplashScreen />}>
+            <Outlet />
+          </Suspense>
+        </AuthLayout>
+      </GymGuard>
     </AuthGuard>
   ),
   children: [onboardingUserPageRoute],

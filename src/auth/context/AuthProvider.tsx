@@ -3,6 +3,8 @@ import { useEffect, useCallback, useMemo } from 'react';
 import { getUserProfile, loginUser, logoutUser, registerUser } from 'shared/api/api.services';
 import { LoginUserDto, RegisterUserDto } from 'shared/api/api.types';
 import { User, useSessionStore } from 'entities/session';
+import { useGymStore } from '@stores/gym.store';
+import { queryClient } from 'shared/queryClient';
 import { AuthContext } from './AuthContext';
 
 // ----------------------------------------------------------------------
@@ -68,9 +70,18 @@ export function AuthProvider({ children }: Props) {
   }, []);
 
   const logout = useCallback(async () => {
-    await logoutUser();
-    clearSession();
-    setSessionExpired(false);
+    try {
+      await logoutUser();
+    } catch (error) {
+      console.log('logout error', error);
+    } finally {
+      queryClient.clear();
+      useGymStore.getState().clearSelectedGym();
+      clearSession();
+      setSessionExpired(false);
+      localStorage.removeItem('auth-storage');
+      localStorage.removeItem('gym-storage');
+    }
   }, [clearSession, setSessionExpired]);
 
   const checkAuthenticated = accessToken && user ? 'authenticated' : 'unauthenticated';

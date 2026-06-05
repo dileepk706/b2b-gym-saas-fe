@@ -3,7 +3,7 @@ import { getGymByIdGlobal, getGymsGlobal } from 'shared/api/api.services';
 import { queryClient } from 'shared/queryClient';
 import { Gym } from './gym.type';
 
-export const gymsQueryOptions = () =>
+export const gymsGlobalQueryOptions = () =>
   queryOptions({
     queryKey: ['gyms'],
 

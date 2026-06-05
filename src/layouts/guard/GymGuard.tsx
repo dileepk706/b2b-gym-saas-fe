@@ -12,6 +12,7 @@ export default function GymGuard({ children }: Props) {
   const router = useRouter();
   const { authenticated, user, loading } = useAuthContext();
   const [checked, setChecked] = useState(false);
+  console.log(user);
 
   useEffect(() => {
     if (loading) return;

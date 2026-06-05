@@ -1,7 +1,8 @@
+/* eslint-disable no-nested-ternary */
 import { CircularProgress, InputAdornment, TextField, TextFieldProps } from '@mui/material';
 import React from 'react';
 import { useBoolean } from '@hooks/useBoolean';
-import Iconify from '../../shared/ui/iconify';
+import Iconify from 'shared/ui/iconify';
 
 type Props = TextFieldProps & {
   inputValue: any;

@@ -2,7 +2,7 @@ import { Container, ContainerProps } from '@mui/material';
 import { ReactNode } from 'react';
 import { formatCamelCase } from '@utils/helperFunctions';
 import CustomBreadcrumbs from '../custom-breadcrumbs';
-import { useSettingsContext } from '../../../components/settings';
+import { useSettingsContext } from '../settings';
 
 interface PageHeaderWithBreadcrumbsProps extends ContainerProps {
   heading: string;

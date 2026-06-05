@@ -6,7 +6,7 @@ import ListItemText from '@mui/material/ListItemText';
 // routes
 import { RouterLink } from '@routes/components';
 //
-import Iconify from '../../../shared/ui/iconify';
+import Iconify from 'shared/ui/iconify';
 //
 import { NavItemProps, NavConfigProps } from '../types';
 import { StyledItem, StyledIcon } from './styles';

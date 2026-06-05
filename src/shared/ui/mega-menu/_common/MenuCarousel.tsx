@@ -5,9 +5,9 @@ import Link from '@mui/material/Link';
 // routes
 import { RouterLink } from '@routes/components';
 //
-import Image from '../../../shared/ui/image';
+import Image from 'shared/ui/image';
+import Carousel, { CarouselDots, CarouselArrows, useCarousel } from 'shared/ui/carousel';
 import TextMaxLine from '../../text-max-line';
-import Carousel, { CarouselDots, CarouselArrows, useCarousel } from '../../../shared/ui/carousel';
 //
 import { MenuCarouselProps } from '../types';
 

@@ -10,9 +10,9 @@ import Drawer, { drawerClasses } from '@mui/material/Drawer';
 // theme
 import { paper } from '@theme/css';
 //
-import Iconify from '../../../shared/ui/iconify';
-import Scrollbar from '../../../shared/ui/scrollbar';
 //
+import Iconify from 'shared/ui/iconify';
+import Scrollbar from 'shared/ui/scrollbar';
 import { useSettingsContext } from '../context';
 import BaseOptions from './BaseOption';
 import LayoutOptions from './LayoutOptions';

@@ -8,7 +8,7 @@ import ListItemText from '@mui/material/ListItemText';
 import { RouterLink } from '@routes/components';
 //
 import { Box } from '@mui/material';
-import Iconify from '../../../shared/ui/iconify';
+import Iconify from 'shared/ui/iconify';
 //
 import { NavItemProps, NavConfigProps } from '../types';
 import { StyledItem, StyledIcon } from './styles';

@@ -2,8 +2,8 @@ import { m, MotionProps } from 'framer-motion';
 // @mui
 import Box, { BoxProps } from '@mui/material/Box';
 // hooks
-import { useResponsive } from 'src/hooks/useResponsive';
 //
+import { useResponsive } from '@hooks/useResponsive';
 import { varContainer } from './variants';
 
 // ----------------------------------------------------------------------

@@ -1,6 +1,6 @@
 import { Box, IconButton, Stack } from '@mui/material';
 import { useEffect } from 'react';
-import Iconify from '../../shared/ui/iconify';
+import Iconify from 'shared/ui/iconify';
 
 type MultiFilePreviewProps = {
   files: (File & { preview?: string })[];
@@ -8,7 +8,11 @@ type MultiFilePreviewProps = {
   onRemove?: (file: File) => void;
 };
 
-export default function MultiFilePreview({ files = [], onRemove }: MultiFilePreviewProps) {
+export default function MultiFilePreview({
+  files = [],
+  onRemove,
+  thumbnail,
+}: MultiFilePreviewProps) {
   useEffect(
     () => () => {
       files.forEach((file) => {

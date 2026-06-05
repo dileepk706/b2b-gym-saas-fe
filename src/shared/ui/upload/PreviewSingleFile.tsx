@@ -1,7 +1,7 @@
 // @mui
 import Box from '@mui/material/Box';
 //
-import Image from '../../shared/ui/image';
+import Image from 'shared/ui/image';
 
 // ----------------------------------------------------------------------
 

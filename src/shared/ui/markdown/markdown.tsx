@@ -10,7 +10,7 @@ import Link from '@mui/material/Link';
 // routes
 import { RouterLink } from '@routes/components';
 //
-import Image from '../../shared/ui/image';
+import Image from 'shared/ui/image';
 //
 import StyledMarkdown from './styles';
 import { MarkdownProps } from './types';

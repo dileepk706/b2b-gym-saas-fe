@@ -9,7 +9,7 @@ import Typography from '@mui/material/Typography';
 // assets
 import { UploadIllustration } from '@assets/illustrations';
 //
-import Iconify from '../../shared/ui/iconify';
+import Iconify from 'shared/ui/iconify';
 //
 import { UploadProps } from './types';
 import RejectionFiles from './ErrorsRejectionFiles';

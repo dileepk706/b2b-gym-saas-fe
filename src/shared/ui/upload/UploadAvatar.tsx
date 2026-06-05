@@ -8,12 +8,12 @@ import Typography from '@mui/material/Typography';
 import { Button } from '@mui/material';
 import { useState } from 'react';
 import { useBoolean } from '@hooks/useBoolean';
-import Iconify from '../../shared/ui/iconify';
-import Image from '../../shared/ui/image';
+import Iconify from 'shared/ui/iconify';
+import Image from 'shared/ui/image';
 //
+import Lightbox from 'shared/ui/lightbox/lightbox';
 import { UploadProps } from './types';
 import RejectionFiles from './ErrorsRejectionFiles';
-import Lightbox from '../../shared/ui/lightbox/lightbox';
 
 // ----------------------------------------------------------------------
 

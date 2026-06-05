@@ -12,7 +12,7 @@ import Typography from '@mui/material/Typography';
 // routes
 import { RouterLink } from '@routes/components';
 //
-import Iconify from '../../shared/ui/iconify';
+import Iconify from 'shared/ui/iconify';
 //
 import MenuHotProducts from './_common/MenuHotProducts';
 import MenuCarousel from './_common/MenuCarousel';

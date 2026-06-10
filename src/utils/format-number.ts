@@ -10,7 +10,7 @@ export function fNumber(number: InputValue) {
 export function fCurrency(input: number | string | null | undefined): string {
   let number = Number(input);
 
-  if (isNaN(number) || Math.abs(number) < 1e-10) {
+  if (Number.isNaN(number) || Math.abs(number) < 1e-10) {
     number = 0;
   }
 
@@ -18,7 +18,7 @@ export function fCurrency(input: number | string | null | undefined): string {
   const absValue = Math.abs(number);
   const formatted = numeral(absValue).format('0,0.00');
 
-  return `${isNegative ? '-' : ''}£${formatted}`;
+  return `${isNegative ? '-' : ''}₹${formatted}`;
 }
 
 export function fPercent(number: InputValue) {

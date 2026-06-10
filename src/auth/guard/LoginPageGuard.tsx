@@ -8,7 +8,7 @@ type Props = {
   children: React.ReactNode;
 };
 
-export default function LoginPageGuard({ children }: Props) {
+export default function GuestGuard({ children }: Props) {
   const router = useRouter();
   const { authenticated, loading } = useAuthContext();
   const [checked, setChecked] = useState(false);

@@ -38,6 +38,7 @@ export const pathKeys = {
     return {
       root: accountRoot,
       setting: root ? `${accountRoot}/setting/` : `setting/`,
+      plan: root ? `${accountRoot}/plan/` : `plan/`,
     };
   },
 

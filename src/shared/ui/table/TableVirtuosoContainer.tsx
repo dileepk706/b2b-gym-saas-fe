@@ -5,7 +5,7 @@ import { Stack } from '@mui/material';
 import { useTableHeight } from './use-table-height';
 import EmptyContent from '../empty-content';
 import TableComponentsVirtuoso from './TableComponentsVirtuoso';
-import LinearProgressLoading from '../loading-screen/LinearProgressLoading';
+import LinearProgressLoading from '../loading/LinearProgressLoading';
 
 type TableVirtuosoContainerProps = {
   data: any[];

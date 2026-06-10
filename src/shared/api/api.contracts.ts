@@ -1,5 +1,10 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { GymSchema } from 'entities/gym/gym.contracts';
+import {
+  FeatureFlagSchema,
+  PlanLimitSchema,
+  SubscriptionPlanSchema,
+  SubscriptionSchema,
+} from 'entities/subscription/subscription.contracts';
 import { UserSchema } from 'entities/user/user.contracts';
 import { z } from 'zod';
 
@@ -45,6 +50,10 @@ export const OnboardingDtoSchema = z.object({
   gym_url: z.string(),
 });
 
+export const SubscribeDtoSchema = z.object({
+  plan_id: z.string(),
+});
+
 export const createGymDtoSchema = z.object({
   name: z.string().min(3, 'Name must be at least 3 characters'),
   gym_url: z.string().min(3, 'Gym URL must be at least 3 characters'),
@@ -59,6 +68,16 @@ export const GymDataSchema = z.object({
   gyms: z.array(GymSchema),
 });
 
+export const SubscriptionResponseSchema = createApiResponseSchema(
+  z.object({
+    tenant: z.any(),
+    subscription: SubscriptionSchema,
+    plan: SubscriptionPlanSchema,
+    feature_flags: z.array(FeatureFlagSchema),
+    limits: z.array(PlanLimitSchema),
+  })
+);
+
 // Full response schemas
 export const LoginResponseSchema = createApiResponseSchema(LoginDataSchema);
 export const ProfileResponseSchema = createApiResponseSchema(ProfileDataSchema);
@@ -66,5 +85,7 @@ export const RegisterResponseSchema = createApiResponseSchema(ProfileDataSchema)
 export const OnboardingResponseSchema = createApiResponseSchema(OnboardingDtoSchema);
 export const GymResponseSchema = createApiResponseSchema(GymDataSchema);
 export const GymByIdResponseSchema = createApiResponseSchema(GymSchema);
-
-// impliment auto complete
+export const SubscriptionPlansResponseSchema = createApiResponseSchema(
+  z.array(SubscriptionPlanSchema)
+);
+export const CurrentSubscriptionResponseSchema = createApiResponseSchema(SubscriptionPlanSchema);

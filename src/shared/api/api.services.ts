@@ -9,8 +9,11 @@ import {
   OnboardingDtoSchema,
   GymResponseSchema,
   GymByIdResponseSchema,
+  SubscriptionPlansResponseSchema,
+  SubscribeDtoSchema,
+  SubscriptionResponseSchema,
 } from './api.contracts';
-import { LoginUserDto, OnboardingDto, RegisterUserDto } from './api.types';
+import { LoginUserDto, OnboardingDto, RegisterUserDto, SubscribeDto } from './api.types';
 import { responseContract } from './api.lib';
 
 export function loginUser(loginUserDto: LoginUserDto, config?: AxiosRequestConfig<LoginUserDto>) {
@@ -50,4 +53,23 @@ export function getGymsGlobal(config?: AxiosRequestConfig) {
 
 export function getGymByIdGlobal(gymId: string, config?: AxiosRequestConfig) {
   return api.get(`/gyms/global/${gymId}`, config).then(responseContract(GymByIdResponseSchema));
+}
+
+export function getSubscriptionPlans(config?: Parameters<typeof api.get>[1]) {
+  return api
+    .get('/subscription-plans', config)
+    .then(responseContract(SubscriptionPlansResponseSchema));
+}
+
+export function getCurrentSubscription(config?: Parameters<typeof api.get>[1]) {
+  return api
+    .get('/subscriptions/current', config)
+    .then(responseContract(SubscriptionResponseSchema));
+}
+
+export function subscribe(subscribeDto: SubscribeDto, config?: Parameters<typeof api.get>[1]) {
+  const data = SubscribeDtoSchema.parse(subscribeDto);
+  return api
+    .post('/subscriptions', data, config)
+    .then(responseContract(SubscriptionResponseSchema));
 }

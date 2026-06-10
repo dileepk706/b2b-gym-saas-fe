@@ -51,10 +51,6 @@ export default function GymSelect({ mini }: Props) {
     [popover, queryClient, setSelectedGymId]
   );
 
-  if (!selectedGym) {
-    return null;
-  }
-
   const renderContent = mini ? (
     <ButtonBase
       onClick={popover.onOpen}
@@ -70,8 +66,8 @@ export default function GymSelect({ mini }: Props) {
       }}
     >
       <Avatar
-        src={selectedGym.logo_url || ''}
-        alt={selectedGym.name}
+        src={selectedGym?.logo_url || ''}
+        alt={selectedGym?.name}
         sx={{
           width: 32,
           height: 32,
@@ -104,8 +100,8 @@ export default function GymSelect({ mini }: Props) {
       }}
     >
       <Avatar
-        src={selectedGym.logo_url || ''}
-        alt={selectedGym.name}
+        src={selectedGym?.logo_url || ''}
+        alt={selectedGym?.name}
         sx={{
           width: 36,
           height: 36,
@@ -119,10 +115,10 @@ export default function GymSelect({ mini }: Props) {
 
       <Stack sx={{ ml: 1.5, flexGrow: 1, overflow: 'hidden' }}>
         <Typography variant="subtitle2" noWrap sx={{ color: 'common.white', fontWeight: 700 }}>
-          {selectedGym.name}
+          {selectedGym?.name}
         </Typography>
         <Typography variant="caption" noWrap sx={{ color: 'grey.500' }}>
-          {selectedGym.city}
+          {selectedGym?.city}
         </Typography>
       </Stack>
 
@@ -149,7 +145,7 @@ export default function GymSelect({ mini }: Props) {
           {gyms.map((option) => (
             <MenuItem
               key={option.id}
-              selected={option.id === selectedGym.id}
+              selected={option.id === selectedGym?.id}
               onClick={() => handleSelectGym(option.id)}
               sx={{ borderRadius: 0.75, my: 0.5 }}
             >

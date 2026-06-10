@@ -1,16 +1,17 @@
 import { Suspense } from 'react';
 import { Outlet, RouteObject } from 'react-router-dom';
-import { SplashScreen } from 'shared/ui/loading-screen';
-import AuthGuard from '@auth/guard/AuthGuard';
-import GymGuard from '@layouts/guard/GymGuard';
-import AppLayout from '@layouts/app/AppLayout';
-import { pathKeys } from 'shared/routes';
-import AuthLayout from '@layouts/auth/classic';
+import { SplashScreen } from 'shared/ui/loading';
+import AppLayout from '@layouts/app/app.layout';
 import { onboardingUserPageRoute } from '@pages/onboarding/onboarding-user.page.route';
 import { ErrorBoundary } from 'react-error-boundary';
 import { ErrorHandler } from 'shared/ui/error-handler/error-handler.ui';
 import { logError } from 'shared/ui/error-handler/error-handler.lib';
 import { LoadGyms } from '@routes/loader';
+import AuthGuard from '@auth/guard/AuthGuard';
+import AuthLayout from '@layouts/auth/auth.layout';
+import GymGuard from '@layouts/guard/GymGuard';
+import { accountRoutes } from './account';
+import { gymRoutes } from './gym';
 // ----------------------------------------------------------------------
 
 export const userRoutes: RouteObject = {
@@ -20,11 +21,9 @@ export const userRoutes: RouteObject = {
     <AuthGuard>
       <GymGuard>
         <AppLayout>
-          {/* <PaymentGuard> */}
           <Suspense fallback={<SplashScreen loadingText="Loading you gym details" />}>
             <Outlet />
           </Suspense>
-          {/* </PaymentGuard> */}
         </AppLayout>
       </GymGuard>
     </AuthGuard>
@@ -43,45 +42,19 @@ export const userRoutes: RouteObject = {
           </Suspense>
         </ErrorBoundary>
       ),
-      children: [
-        // gym tab
-
-        {
-          path: pathKeys.gym(true).root,
-          element: (
-            // <GymLayout>
-            <Suspense fallback={<SplashScreen />}>
-              <Outlet />
-            </Suspense>
-            // </GymLayout>
-          ),
-          children: [
-            {
-              path: pathKeys.gym().schedule,
-              element: <h1>Schedule</h1>,
-            },
-            {
-              path: pathKeys.gym().staffs,
-              element: <h1>Staffs</h1>,
-            },
-          ],
-        },
-      ],
+      children: [gymRoutes, accountRoutes],
     },
   ],
 };
 
 export const onboardingRoutes: RouteObject = {
+  loader: LoadGyms,
   element: (
-    <AuthGuard>
-      <GymGuard>
-        <AuthLayout>
-          <Suspense fallback={<SplashScreen />}>
-            <Outlet />
-          </Suspense>
-        </AuthLayout>
-      </GymGuard>
-    </AuthGuard>
+    <AuthLayout>
+      <Suspense fallback={<SplashScreen />}>
+        <Outlet />
+      </Suspense>
+    </AuthLayout>
   ),
   children: [onboardingUserPageRoute],
 };

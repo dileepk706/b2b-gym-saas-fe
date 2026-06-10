@@ -30,7 +30,7 @@ export function useNavData() {
           },
           {
             title: t('account'),
-            path: pathKeys.account(true).root,
+            path: pathKeys.account(true).setting,
             icon: ICONS.account,
           },
         ],

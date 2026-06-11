@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 
 // assets
 import { Grid, Stack, Typography } from '@mui/material';
-import { useResponsive } from '@hooks/useResponsive';
+import { useResponsive } from 'shared/hooks/useResponsive';
 import { LogoText } from 'shared/ui/logo';
 import { usePathname } from '@routes/hook';
 import { pathKeys } from 'shared/routes';

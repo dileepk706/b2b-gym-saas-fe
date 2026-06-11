@@ -2,7 +2,7 @@
 import { useTheme } from '@mui/material/styles';
 import { Variant } from '@mui/material/styles/createTypography';
 // hooks
-import { useWidth } from '@hooks/useResponsive';
+import { useWidth } from 'shared/hooks/useResponsive';
 
 // ----------------------------------------------------------------------
 
@@ -38,4 +38,3 @@ export default function useTypography(variant: Variant) {
 
   return { fontSize, lineHeight, fontWeight, letterSpacing };
 }
-

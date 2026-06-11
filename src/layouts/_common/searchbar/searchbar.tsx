@@ -11,9 +11,9 @@ import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
 import Dialog, { dialogClasses } from '@mui/material/Dialog';
 // hooks
-import { useBoolean } from '@hooks/useBoolean';
-import { useResponsive } from '@hooks/useResponsive';
-import { useEventListener } from '@hooks/useIsomorphicLayoutEffect';
+import { useBoolean } from 'shared/hooks/useBoolean';
+import { useResponsive } from 'shared/hooks/useResponsive';
+import { useEventListener } from 'shared/hooks/useIsomorphicLayoutEffect';
 // components
 import Label from 'shared/ui/label';
 import Iconify from 'shared/ui/iconify';

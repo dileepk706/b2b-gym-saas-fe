@@ -31,6 +31,7 @@ export function AuthProvider({ children }: Props) {
     } catch (error) {
       console.log('profile fetching error', error);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const initialize = useCallback(async () => {
@@ -100,6 +101,9 @@ export function AuthProvider({ children }: Props) {
       logout,
       register,
       refreshProfile: fetchUserProfile,
+      currentGym: { fuck: '' },
+      permissions: [],
+      features: [],
     }),
     [status, user, login, logout, register, fetchUserProfile]
   );

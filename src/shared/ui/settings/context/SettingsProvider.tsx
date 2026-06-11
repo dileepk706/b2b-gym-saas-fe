@@ -3,7 +3,7 @@ import { useEffect, useMemo, useCallback, useState } from 'react';
 // utils
 import { localStorageGetItem } from '@utils/storage-available';
 //
-import { useSessionStorage } from '@hooks/useSessionStorage';
+import { useSessionStorage } from 'shared/hooks/useSessionStorage';
 import { SettingsValueProps } from 'shared/ui/settings/types';
 import { SettingsContext } from './SettingsContext';
 

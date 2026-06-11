@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useSearchParams as _useSearchParams } from 'react-router-dom';
-import { useDebounce } from '@hooks/useDebounce';
+import { useDebounce } from 'shared/hooks/useDebounce';
 
 export function useDebouncedSearchParamSync(paramKey: string, delay = 500) {
   const [localValue, setLocalValue] = useState('');
@@ -13,4 +13,3 @@ export function useDebouncedSearchParamSync(paramKey: string, delay = 500) {
     setValue: setLocalValue,
   };
 }
-

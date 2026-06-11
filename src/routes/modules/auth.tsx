@@ -3,22 +3,23 @@ import { Outlet, RouteObject } from 'react-router-dom';
 import AuthLayout from '@layouts/auth/classic';
 import { loginUserPageRoute } from '@pages/login/login-user.page.route';
 import { registerUserPageRoute } from '@pages/register/register.page.route';
-import GuestGuard from '@auth/guard/LoginPageGuard';
 import { SplashScreen } from 'shared/ui';
+import { redirectAuthenticatedUsersMiddleware } from '../../app/router/data-strategy';
 
 // ----------------------------------------------------------------------
 
 // JWT
 
 export const authRoutes: RouteObject = {
+  handle: {
+    middleware: [redirectAuthenticatedUsersMiddleware],
+  },
   element: (
-    <GuestGuard>
-      <AuthLayout>
-        <Suspense fallback={<SplashScreen loadingText="Almost there! Hang tight.." />}>
-          <Outlet />
-        </Suspense>
-      </AuthLayout>
-    </GuestGuard>
+    <AuthLayout>
+      <Suspense fallback={<SplashScreen loadingText="Almost there! Hang tight.." />}>
+        <Outlet />
+      </Suspense>
+    </AuthLayout>
   ),
   children: [loginUserPageRoute, registerUserPageRoute],
 };

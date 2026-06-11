@@ -5,7 +5,7 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 //
-import { isMobile } from '@hooks/useResponsive';
+import { isMobile } from 'shared/hooks/useResponsive';
 import { CustomBreadcrumbsProps } from './types';
 import LinkItem from './LinkItem';
 
@@ -88,4 +88,3 @@ function Separator() {
     />
   );
 }
-

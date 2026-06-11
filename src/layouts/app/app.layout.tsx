@@ -1,6 +1,6 @@
 import Box from '@mui/material/Box';
-import { useBoolean } from '@hooks/useBoolean';
-import { useResponsive } from '@hooks/useResponsive';
+import { useBoolean } from 'shared/hooks/useBoolean';
+import { useResponsive } from 'shared/hooks/useResponsive';
 import { useSettingsContext } from 'shared/ui/settings';
 import NavVertical from './NavVertical';
 import NavMini from './NavMini';

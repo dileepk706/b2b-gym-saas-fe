@@ -1,6 +1,6 @@
 // i18n
 import '@locales/i18n';
-import './App.css';
+import '../App.css';
 
 // scroll bar
 import 'simplebar-react/dist/simplebar.min.css';
@@ -40,7 +40,7 @@ import enLocale from 'date-fns/locale/en-GB';
 import ThemeProvider from '@theme/index';
 import MotionLazy from 'shared/ui/animate/MotionLazy';
 import { SettingsDrawer, SettingsProvider } from 'shared/ui/settings';
-import { BootstrappedRouter } from './routes';
+import { BootstrappedRouter } from '../routes';
 
 // ----------------------------------------------------------------------
 

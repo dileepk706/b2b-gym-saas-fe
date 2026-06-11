@@ -1,7 +1,7 @@
 // @mui
 import Box, { BoxProps } from '@mui/material/Box';
 // hooks
-import { useResponsive } from '@hooks/useResponsive';
+import { useResponsive } from 'shared/hooks/useResponsive';
 // components
 import { useSettingsContext } from 'shared/ui/settings';
 //

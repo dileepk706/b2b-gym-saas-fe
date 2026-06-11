@@ -1,32 +1,29 @@
 import { Suspense } from 'react';
 import { Outlet, RouteObject } from 'react-router-dom';
 import { SplashScreen } from 'shared/ui/loading';
-import AppLayout from '@layouts/app/app.layout';
 import { onboardingUserPageRoute } from '@pages/onboarding/onboarding-user.page.route';
 import { ErrorBoundary } from 'react-error-boundary';
 import { ErrorHandler } from 'shared/ui/error-handler/error-handler.ui';
 import { logError } from 'shared/ui/error-handler/error-handler.lib';
-import { LoadGyms } from '@routes/loader';
-import AuthGuard from '@auth/guard/AuthGuard';
+import { requireWorkspaceMiddleware } from '@routes/loader';
 import AuthLayout from '@layouts/auth/auth.layout';
-import GymGuard from '@layouts/guard/GymGuard';
+import AppLayout from '@layouts/app/app.layout';
+import { requireAuthMiddleware } from 'shared/lib/requireAuthMiddleware';
 import { accountRoutes } from './account';
 import { gymRoutes } from './gym';
 // ----------------------------------------------------------------------
 
 export const userRoutes: RouteObject = {
   path: '/',
-  loader: LoadGyms,
+  handle: {
+    middleware: [requireAuthMiddleware, requireWorkspaceMiddleware],
+  },
   element: (
-    <AuthGuard>
-      <GymGuard>
-        <AppLayout>
-          <Suspense fallback={<SplashScreen loadingText="Loading you gym details" />}>
-            <Outlet />
-          </Suspense>
-        </AppLayout>
-      </GymGuard>
-    </AuthGuard>
+    <AppLayout>
+      <Suspense fallback={<SplashScreen loadingText="Loading you gym details" />}>
+        <Outlet />
+      </Suspense>
+    </AppLayout>
   ),
 
   children: [
@@ -48,7 +45,9 @@ export const userRoutes: RouteObject = {
 };
 
 export const onboardingRoutes: RouteObject = {
-  loader: LoadGyms,
+  handle: {
+    middleware: [requireAuthMiddleware, requireWorkspaceMiddleware],
+  },
   element: (
     <AuthLayout>
       <Suspense fallback={<SplashScreen />}>

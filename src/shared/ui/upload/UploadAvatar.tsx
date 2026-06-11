@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 //
 import { Button } from '@mui/material';
 import { useState } from 'react';
-import { useBoolean } from '@hooks/useBoolean';
+import { useBoolean } from 'shared/hooks/useBoolean';
 import Iconify from 'shared/ui/iconify';
 import Image from 'shared/ui/image';
 //

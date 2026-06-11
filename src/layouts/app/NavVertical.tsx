@@ -3,7 +3,7 @@ import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Drawer from '@mui/material/Drawer';
-import { useResponsive } from '@hooks/useResponsive';
+import { useResponsive } from 'shared/hooks/useResponsive';
 import { LogoText } from 'shared/ui/logo';
 import Scrollbar from 'shared/ui/scrollbar';
 import { usePathname } from '@routes/hook';

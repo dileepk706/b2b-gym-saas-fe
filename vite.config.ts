@@ -12,7 +12,7 @@ export default defineConfig({
       '@auth': path.resolve(__dirname, './src/auth'),
       '@assets': path.resolve(__dirname, './src/assets'),
       '@layouts': path.resolve(__dirname, './src/layouts'),
-      '@locales': path.resolve(__dirname, './src/locales'),
+      '@locales': path.resolve(__dirname, './src/shared/locals'),
       '@pages': path.resolve(__dirname, './src/pages'),
       '@redux': path.resolve(__dirname, './src/redux'),
       '@routes': path.resolve(__dirname, './src/routes'),

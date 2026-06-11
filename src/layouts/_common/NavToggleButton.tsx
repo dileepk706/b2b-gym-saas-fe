@@ -2,7 +2,7 @@
 import { useTheme } from '@mui/material/styles';
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 // hooks
-import { useResponsive } from '@hooks/useResponsive';
+import { useResponsive } from 'shared/hooks/useResponsive';
 // theme
 import { bgBlur } from '@theme/css';
 // components

@@ -2,29 +2,57 @@ import { useSessionStore } from 'entities/session';
 import { useGymStore } from '@stores/gym.store';
 import { gymByIdQueryOptions, gymsGlobalQueryOptions } from 'entities/gym/gym.api';
 import { queryClient } from 'shared/queryClient';
-import { redirect, type LoaderFunctionArgs } from 'react-router-dom';
-import { getUserProfile } from 'shared/api/api.services';
+import { redirect } from 'react-router-dom';
 import { pathKeys } from 'shared/routes';
 
 const isOnboardingPath = (pathname: string) =>
   pathname.replace(/\/+$/, '') === pathKeys.onboarding.replace(/\/+$/, '');
 
-export async function LoadGyms({ request }: LoaderFunctionArgs) {
-  const { accessToken, user: storedUser, setUser } = useSessionStore.getState();
-  const { clearSelectedGym, setSelectedGymId } = useGymStore.getState();
+type MiddlewareArgs = {
+  request: Request;
+};
 
-  if (!accessToken) {
-    clearSelectedGym();
-    return null;
+function waitForSessionReady(signal: AbortSignal) {
+  const { loading } = useSessionStore.getState();
+
+  if (!loading) {
+    return Promise.resolve();
   }
+
+  return new Promise<void>((resolve, reject) => {
+    const unsubscribe = useSessionStore.subscribe((state) => {
+      if (!state.loading) {
+        unsubscribe();
+        signal.removeEventListener('abort', onAbort);
+        resolve();
+      }
+    });
+
+    const onAbort = () => {
+      unsubscribe();
+      reject(signal.reason ?? new DOMException('Navigation aborted', 'AbortError'));
+    };
+
+    if (signal.aborted) {
+      onAbort();
+      return;
+    }
+
+    signal.addEventListener('abort', onAbort, { once: true });
+  });
+}
+
+export async function requireWorkspaceMiddleware({ request }: MiddlewareArgs) {
+  await waitForSessionReady(request.signal);
+
+  const { user: storedUser } = useSessionStore.getState();
+  const { clearSelectedGym, setSelectedGymId } = useGymStore.getState();
 
   const pathname = new URL(request.url).pathname;
   let user = storedUser;
 
   if (!user) {
-    const response = await getUserProfile();
-    user = response.data.data.user;
-    setUser(user);
+    return null;
   }
 
   if (!user?.tenant_id) {
@@ -55,3 +83,5 @@ export async function LoadGyms({ request }: LoaderFunctionArgs) {
 
   return null;
 }
+
+export { requireWorkspaceMiddleware as LoadGyms };

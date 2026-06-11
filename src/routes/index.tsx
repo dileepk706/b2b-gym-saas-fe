@@ -3,6 +3,7 @@ import { RouterProvider, createBrowserRouter, redirect, useRouteError } from 're
 import { SplashScreen } from 'shared/ui/loading';
 import NotFoundPage from '@pages/404';
 import { pathKeys } from '../shared/routes';
+import { appDataStrategy } from '../app/router/data-strategy';
 import { authRoutes } from './modules/auth';
 import { onboardingRoutes, userRoutes } from './modules/user';
 
@@ -44,7 +45,9 @@ const browserRouter = () =>
         },
       ],
     },
-  ]);
+  ], {
+    dataStrategy: appDataStrategy,
+  });
 
 function BubbleError(): null {
   const error = useRouteError();

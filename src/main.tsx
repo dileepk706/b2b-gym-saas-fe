@@ -5,7 +5,7 @@ import { HelmetProvider } from 'react-helmet-async';
 
 //
 import { QueryClientProvider } from '@tanstack/react-query';
-import App from './App';
+import App from './app/App';
 import { queryClient } from 'shared/queryClient';
 
 // ----------------------------------------------------------------------

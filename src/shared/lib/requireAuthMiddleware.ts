@@ -1,30 +1,78 @@
 import { useSessionStore } from 'entities/session';
-import { redirect, type LoaderFunctionArgs } from 'react-router-dom';
+import { useGymStore } from '@stores/gym.store';
+import { redirect } from 'react-router-dom';
 import { getUserProfile } from 'shared/api/api.services';
+import { queryClient } from 'shared/queryClient';
 import { pathKeys } from 'shared/routes';
 
-export async function requireAuthMiddleware({ request }: LoaderFunctionArgs) {
-  const { accessToken, user, setUser, clearSession } = useSessionStore.getState();
+type MiddlewareArgs = {
+  request: Request;
+};
 
-  if (!accessToken) {
-    const url = new URL(request.url);
-    const returnTo = url.pathname + url.search;
-    const searchParams = new URLSearchParams({ returnTo }).toString();
-    return redirect(`${pathKeys.auth.userLogin}?${searchParams}`);
+function buildLoginRedirect(request: Request) {
+  const url = new URL(request.url);
+  const returnTo = url.pathname + url.search;
+  const searchParams = new URLSearchParams({ returnTo }).toString();
+
+  return redirect(`${pathKeys.auth.userLogin}?${searchParams}`);
+}
+
+function waitForSessionReady(signal: AbortSignal) {
+  const { loading } = useSessionStore.getState();
+
+  if (!loading) {
+    return Promise.resolve();
   }
 
-  if (!user) {
+  return new Promise<void>((resolve, reject) => {
+    const unsubscribe = useSessionStore.subscribe((state) => {
+      if (!state.loading) {
+        unsubscribe();
+        signal.removeEventListener('abort', onAbort);
+        resolve();
+      }
+    });
+
+    const onAbort = () => {
+      unsubscribe();
+      reject(signal.reason ?? new DOMException('Navigation aborted', 'AbortError'));
+    };
+
+    if (signal.aborted) {
+      onAbort();
+      return;
+    }
+
+    signal.addEventListener('abort', onAbort, { once: true });
+  });
+}
+
+export async function requireAuthMiddleware({ request }: MiddlewareArgs) {
+  const { accessToken, user, setUser, clearSession } = useSessionStore.getState();
+  const { clearSelectedGym } = useGymStore.getState();
+
+  await waitForSessionReady(request.signal);
+
+  const session = useSessionStore.getState();
+
+  if (!session.accessToken && !accessToken) {
+    session.clearSession();
+    clearSelectedGym();
+    queryClient.removeQueries({ queryKey: ['gyms'] });
+    return buildLoginRedirect(request);
+  }
+
+  if (!session.user && !user) {
     try {
       const response = await getUserProfile();
       const refreshedUser = response.data.data.user;
-      setUser(refreshedUser);
+      useSessionStore.getState().setUser(refreshedUser);
     } catch (error) {
-      console.error('Failed to fetch user profile in requireAuthLoader:', error);
+      console.error('Failed to fetch user profile in requireAuthMiddleware:', error);
       clearSession();
-      const url = new URL(request.url);
-      const returnTo = url.pathname + url.search;
-      const searchParams = new URLSearchParams({ returnTo }).toString();
-      return redirect(`${pathKeys.auth.userLogin}?${searchParams}`);
+      clearSelectedGym();
+      queryClient.removeQueries({ queryKey: ['gyms'] });
+      return buildLoginRedirect(request);
     }
   }
 

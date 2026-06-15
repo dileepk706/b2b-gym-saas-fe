@@ -47,7 +47,7 @@ function waitForSessionReady(signal: AbortSignal) {
   });
 }
 
-export async function requireAuthMiddleware({ request }: MiddlewareArgs) {
+export async function authMiddleware({ request }: MiddlewareArgs) {
   const { accessToken, user, setUser, clearSession } = useSessionStore.getState();
   const { clearSelectedGym } = useGymStore.getState();
 
@@ -56,6 +56,7 @@ export async function requireAuthMiddleware({ request }: MiddlewareArgs) {
   const session = useSessionStore.getState();
 
   if (!session.accessToken && !accessToken) {
+    
     session.clearSession();
     clearSelectedGym();
     queryClient.removeQueries({ queryKey: ['gyms'] });

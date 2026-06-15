@@ -10,9 +10,9 @@ export const planPageRoute: RouteObject = {
       () => {
         let o = 'dileep';
         let b = 'dilesep';
-        if (o === b) {
-          return redirect('/');
-        }
+        // if (o === b) {
+        //   return redirect('/');
+        // }
         return null;
       },
     ],

@@ -11,6 +11,7 @@ import { redirectAuthenticatedUsersMiddleware } from '../../app/router/data-stra
 // JWT
 
 export const authRoutes: RouteObject = {
+  loader: () => null,
   handle: {
     middleware: [redirectAuthenticatedUsersMiddleware],
   },

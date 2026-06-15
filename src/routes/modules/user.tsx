@@ -5,18 +5,19 @@ import { onboardingUserPageRoute } from '@pages/onboarding/onboarding-user.page.
 import { ErrorBoundary } from 'react-error-boundary';
 import { ErrorHandler } from 'shared/ui/error-handler/error-handler.ui';
 import { logError } from 'shared/ui/error-handler/error-handler.lib';
-import { requireWorkspaceMiddleware } from '@routes/loader';
 import AuthLayout from '@layouts/auth/auth.layout';
 import AppLayout from '@layouts/app/app.layout';
-import { requireAuthMiddleware } from 'shared/lib/requireAuthMiddleware';
+import { authMiddleware } from 'shared/lib/auth.middleware';
 import { accountRoutes } from './account';
 import { gymRoutes } from './gym';
+import { workspaceMiddleware } from 'shared/lib/workspace.middleware';
 // ----------------------------------------------------------------------
 
 export const userRoutes: RouteObject = {
   path: '/',
+  loader: () => null,
   handle: {
-    middleware: [requireAuthMiddleware, requireWorkspaceMiddleware],
+    middleware: [authMiddleware, workspaceMiddleware],
   },
   element: (
     <AppLayout>
@@ -27,10 +28,10 @@ export const userRoutes: RouteObject = {
   ),
 
   children: [
-    {
-      element: <h1>Dashboard coming soon..</h1>,
-      index: true,
-    },
+    // {
+    //   element: <h1>Dashboard coming soon..</h1>,
+    //   index: true,
+    // },
     {
       element: (
         <ErrorBoundary FallbackComponent={ErrorHandler} onError={logError}>
@@ -45,8 +46,9 @@ export const userRoutes: RouteObject = {
 };
 
 export const onboardingRoutes: RouteObject = {
+  loader: () => null,
   handle: {
-    middleware: [requireAuthMiddleware, requireWorkspaceMiddleware],
+    middleware: [authMiddleware, workspaceMiddleware],
   },
   element: (
     <AuthLayout>

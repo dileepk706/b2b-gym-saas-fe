@@ -65,6 +65,15 @@ export function AuthProvider({ children }: Props) {
     [setAccessToken, setSessionExpired, setUser]
   );
 
+  const setSession = useCallback(
+    async ({ accessToken, user }: any) => {
+      setAccessToken(accessToken);
+      setSessionExpired(false);
+      setUser(user);
+    },
+    [setAccessToken, setSessionExpired, setUser]
+  );
+
   const register = useCallback(async (registerUserDto: RegisterUserDto) => {
     const response = await registerUser(registerUserDto);
     return response.data;
@@ -101,11 +110,12 @@ export function AuthProvider({ children }: Props) {
       logout,
       register,
       refreshProfile: fetchUserProfile,
+      setSession,
       currentGym: { fuck: '' },
       permissions: [],
       features: [],
     }),
-    [status, user, login, logout, register, fetchUserProfile]
+    [status, user, setSession, logout, register, fetchUserProfile]
   );
 
   return <AuthContext.Provider value={memoizedValue}>{children}</AuthContext.Provider>;

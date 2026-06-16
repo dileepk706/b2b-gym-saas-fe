@@ -34,4 +34,5 @@ export type JWTContextType = {
   currentGym: any;
   permissions: any[];
   features: any[];
+  setSession: (session: { accessToken: string; user: any })
 };

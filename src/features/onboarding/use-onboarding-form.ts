@@ -24,12 +24,15 @@ export function useOnboardingForm() {
     },
   });
 
-  const { refreshProfile } = useAuthContext();
+  const { refreshProfile, setSession } = useAuthContext();
   const router = useRouter();
 
   const mutation = useOnboardingMutation({
-    async onSuccess() {
-      await refreshProfile();
+    async onSuccess(data, variables, context) {
+      await setSession({
+        accessToken: data.accessToken,
+        user: data.user,
+      });
       router.push(pathKeys.dashboard().root);
     },
   });

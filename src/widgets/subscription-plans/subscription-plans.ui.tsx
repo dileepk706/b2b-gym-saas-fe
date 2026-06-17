@@ -1,7 +1,6 @@
 /* eslint-disable react/no-unused-prop-types */
 import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
-import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { alpha } from '@mui/material/styles';
@@ -9,7 +8,9 @@ import { UpgradePlanButton } from 'features/subscription/upgrade-plan';
 import { SubscriptionPlan } from 'entities/subscription';
 import Iconify from 'shared/ui/iconify';
 import { fCurrency } from '@utils/format-number';
-import { formatCamelCase } from '@utils/helperFunctions';
+import { formatCamelCase } from '@utils/format-text';
+import { Paper } from 'shared/ui/paper';
+import { CheckoutPlanButton } from 'features/subscription/checkout/checkout-button.ui';
 
 // ----------------------------------------------------------------------
 
@@ -18,76 +19,30 @@ type Props = {
   selectedPlan?: SubscriptionPlan | null;
 };
 
-export function SubscriptionPlansWidget({ plans, selectedPlan }: Props) {
-  if (!plans.length) {
-    return (
-      <Paper sx={{ p: 3, borderRadius: 1 }}>
-        <Typography variant="h5">No subscription plans available</Typography>
-        <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
-          Subscription plans will appear here once the backend returns plan data.
-        </Typography>
-      </Paper>
-    );
-  }
-
-  return (
-    <Box>
-      <Typography variant="h4" sx={{ mb: 2 }}>
-        Upgrade Plan
-      </Typography>
-
-      <Box
-        sx={{
-          display: 'grid',
-          gridTemplateColumns: { xs: '1fr', md: 'repeat(3, minmax(0, 1fr))' },
-          gap: 2,
-        }}
-      >
-        {plans.map((plan) => (
-          <PlanCard
-            key={plan.id}
-            plan={plan}
-            isSelected={plan.id === selectedPlan?.id}
-            onSelect={() => {}}
-          />
-        ))}
-      </Box>
-    </Box>
-  );
-}
-
 type PlanCardProps = {
   plan: SubscriptionPlan;
-  isSelected: boolean;
-  onSelect: (planId: string) => void;
+  isSelected?: boolean;
 };
 
-function PlanCard({ plan, isSelected, onSelect }: PlanCardProps) {
+export function PlanCard({ plan, isSelected }: PlanCardProps) {
   return (
     <Paper
       sx={{
-        p: 2.5,
-        borderRadius: 1,
-        border: (theme) =>
-          `1px solid ${
-            isSelected ? theme.palette.primary.main : alpha(theme.palette.grey[500], 0.16)
-          }`,
-        boxShadow: isSelected
-          ? (theme) => `0 12px 28px ${alpha(theme.palette.primary.main, 0.16)}`
-          : 'none',
+        p: 2,
       }}
+      isSelected={isSelected}
     >
-      <Stack spacing={2} sx={{ height: 1 }}>
+      <Stack spacing={1.5} sx={{ height: 1 }}>
         <Stack spacing={1}>
           <Stack direction="row" alignItems="center" justifyContent="space-between" spacing={1}>
-            <Typography variant="h5">{plan.name}</Typography>
-            {isSelected && <Chip size="small" color="primary" label="Selected" />}
+            <Typography variant="subtitle2" sx={{ fontWeight: 600 }}>{formatCamelCase(plan.name)}</Typography>
+            {isSelected && <Chip size="small" color="primary" label="Selected" sx={{ height: 20, fontSize: '0.7rem' }} />}
           </Stack>
 
           <Stack direction="row" alignItems="baseline" spacing={0.5}>
-            <Typography variant="h3">{fCurrency(plan.price)}</Typography>
-            <Typography variant="body2" color="text.secondary">
-              / cycle
+            <Typography variant="h6">{fCurrency(plan.price)}</Typography>
+            <Typography variant="caption" color="text.secondary">
+              / Month
             </Typography>
           </Stack>
         </Stack>
@@ -97,7 +52,7 @@ function PlanCard({ plan, isSelected, onSelect }: PlanCardProps) {
         <PlanLimits plan={plan} />
 
         <Box sx={{ mt: 'auto' }}>
-          <UpgradePlanButton planId={plan.id} isCurrent={isSelected} onSelect={onSelect} />
+          <CheckoutPlanButton planId={plan.id} />
         </Box>
       </Stack>
     </Paper>
@@ -111,7 +66,7 @@ type PlanDetailsProps = {
 
 export function FeatureList({ plan, compact = false }: PlanDetailsProps) {
   return (
-    <Stack spacing={1}>
+    <Stack spacing={0.75}>
       {!compact && (
         <Typography variant="subtitle2" color="text.secondary">
           Included features
@@ -119,9 +74,9 @@ export function FeatureList({ plan, compact = false }: PlanDetailsProps) {
       )}
 
       {plan.features?.map((feature) => (
-        <Stack key={feature.id} direction="row" alignItems="center" spacing={1}>
-          <Iconify icon="solar:check-circle-bold" width={18} sx={{ color: 'success.main' }} />
-          <Typography variant="body2">{formatCamelCase(feature.name)}</Typography>
+        <Stack key={feature.id} direction="row" alignItems="center" spacing={0.75}>
+          <Iconify icon="solar:check-circle-bold" width={14} sx={{ color: 'success.main' }} />
+          <Typography variant="caption">{formatCamelCase(feature.name)}</Typography>
         </Stack>
       ))}
     </Stack>
@@ -130,15 +85,15 @@ export function FeatureList({ plan, compact = false }: PlanDetailsProps) {
 
 export function PlanLimits({ plan }: PlanDetailsProps) {
   return (
-    <Stack spacing={1}>
-      <Typography variant="subtitle2" color="text.secondary">
+    <Stack spacing={0.75}>
+      <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 600 }}>
         Limits
       </Typography>
 
       {plan.limits.map((limit) => (
         <Stack key={limit.key} direction="row" alignItems="center" justifyContent="space-between">
-          <Typography variant="body2">{formatLimitKey(limit.key)}</Typography>
-          <Typography variant="body2" sx={{ fontWeight: 600 }}>
+          <Typography variant="caption">{formatLimitKey(limit.key)}</Typography>
+          <Typography variant="caption" sx={{ fontWeight: 600 }}>
             {limit.value ?? 'Unlimited'}
           </Typography>
         </Stack>

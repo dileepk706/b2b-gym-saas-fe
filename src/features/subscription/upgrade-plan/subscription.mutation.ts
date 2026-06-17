@@ -14,9 +14,7 @@ export function useSubscriptionMutation(
       return data;
     },
     onMutate,
-    onSuccess: async (data, variables, context) => {
-      await onSuccess?.(data, variables, context);
-    },
+    onSuccess,
     onError,
     onSettled,
   });

@@ -14,6 +14,7 @@ export const inconString = {
   arrowRight: 'solar:arrow-right-outline',
   city: 'solar:map-point-outline',
   building: 'solar:buildings-outline',
+  thunder: 'solar:bolt-bold',
 };
 
 export const ICONS = {
@@ -31,5 +32,5 @@ export const ICONS = {
   arrowRight: icon(inconString.arrowRight),
   city: icon(inconString.city),
   building: icon(inconString.building),
+  thunder: icon(inconString.thunder),
 };
-

@@ -24,7 +24,7 @@ export function useLoginMutation(
       setAccessToken(data.data.accessToken);
       setSessionExpired(false);
       setUser(data.data.user);
-      onSuccess?.(data, variables, context);
+      onSuccess?.(data, variables, context, undefined as any);
     },
     onError,
     onSettled,

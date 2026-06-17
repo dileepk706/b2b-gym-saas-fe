@@ -33,7 +33,7 @@ export function useOnboardingForm() {
         accessToken: data.accessToken,
         user: data.user,
       });
-      router.push(pathKeys.dashboard().root);
+      router.push(pathKeys.billing);
     },
   });
 

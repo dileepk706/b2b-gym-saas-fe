@@ -6,16 +6,19 @@ import { LoaderFunctionArgs } from 'react-router';
 import { queryClient } from 'shared/queryClient';
 
 export async function PlanLoader({ request, params, context }: LoaderFunctionArgs) {
-  const subscriptionPlansPromise = queryClient
-    .fetchQuery(subscriptionPlansQueryOptions())
-    .then((response) => response);
-
+  // await delay(5000);
   const currentSubscription = await queryClient.ensureQueryData(currentSubscriptionQueryOptions());
-
   return {
-    subscriptionPlansPromise,
     currentSubscription,
   };
 }
 
 export type PlanPageLoaderData = Awaited<ReturnType<typeof PlanLoader>>;
+
+const delay = (ms: any) => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(`Waited for ${ms} milliseconds`);
+    }, ms);
+  });
+};

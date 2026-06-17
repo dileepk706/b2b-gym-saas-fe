@@ -1,6 +1,6 @@
 import { Container, ContainerProps } from '@mui/material';
 import { ReactNode } from 'react';
-import { formatCamelCase } from '@utils/helperFunctions';
+import { formatCamelCase } from '@utils/format-text';
 import CustomBreadcrumbs from '../custom-breadcrumbs';
 import { useSettingsContext } from '../settings';
 

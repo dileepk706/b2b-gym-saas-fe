@@ -6,6 +6,7 @@ import { pathKeys } from '../shared/routes';
 import { appDataStrategy } from '../app/router/data-strategy';
 import { authRoutes } from './modules/auth';
 import { onboardingRoutes, userRoutes } from './modules/user';
+import { billingRoutes } from './modules/billing';
 
 export function BootstrappedRouter() {
   const [router, setRouter] = useState<ReturnType<typeof browserRouter> | null>(null);
@@ -22,32 +23,38 @@ export function BootstrappedRouter() {
 }
 
 const browserRouter = () =>
-  createBrowserRouter([
+  createBrowserRouter(
+    [
+      {
+        errorElement: <BubbleError />,
+        children: [
+          // auth
+          authRoutes,
+
+          // user routes
+          userRoutes,
+
+          // onboarding
+          onboardingRoutes,
+
+          // billing
+          billingRoutes,
+
+          {
+            path: '/404',
+            element: <NotFoundPage />,
+          },
+          {
+            path: '*',
+            loader: async () => redirect(pathKeys.page404),
+          },
+        ],
+      },
+    ],
     {
-      errorElement: <BubbleError />,
-      children: [
-        // auth
-        authRoutes,
-
-        // user routes
-        userRoutes,
-
-        // onboarding
-        onboardingRoutes,
-
-        {
-          path: '/404',
-          element: <NotFoundPage />,
-        },
-        {
-          path: '*',
-          loader: async () => redirect(pathKeys.page404),
-        },
-      ],
-    },
-  ], {
-    dataStrategy: appDataStrategy,
-  });
+      dataStrategy: appDataStrategy,
+    }
+  );
 
 function BubbleError(): null {
   const error = useRouteError();

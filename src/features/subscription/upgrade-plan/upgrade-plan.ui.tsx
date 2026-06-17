@@ -1,9 +1,9 @@
-// import Button from '@mui/material/Button';
 import { useSubscriptionMutation } from 'features/subscription/upgrade-plan/subscription.mutation';
 import { currentSubscriptionQueryOptions } from 'entities/subscription/subscription.api';
 import { queryClient } from 'shared/queryClient';
-import { Button } from 'shared/ui';
+import { FactoryButton } from 'shared/ui';
 import Iconify from 'shared/ui/iconify';
+import { ICONS } from 'shared/ui/iconify/icons';
 
 // ----------------------------------------------------------------------
 
@@ -20,27 +20,28 @@ export function UpgradePlanButton({ planId, isCurrent = false, onSelect }: Props
     },
   });
 
-  const onSubmit = (plan_id: string) => {
-    mutation.mutate({ plan_id });
+  const onSubmit = (selectedPlanId: string) => {
+    onSelect(selectedPlanId);
+    mutation.mutate({ plan_id: selectedPlanId });
   };
 
   if (isCurrent) {
     return (
-      <Button fullWidth disabled variant="outlined">
+      <FactoryButton fullWidth disabled factoryVariant="secondary">
         Selected plan
-      </Button>
+      </FactoryButton>
     );
   }
 
   return (
-    <Button
+    <FactoryButton
       fullWidth
-      appearance="primary"
-      borderRadius={1}
+      factoryVariant="primary"
+      disabled={mutation.isPending}
       onClick={() => onSubmit(planId)}
-      startIcon={<Iconify icon="solar:bolt-bold" />}
+      startIcon={ICONS.thunder}
     >
-      Upgrade plan
-    </Button>
+      {mutation.isPending ? 'Upgrading...' : 'Upgrade plan'}
+    </FactoryButton>
   );
 }

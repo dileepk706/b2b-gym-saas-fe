@@ -17,6 +17,7 @@ import Iconify from 'shared/ui/iconify';
 import CustomLink from 'shared/ui/link/CustomeLink';
 import { LogoPng } from 'shared/ui/logo';
 import { useRegisterForm } from './use-register-form';
+import { FactoryButton } from 'shared/ui';
 
 export default function RegisterForm() {
   const {
@@ -149,20 +150,16 @@ export default function RegisterForm() {
           )}
         </Box>
 
-        <Button
+        <FactoryButton
           fullWidth
           type="submit"
-          size="large"
+          size="small"
           disabled={loading}
-          appearance="primary"
+          factoryVariant="primary"
           endIcon={ICONS.arrowRight}
-          sx={{
-            fontWeight: 700,
-            textTransform: 'none',
-          }}
         >
           {loading ? <CircularProgress size={24} color="inherit" /> : 'Create your account'}
-        </Button>
+        </FactoryButton>
       </Stack>
 
       <Stack spacing={2} sx={{ mt: 3, textAlign: 'center' }}>

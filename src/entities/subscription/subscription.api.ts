@@ -2,7 +2,7 @@ import { queryOptions } from '@tanstack/react-query';
 import axios from 'axios';
 import { queryClient } from 'shared/queryClient';
 import { getCurrentSubscription, getSubscriptionPlans } from 'shared/api/api.services';
-import { SubscriptionResponseDto } from 'shared/api/api.types';
+import { CurrentSubscriptionResponseDto } from 'shared/api/api.types';
 import { SubscriptionPlan } from './subscription.types';
 
 export const subscriptionPlansQueryOptions = () =>
@@ -22,10 +22,10 @@ export const currentSubscriptionQueryOptions = () =>
   queryOptions({
     queryKey: ['current-subscription'],
 
-    queryFn: async ({ signal }): Promise<SubscriptionResponseDto['data'] | null> => {
+    queryFn: async ({ signal }): Promise<CurrentSubscriptionResponseDto> => {
       try {
         const { data } = await getCurrentSubscription({ signal });
-        return data.data;
+        return data;
       } catch (error) {
         if (axios.isAxiosError(error)) {
           const responseData = error.response?.data;
@@ -38,7 +38,7 @@ export const currentSubscriptionQueryOptions = () =>
               'message' in responseData &&
               responseData.message === 'Current subscription not found')
           ) {
-            return null;
+            return null as any;
           }
         }
         throw error;
@@ -46,6 +46,6 @@ export const currentSubscriptionQueryOptions = () =>
     },
 
     initialData: () =>
-      queryClient.getQueryData<SubscriptionResponseDto['data'] | null>(['current-subscription']),
+      queryClient.getQueryData<CurrentSubscriptionResponseDto | null>(['current-subscription']),
     initialDataUpdatedAt: () => queryClient.getQueryState(['current-subscription'])?.dataUpdatedAt,
   });

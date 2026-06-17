@@ -3,7 +3,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormHelperText from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import { formatCamelCase, formatHyphenStringV2 } from '@utils/helperFunctions';
+import { formatCamelCase, formatHyphenStringV2 } from '@utils/format-text';
 
 type Props = {
   error?: string;
@@ -111,4 +111,3 @@ export default function VldSelect({
     </>
   );
 }
-

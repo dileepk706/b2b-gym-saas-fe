@@ -16,9 +16,7 @@ export function useRegisterMutation(
       return response.data;
     },
     onMutate,
-    onSuccess: async (data, variables, context) => {
-      onSuccess?.(data, variables, context);
-    },
+    onSuccess,
     onError,
     onSettled,
   });

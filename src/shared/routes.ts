@@ -8,6 +8,7 @@ export const pathKeys = {
   register: '/register/',
   page404: '/404/',
   onboarding: '/onboarding/',
+  billing: '/billing/',
   // dashboard
   dashboard(root?: boolean) {
     return {

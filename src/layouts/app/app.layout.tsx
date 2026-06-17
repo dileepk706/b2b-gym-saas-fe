@@ -4,7 +4,7 @@ import { useResponsive } from 'shared/hooks/useResponsive';
 import { useSettingsContext } from 'shared/ui/settings';
 import NavVertical from './NavVertical';
 import NavMini from './NavMini';
-import Main from './Main';
+import AppMain from './app.main';
 import Header from './Header';
 
 // ----------------------------------------------------------------------
@@ -46,7 +46,7 @@ export default function AppLayout({ children }: Props) {
       >
         {sidebar}
 
-        <Main>{children}</Main>
+        <AppMain>{children}</AppMain>
       </Box>
     </>
   );

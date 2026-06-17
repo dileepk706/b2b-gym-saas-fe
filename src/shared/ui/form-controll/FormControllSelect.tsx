@@ -6,7 +6,7 @@ import {
   Select,
   SelectChangeEvent,
 } from '@mui/material';
-import { formatCamelCase } from '@utils/helperFunctions';
+import { formatCamelCase } from '@utils/format-text';
 
 export default function FormControlSelect({
   onChangeValue,
@@ -51,4 +51,3 @@ export default function FormControlSelect({
     </FormControl>
   );
 }
-

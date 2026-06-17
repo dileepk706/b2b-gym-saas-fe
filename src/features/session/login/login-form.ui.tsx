@@ -7,6 +7,7 @@ import Iconify from 'shared/ui/iconify';
 import CustomLink from 'shared/ui/link/CustomeLink';
 import { LogoPng } from 'shared/ui/logo';
 import { useLoginForm } from './use-login-form';
+import { FactoryButton } from 'shared/ui';
 
 export default function LoginForm() {
   const {
@@ -102,20 +103,16 @@ export default function LoginForm() {
           </CustomLink>
         </Box>
 
-        <Button
+        <FactoryButton
           fullWidth
           type="submit"
-          size="large"
+          size="small"
           disabled={loading}
           data-test="login-submit"
-          appearance="primary"
-          sx={{
-            fontWeight: 700,
-            textTransform: 'none',
-          }}
+          factoryVariant="primary"
         >
           {loading ? <CircularProgress size={24} color="inherit" /> : 'Sign In'}
-        </Button>
+        </FactoryButton>
       </Stack>
 
       <Divider sx={{ my: 4 }}>

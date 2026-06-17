@@ -1,6 +1,6 @@
 import { GymSchema } from 'entities/gym/gym.contracts';
 import {
-  FeatureFlagSchema,
+  TenantFeatureFlagSchema,
   PlanLimitSchema,
   SubscriptionPlanSchema,
   SubscriptionSchema,
@@ -50,8 +50,12 @@ export const OnboardingDtoSchema = z.object({
   gym_url: z.string(),
 });
 
-export const SubscribeDtoSchema = z.object({
+export const CheckoutDtoSchema = z.object({
   plan_id: z.string(),
+});
+
+export const CheckoutCompleteDtoSchema = z.object({
+  sessionId: z.string().uuid(),
 });
 
 export const createGymDtoSchema = z.object({
@@ -73,7 +77,7 @@ export const SubscriptionResponseSchema = createApiResponseSchema(
     tenant: z.any(),
     subscription: SubscriptionSchema,
     plan: SubscriptionPlanSchema,
-    feature_flags: z.array(FeatureFlagSchema),
+    feature_flags: z.array(TenantFeatureFlagSchema),
     limits: z.array(PlanLimitSchema),
   })
 );

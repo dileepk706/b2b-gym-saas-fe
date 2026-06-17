@@ -1,5 +1,5 @@
 import { Autocomplete, TextField } from '@mui/material';
-import { formatCamelCase } from '@utils/helperFunctions';
+import { formatCamelCase } from '@utils/format-text';
 
 type OptionType = {
   _id: string;
@@ -56,4 +56,3 @@ export default function FormAutocomplete({
     />
   );
 }
-

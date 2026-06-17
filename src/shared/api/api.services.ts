@@ -10,10 +10,21 @@ import {
   GymResponseSchema,
   GymByIdResponseSchema,
   SubscriptionPlansResponseSchema,
-  SubscribeDtoSchema,
+  CheckoutDtoSchema,
   SubscriptionResponseSchema,
+  CheckoutCompleteDtoSchema,
 } from './api.contracts';
-import { LoginUserDto, OnboardingDto, RegisterUserDto, SubscribeDto } from './api.types';
+import {
+  CheckoutSessionResponse,
+  LoginUserDto,
+  OnboardingDto,
+  RegisterUserDto,
+  CheckoutDto,
+  SubscriptionPlansResponse,
+  CheckoutCompleteDto,
+  CheckoutCompleteResponse,
+  CurrentSubscriptionResponseDto,
+} from './api.types';
 import { responseContract } from './api.lib';
 
 export function loginUser(loginUserDto: LoginUserDto, config?: AxiosRequestConfig<LoginUserDto>) {
@@ -56,20 +67,26 @@ export function getGymByIdGlobal(gymId: string, config?: AxiosRequestConfig) {
 }
 
 export function getSubscriptionPlans(config?: Parameters<typeof api.get>[1]) {
-  return api
-    .get('/subscription-plans', config)
-    .then(responseContract(SubscriptionPlansResponseSchema));
+  return api.get<SubscriptionPlansResponse>('/subscription-plans', config);
 }
 
 export function getCurrentSubscription(config?: Parameters<typeof api.get>[1]) {
-  return api
-    .get('/subscriptions/current', config)
-    .then(responseContract(SubscriptionResponseSchema));
+  return api.get<CurrentSubscriptionResponseDto>('/subscriptions/current', config);
 }
 
-export function subscribe(subscribeDto: SubscribeDto, config?: Parameters<typeof api.get>[1]) {
-  const data = SubscribeDtoSchema.parse(subscribeDto);
-  return api
-    .post('/subscriptions', data, config)
-    .then(responseContract(SubscriptionResponseSchema));
+export function checkout(subscribeDto: CheckoutDto, config?: Parameters<typeof api.get>[1]) {
+  const data = CheckoutDtoSchema.parse(subscribeDto);
+  return api.post<CheckoutSessionResponse>('/subscriptions/checkout', data, config);
+}
+
+export function checkoutComplete(
+  sessionId: CheckoutCompleteDto,
+  config?: Parameters<typeof api.get>[1]
+) {
+  const data = CheckoutCompleteDtoSchema.parse(sessionId);
+  return api.post<CheckoutCompleteResponse>(
+    `/subscriptions/checkout/${data.sessionId}/complete`,
+    data,
+    config
+  );
 }

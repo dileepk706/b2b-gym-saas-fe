@@ -6,8 +6,8 @@ import {
   OnboardingDtoSchema,
   RegisterUserDtoSchema,
   CheckoutDtoSchema,
-  SubscriptionResponseSchema,
   CheckoutCompleteDtoSchema,
+  UpdateUserDtoSchema,
 } from './api.contracts';
 import {
   CheckoutSession,
@@ -17,6 +17,8 @@ import {
   TenantFeatureFlag,
   TenantLimit,
 } from 'entities/subscription';
+import { Tenant } from 'entities/tenant/tenant.type';
+import { User } from 'entities/session';
 
 export interface ApiResponse<T> {
   success: boolean;
@@ -64,3 +66,9 @@ export type CheckoutCompleteResponse = ApiResponse<{
 }>;
 
 export type SubscriptionPlansResponse = ApiResponse<SubscriptionPlan[]>;
+
+export type CurentTenantResponseDto = ApiResponse<Tenant>;
+
+export type UpdateUserResponseDto = ApiResponse<User>;
+
+export type UpdateUserDto = z.infer<typeof UpdateUserDtoSchema>;

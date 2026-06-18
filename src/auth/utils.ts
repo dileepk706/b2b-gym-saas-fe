@@ -25,3 +25,11 @@ export const isValidToken = (accessToken: string) => {
 
   return decoded.exp > currentTime;
 };
+
+export const delay = (ms: any) => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(`Waited for ${ms} milliseconds`);
+    }, ms);
+  });
+};

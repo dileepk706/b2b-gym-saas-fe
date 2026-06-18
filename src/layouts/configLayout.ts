@@ -16,3 +16,7 @@ export const NAV = {
   W_VERTICAL: 280,
   W_MINI: 88,
 };
+
+export const HEADER_MB = 2;
+
+export const SPACING = 2;

@@ -14,7 +14,7 @@ import CustomPopover, { usePopover } from 'shared/ui/custom-popover';
 import { useQueryClient } from '@tanstack/react-query';
 import { gymByIdQueryOptions } from 'entities/gym/gym.api';
 import { Gym } from 'entities/gym/gym.type';
-import { useGymStore } from '@stores/gym.store';
+import { useGymStore } from 'entities/gym/gym.store';
 import { varHover } from 'shared/ui/animate';
 
 // ----------------------------------------------------------------------

@@ -165,7 +165,7 @@ export default ({
       <CardHeader title={title} />
       {chartSeries.map((series, index) => (
         <Box key={index} sx={{ px: 3, pb: 1 }} typography="caption">
-          <span style={{ color: chartOptions.colors?.[index] ?? 'text.primary' }}>
+          <span style={{ color: typeof chartOptions.colors?.[index] === 'string' ? chartOptions.colors[index] : 'inherit' }}>
             {series.name} - {formatLabel(series.data.reduce((a: number, b: number) => a + b, 0))}
           </span>
         </Box>

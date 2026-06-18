@@ -3,7 +3,7 @@ import { useEffect, useCallback, useMemo } from 'react';
 import { getUserProfile, loginUser, logoutUser, registerUser } from 'shared/api/api.services';
 import { LoginUserDto, RegisterUserDto } from 'shared/api/api.types';
 import { User, useSessionStore } from 'entities/session';
-import { useGymStore } from '@stores/gym.store';
+import { useGymStore } from 'entities/gym/gym.store';
 import { queryClient } from 'shared/queryClient';
 import { AuthContext } from './AuthContext';
 

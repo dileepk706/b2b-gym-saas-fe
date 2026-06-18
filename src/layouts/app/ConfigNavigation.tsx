@@ -24,6 +24,11 @@ export function useNavData() {
             icon: ICONS.users,
           },
           {
+            title: t('staffs'),
+            path: pathKeys.staff.root,
+            icon: ICONS.employee,
+          },
+          {
             title: t('gym'),
             path: pathKeys.gym(true).schedule,
             icon: ICONS.gym,

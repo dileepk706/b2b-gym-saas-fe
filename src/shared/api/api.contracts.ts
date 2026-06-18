@@ -68,6 +68,14 @@ export const createGymDtoSchema = z.object({
   logo_url: z.string().optional(),
 });
 
+export const UpdateUserDtoSchema = z.object({
+  email: z.email('Invalid email address').optional(),
+  name: z.string().optional(),
+  password: z.string().optional(),
+  currentPassword: z.string().optional(),
+  id: z.string().nullable(),
+});
+
 export const GymDataSchema = z.object({
   gyms: z.array(GymSchema),
 });

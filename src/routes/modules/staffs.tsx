@@ -2,24 +2,18 @@ import { Suspense } from 'react';
 import { Outlet, RouteObject } from 'react-router-dom';
 import { SplashScreen } from 'shared/ui/loading';
 import { pathKeys } from 'shared/routes';
-import { planPageRoute } from '@pages/plan/plan.page.route';
-import { settingPageRoute } from '@pages/setting/setting.page.route';
 import AccountLayout from '@layouts/account/account.layout';
-import SplashScreenTransparent from 'shared/ui/loading/SplashScreenTransparent';
 
 // ----------------------------------------------------------------------
 
-export const accountRoutes: RouteObject = {
-  path: pathKeys.account(true).root,
+export const staffRoutes: RouteObject = {
+  path: pathKeys.staff.root,
   element: (
     <AccountLayout>
-      <Suspense fallback={<SplashScreenTransparent />}>
+      <Suspense fallback={<SplashScreen />}>
         <Outlet />
       </Suspense>
     </AccountLayout>
   ),
-  children: [
-    settingPageRoute,
-    planPageRoute,
-  ],
+  children: [],
 };

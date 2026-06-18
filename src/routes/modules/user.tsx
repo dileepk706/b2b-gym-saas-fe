@@ -11,13 +11,15 @@ import { authMiddleware } from 'shared/lib/auth.middleware';
 import { accountRoutes } from './account';
 import { gymRoutes } from './gym';
 import { workspaceMiddleware } from 'shared/lib/workspace.middleware';
+import { subscriptionMiddleware } from 'shared/lib/subscription.middleware';
+import SplashScreenTransparent from 'shared/ui/loading/SplashScreenTransparent';
 // ----------------------------------------------------------------------
 
 export const userRoutes: RouteObject = {
   path: '/',
   loader: () => null,
   handle: {
-    middleware: [authMiddleware, workspaceMiddleware],
+    middleware: [authMiddleware, workspaceMiddleware, subscriptionMiddleware],
   },
   element: (
     <AppLayout>
@@ -26,23 +28,24 @@ export const userRoutes: RouteObject = {
       </Suspense>
     </AppLayout>
   ),
+  children: [gymRoutes, accountRoutes],
 
-  children: [
-    // {
-    //   element: <h1>Dashboard coming soon..</h1>,
-    //   index: true,
-    // },
-    {
-      element: (
-        <ErrorBoundary FallbackComponent={ErrorHandler} onError={logError}>
-          <Suspense fallback={<SplashScreen />}>
-            <Outlet />
-          </Suspense>
-        </ErrorBoundary>
-      ),
-      children: [gymRoutes, accountRoutes],
-    },
-  ],
+  // children: [
+  //   // {
+  //   //   element: <h1>Dashboard coming soon..</h1>,
+  //   //   index: true,
+  //   // },
+  //   {
+  //     element: (
+  //       <ErrorBoundary FallbackComponent={ErrorHandler} onError={logError}>
+  //         <Suspense fallback={<SplashScreenTransparent />}>
+  //           <Outlet />
+  //         </Suspense>
+  //       </ErrorBoundary>
+  //     ),
+  //     children: [gymRoutes, accountRoutes],
+  //   },
+  // ],
 };
 
 export const onboardingRoutes: RouteObject = {

@@ -28,18 +28,10 @@ const browserRouter = () =>
       {
         errorElement: <BubbleError />,
         children: [
-          // auth
           authRoutes,
-
-          // user routes
           userRoutes,
-
-          // onboarding
           onboardingRoutes,
-
-          // billing
           billingRoutes,
-
           {
             path: '/404',
             element: <NotFoundPage />,

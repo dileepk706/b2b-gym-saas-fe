@@ -1,5 +1,5 @@
 import { DefaultError, useMutation, UseMutationOptions } from '@tanstack/react-query';
-import { subscribe } from 'shared/api/api.services';
+import { checkout } from 'shared/api/api.services';
 import { TSubscription } from 'features/subscription/upgrade-plan/subscription.contracts';
 
 export function useSubscriptionMutation(
@@ -10,7 +10,7 @@ export function useSubscriptionMutation(
   return useMutation({
     mutationKey: ['create-subscription', ...mutationKey],
     mutationFn: async (onboardingData: TSubscription) => {
-      const data = await subscribe(onboardingData);
+      const data = await checkout(onboardingData);
       return data;
     },
     onMutate,

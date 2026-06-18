@@ -13,6 +13,7 @@ import {
   CheckoutDtoSchema,
   SubscriptionResponseSchema,
   CheckoutCompleteDtoSchema,
+  UpdateUserDtoSchema,
 } from './api.contracts';
 import {
   CheckoutSessionResponse,
@@ -24,8 +25,13 @@ import {
   CheckoutCompleteDto,
   CheckoutCompleteResponse,
   CurrentSubscriptionResponseDto,
+  CurentTenantResponseDto,
+  UpdateUserResponseDto,
+  UpdateUserDto,
 } from './api.types';
 import { responseContract } from './api.lib';
+import { Tenant } from 'entities/tenant/tenant.type';
+import { Gym } from 'entities/gym/gym.type';
 
 export function loginUser(loginUserDto: LoginUserDto, config?: AxiosRequestConfig<LoginUserDto>) {
   const data = LoginUserDtoSchema.parse(loginUserDto);
@@ -48,6 +54,16 @@ export function logoutUser(config?: AxiosRequestConfig) {
 
 export function getUserProfile(config?: AxiosRequestConfig) {
   return api.get('/user/profile', config).then(responseContract(ProfileResponseSchema));
+}
+
+export function updateUserProfile(user: UpdateUserDto, config?: AxiosRequestConfig) {
+  const data = UpdateUserDtoSchema.parse(user);
+  return api.post<UpdateUserResponseDto>('/user/' + user.id, data, config);
+}
+
+export function updateSelfUserProfile(user: UpdateUserDto, config?: AxiosRequestConfig) {
+  const data = UpdateUserDtoSchema.parse(user);
+  return api.put<UpdateUserResponseDto>('/user/profile', data, config);
 }
 
 export function onboardingCreateWorkSpace(
@@ -89,4 +105,12 @@ export function checkoutComplete(
     data,
     config
   );
+}
+
+export function getTenant(id: string, config?: AxiosRequestConfig) {
+  return api.get<CurentTenantResponseDto>(`/tenant/${id}`, config);
+}
+
+export function getUserGyms(tenantId: string, userId: string, config?: AxiosRequestConfig) {
+  return api.get(`/gyms/global/tenant/${tenantId}/user/${userId}`, config);
 }

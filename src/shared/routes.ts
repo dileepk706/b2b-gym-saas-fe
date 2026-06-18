@@ -1,4 +1,5 @@
 const memberRoot = `/members`;
+const staffRoot = `/staffs`;
 const gymRoot = `gym`;
 const accountRoot = `/account`;
 
@@ -32,6 +33,15 @@ export const pathKeys = {
       checkIn: root ? `${memberRoot}/check-in/` : `check-in/`,
       byMemberId: (id: string) => (root ? `${memberRoot}/${id}/` : `${id}/`),
     };
+  },
+
+  // staffs
+  staff: {
+    root: 'staffs',
+    RByStaffId: (id: string) => (id ? `staffs/${id}/` : `staffs/:id/`),
+    RUpdate: (id?: string) => (id ? `staffs/update/${id}/` : `staffs/update/:id/`),
+    byStaffId: (id: string) => (id ? `${id}/` : `:id/`),
+    update: (id?: string) => (id ? `update/${id}/` : `update/:id/`),
   },
 
   // account

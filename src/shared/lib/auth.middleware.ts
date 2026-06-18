@@ -1,5 +1,5 @@
 import { useSessionStore } from 'entities/session';
-import { useGymStore } from '@stores/gym.store';
+import { useGymStore } from 'entities/gym/gym.store';
 import { redirect } from 'react-router-dom';
 import { getUserProfile } from 'shared/api/api.services';
 import { queryClient } from 'shared/queryClient';
@@ -56,7 +56,6 @@ export async function authMiddleware({ request }: MiddlewareArgs) {
   const session = useSessionStore.getState();
 
   if (!session.accessToken && !accessToken) {
-    
     session.clearSession();
     clearSelectedGym();
     queryClient.removeQueries({ queryKey: ['gyms'] });

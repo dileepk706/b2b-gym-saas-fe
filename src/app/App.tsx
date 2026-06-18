@@ -57,7 +57,7 @@ export default function App() {
             themeContrast: 'bold', // 'default' | 'bold'
             themeLayout: 'vertical', // 'vertical' | 'horizontal' | 'mini'
             themeColorPresets: 'default', // 'default' | 'cyan' | 'purple' | 'blue' | 'orange' | 'red'
-            themeStretch: true,
+            themeStretch: false,
           }}
         >
           <ThemeProvider>

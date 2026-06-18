@@ -130,7 +130,7 @@ export default function LineComparisonChart({
         <Box key={index} sx={{ px: 3, pb: 1 }}>
           <Typography
             variant="caption"
-            sx={{ color: chartOptions.colors ? chartOptions.colors[index] : 'text.primary' }}
+            sx={{ color: typeof chartOptions.colors?.[index] === 'string' ? chartOptions.colors[index] : 'text.primary' }}
           >
             {series.name} - {formatLabel(series.data.reduce((a, b) => a + b, 0))}
           </Typography>

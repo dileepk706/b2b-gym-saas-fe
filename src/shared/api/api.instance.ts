@@ -1,6 +1,6 @@
 import axios, { AxiosError } from 'axios';
 import { useSessionStore } from 'entities/session';
-import { useGymStore } from '@stores/gym.store';
+import { useGymStore } from 'entities/gym/gym.store';
 import { SERVER_BASE_URL } from 'config-global';
 import { ApiErrorDataDtoSchema } from './api.contracts';
 import { normalizeValidationErrors } from './api.lib';

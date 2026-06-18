@@ -15,6 +15,7 @@ export const inconString = {
   city: 'solar:map-point-outline',
   building: 'solar:buildings-outline',
   thunder: 'solar:bolt-bold',
+  employee: 'clarity:employee-line',
 };
 
 export const ICONS = {
@@ -33,4 +34,5 @@ export const ICONS = {
   city: icon(inconString.city),
   building: icon(inconString.building),
   thunder: icon(inconString.thunder),
+  employee: icon(inconString.employee),
 };

@@ -13,6 +13,7 @@ import { pathKeys } from 'shared/routes';
 // components
 import Iconify from 'shared/ui/iconify';
 import { Paper } from 'shared/ui/paper';
+import { HEADER_MB } from '@layouts/configLayout';
 
 // ----------------------------------------------------------------------
 
@@ -40,7 +41,7 @@ export default function Header() {
   }, [pathname]);
 
   return (
-    <Paper component="header">
+    <Paper component="header" sx={{ mb: HEADER_MB }}>
       <Box
         sx={{
           px: { xs: 1.5, md: 2 },
@@ -92,4 +93,3 @@ export default function Header() {
     </Paper>
   );
 }
-

@@ -23,10 +23,11 @@ personal trainer
 
 <!-- ratelimiting, redis caching, que, docker -->
 
-user
-tenant
-current gym
-tenant gyms
+<!-- user -->
+<!-- tenant -->
+<!-- current gym -->
+<!-- tenant gyms -->
+
 current subscription
 features
 staff permissions

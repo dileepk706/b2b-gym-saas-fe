@@ -13,15 +13,23 @@ import { FeatureList } from 'widgets/subscription-plans/subscription-plans.ui';
 import { FactoryButton } from 'shared/ui';
 import { useRouter } from '@routes/hook';
 import { pathKeys } from 'shared/routes';
+import { Invoice, Subscription, SubscriptionPlan } from 'entities/subscription';
+import { SPACING } from '@layouts/configLayout';
 
 type SelectedPlanPanelProps = {
-  subscription?: CurrentSubscriptionResponseDto['data'];
+  subscription?: Subscription | null;
+  invoice?: Invoice | null;
+  plan: SubscriptionPlan | null;
 };
 
-export default function CurrentSubscriptionlWidget({ subscription }: SelectedPlanPanelProps) {
+export default function CurrentSubscriptionlWidget({
+  subscription,
+  invoice,
+  plan,
+}: SelectedPlanPanelProps) {
   const router = useRouter();
   // Resolve Limits and usage
-  const planLimits = subscription?.plan?.limits || [];
+  const planLimits = plan?.limits || [];
 
   // Extract limits
   const branchLimit = planLimits.find((l) => l.key.toLowerCase().includes('branch'))?.value ?? 5;
@@ -33,7 +41,7 @@ export default function CurrentSubscriptionlWidget({ subscription }: SelectedPla
   const memberUsed = 120;
   const staffUsed = 8;
 
-  if (!subscription || !subscription.plan) {
+  if (!subscription || !plan) {
     return (
       <Stack spacing={2}>
         <Paper sx={{ p: 2 }}>
@@ -129,11 +137,11 @@ export default function CurrentSubscriptionlWidget({ subscription }: SelectedPla
     );
   }
 
-  const sub = subscription.subscription;
+  const sub = subscription;
   const status = sub?.status || 'inactive';
 
   return (
-    <Stack spacing={2}>
+    <Stack spacing={SPACING}>
       {/* Billing Summary Section */}
       <Paper sx={{ p: 2 }}>
         <Typography variant="subtitle1" sx={{ mb: 1.5, fontWeight: 600 }}>
@@ -160,9 +168,7 @@ export default function CurrentSubscriptionlWidget({ subscription }: SelectedPla
                 <Typography variant="caption" color="text.secondary">
                   Price
                 </Typography>
-                <Typography variant="caption">
-                  {fCurrency(subscription.invoice?.amount && 0)}
-                </Typography>
+                <Typography variant="caption">{fCurrency(invoice?.amount ?? 0)}</Typography>
               </Stack>
 
               {sub?.current_period_start && (
@@ -212,10 +218,10 @@ export default function CurrentSubscriptionlWidget({ subscription }: SelectedPla
           >
             <Stack direction="row" alignItems="center" justifyContent="space-between">
               <Typography variant="subtitle2" sx={{ fontWeight: 600 }}>
-                {subscription.plan.name}
+                {plan?.name}
               </Typography>
               <Typography variant="subtitle2" color="primary.main" sx={{ fontWeight: 700 }}>
-                {fCurrency(subscription.plan.price)}
+                {fCurrency(plan?.price)}
                 <Typography
                   component="span"
                   variant="caption"
@@ -235,7 +241,7 @@ export default function CurrentSubscriptionlWidget({ subscription }: SelectedPla
                 borderColor: (theme) => alpha(theme.palette.primary.main, 0.1),
               }}
             >
-              <FeatureList plan={subscription.plan} compact />
+              <FeatureList plan={plan} compact />
             </Box>
 
             <Box>

@@ -9,20 +9,6 @@ import { SPACING } from '@layouts/configLayout';
 
 const SectionHeader = ({ title }: { title: string }) => (
   <Stack direction="row" spacing={2} alignItems="center">
-    <Box
-      sx={{
-        width: 32,
-        height: 32,
-        borderRadius: '50%',
-        bgcolor: '#22c55e',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        color: 'white',
-      }}
-    >
-      <Iconify icon="mdi:check" width={20} />
-    </Box>
     <Typography variant="h6" fontWeight="600" color="text.primary">
       {title}
     </Typography>

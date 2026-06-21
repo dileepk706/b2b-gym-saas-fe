@@ -14,6 +14,7 @@ import {
   SubscriptionResponseSchema,
   CheckoutCompleteDtoSchema,
   UpdateUserDtoSchema,
+  StaffSearchDtoSchema,
 } from './api.contracts';
 import {
   CheckoutSessionResponse,
@@ -28,10 +29,12 @@ import {
   CurentTenantResponseDto,
   UpdateUserResponseDto,
   UpdateUserDto,
+  StaffSearchResponse,
 } from './api.types';
 import { responseContract } from './api.lib';
 import { Tenant } from 'entities/tenant/tenant.type';
 import { Gym } from 'entities/gym/gym.type';
+import { StaffSearchDto } from './api.dto';
 
 export function loginUser(loginUserDto: LoginUserDto, config?: AxiosRequestConfig<LoginUserDto>) {
   const data = LoginUserDtoSchema.parse(loginUserDto);
@@ -113,4 +116,12 @@ export function getTenant(id: string, config?: AxiosRequestConfig) {
 
 export function getUserGyms(tenantId: string, userId: string, config?: AxiosRequestConfig) {
   return api.get(`/gyms/global/tenant/${tenantId}/user/${userId}`, config);
+}
+
+export function searchStaff(sp: StaffSearchDto, config?: AxiosRequestConfig) {
+  const data = StaffSearchDtoSchema.parse(sp);
+  return api.get<StaffSearchResponse>(
+    `/staffs?query=${encodeURIComponent(data.query || '')}`,
+    config
+  );
 }

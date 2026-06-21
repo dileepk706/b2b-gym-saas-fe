@@ -1,62 +1,62 @@
 import { useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
-// @mui
+
 import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
 import Typography from '@mui/material/Typography';
-import { alpha } from '@mui/material/styles';
-// routes
+
 import { RouterLink } from '@routes/components';
-import { pathKeys } from 'shared/routes';
-// components
-import Iconify from 'shared/ui/iconify';
 import { Paper } from 'shared/ui/paper';
 import { HEADER_MB } from '@layouts/configLayout';
 
-// ----------------------------------------------------------------------
+export type HeaderTab = {
+  label: string;
+  path: string;
+};
 
-const ACCOUNT_TABS = [
-  {
-    label: 'Settings',
-    path: pathKeys.account(true).setting,
-  },
-  {
-    label: 'Account Plan',
-    path: pathKeys.account(true).plan,
-  },
-];
+type PageTabsHeaderProps = {
+  title: string;
+  tabs: HeaderTab[];
+  mb?: number;
+};
 
 const normalizePath = (path: string) => path.replace(/\/+$/, '');
 
-export default function Header() {
+export default function PageTabsHeader({ title, tabs, mb = HEADER_MB }: PageTabsHeaderProps) {
   const { pathname } = useLocation();
 
   const currentTab = useMemo(() => {
     const currentPath = normalizePath(pathname);
-    const activeTab = ACCOUNT_TABS.find((tab) => currentPath === normalizePath(tab.path));
+
+    const activeTab = tabs.find((tab) => currentPath === normalizePath(tab.path));
 
     return activeTab ? normalizePath(activeTab.path) : false;
-  }, [pathname]);
+  }, [pathname, tabs]);
 
   return (
-    <Paper component="header" sx={{ mb: HEADER_MB }}>
+    <Paper component="header" sx={{ mb }}>
       <Box
         sx={{
           px: { xs: 1.5, md: 2 },
           pt: { xs: 1.5, md: 1.5 },
         }}
       >
-        <Typography variant="h6" sx={{ fontWeight: 600, lineHeight: 1.2, mb: 0.5 }}>
-          Account
+        <Typography
+          variant="h6"
+          sx={{
+            fontWeight: 600,
+            lineHeight: 1.2,
+            mb: 0.5,
+          }}
+        >
+          {title}
         </Typography>
 
         <Tabs
           value={currentTab}
           variant="scrollable"
           scrollButtons={false}
-          aria-label="Account section tabs"
           sx={{
             minHeight: 32,
             '.MuiTabs-indicator': {
@@ -72,6 +72,7 @@ export default function Header() {
               fontWeight: 400,
               textTransform: 'none',
               whiteSpace: 'nowrap',
+
               '&.Mui-selected': {
                 color: 'primary.main',
                 fontWeight: 500,
@@ -79,7 +80,7 @@ export default function Header() {
             },
           }}
         >
-          {ACCOUNT_TABS.map((tab) => (
+          {tabs.map((tab) => (
             <Tab
               key={tab.path}
               label={tab.label}

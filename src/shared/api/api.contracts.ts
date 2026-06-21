@@ -90,6 +90,10 @@ export const SubscriptionResponseSchema = createApiResponseSchema(
   })
 );
 
+export const StaffSearchDtoSchema = z.object({
+  query: z.string().optional(),
+});
+
 // Full response schemas
 export const LoginResponseSchema = createApiResponseSchema(LoginDataSchema);
 export const ProfileResponseSchema = createApiResponseSchema(ProfileDataSchema);

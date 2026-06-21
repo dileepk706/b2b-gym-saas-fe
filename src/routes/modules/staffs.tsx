@@ -2,18 +2,19 @@ import { Suspense } from 'react';
 import { Outlet, RouteObject } from 'react-router-dom';
 import { SplashScreen } from 'shared/ui/loading';
 import { pathKeys } from 'shared/routes';
-import AccountLayout from '@layouts/account/account.layout';
+import StaffLayout from '@layouts/staff/staff.layout';
+import { staffListRoute } from '@pages/staff/list/staff-list.route';
 
 // ----------------------------------------------------------------------
 
 export const staffRoutes: RouteObject = {
   path: pathKeys.staff.root,
   element: (
-    <AccountLayout>
+    <StaffLayout>
       <Suspense fallback={<SplashScreen />}>
         <Outlet />
       </Suspense>
-    </AccountLayout>
+    </StaffLayout>
   ),
-  children: [],
+  children: [staffListRoute],
 };

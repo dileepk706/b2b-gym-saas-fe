@@ -19,6 +19,7 @@ import {
 } from 'entities/subscription';
 import { Tenant } from 'entities/tenant/tenant.type';
 import { User } from 'entities/session';
+import { Staffs } from 'entities/staff/staff.contracts';
 
 export interface ApiResponse<T> {
   success: boolean;
@@ -72,3 +73,5 @@ export type CurentTenantResponseDto = ApiResponse<Tenant>;
 export type UpdateUserResponseDto = ApiResponse<User>;
 
 export type UpdateUserDto = z.infer<typeof UpdateUserDtoSchema>;
+
+export type StaffSearchResponse = ApiResponse<Staffs[]>;

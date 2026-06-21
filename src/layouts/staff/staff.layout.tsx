@@ -3,14 +3,18 @@ import { Container } from '@mui/material';
 import { pathKeys } from 'shared/routes';
 import PageTabsHeader from 'shared/ui/page-header/PageTabsHeader';
 
-const ACCOUNT_TABS = [
+const STAFF_TABS = [
   {
-    label: 'Settings',
-    path: pathKeys.account(true).setting,
+    label: 'Staffs',
+    path: pathKeys.staff.root,
   },
   {
-    label: 'Account Plan',
-    path: pathKeys.account(true).plan,
+    label: 'Roles',
+    path: pathKeys.staff.RRoles,
+  },
+  {
+    label: 'Payrolls',
+    path: pathKeys.staff.RPayrolls,
   },
 ];
 
@@ -18,13 +22,19 @@ type Props = {
   children: React.ReactNode;
 };
 
-export default function AccountLayout({ children }: Props) {
+export default function StaffLayout({ children }: Props) {
   const settings = useSettingsContext();
 
   return (
     <Container maxWidth={settings.themeStretch ? false : 'lg'}>
-      <PageTabsHeader title="Account" tabs={ACCOUNT_TABS} />
+      <PageTabsHeader title="Staff" tabs={STAFF_TABS} />
       {children}
     </Container>
   );
 }
+
+// list
+// create
+// update
+// roles - coming soon
+// payrolls - coming soon

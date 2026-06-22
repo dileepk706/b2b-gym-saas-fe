@@ -121,7 +121,7 @@ export function getUserGyms(tenantId: string, userId: string, config?: AxiosRequ
 export function searchStaff(sp: StaffSearchDto, config?: AxiosRequestConfig) {
   const data = StaffSearchDtoSchema.parse(sp);
   return api.get<StaffSearchResponse>(
-    `/staffs?query=${encodeURIComponent(data.query || '')}`,
+    `/staff?query=${encodeURIComponent(data.query || '')}`,
     config
   );
 }

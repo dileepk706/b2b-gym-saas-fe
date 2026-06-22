@@ -20,3 +20,5 @@ export const NAV = {
 export const HEADER_MB = 2;
 
 export const SPACING = 2;
+
+export const BGC = '#e7e5e5';

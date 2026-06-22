@@ -10,6 +10,8 @@ import { StaffTable } from 'widgets/staff-table';
 import { searchStaffQueryOptions } from 'entities/staff/staff.api';
 import { Staffs } from 'entities/staff/staff.contracts';
 import { Paper } from 'shared/ui/paper';
+import { FactoryButton } from 'shared/ui';
+import { RouterLink } from '@routes/components';
 
 // ----------------------------------------------------------------------
 
@@ -55,9 +57,20 @@ export default function StaffListPage() {
 
   /** Client-side date filter on top of the server search */
   const filteredRows = useMemo(() => {
+    return [
+      {
+        name: 'John Doe',
+        email: 'sdkfjhdskf@gmail.com',
+        role_id: 'admin',
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString(),
+      },
+    ];
     const rows = data ?? [];
     return rows.filter((row) => applyDateFilter(row, dateFilter));
   }, [data, dateFilter]);
+
+  console.log(data);
 
   return (
     <>
@@ -65,17 +78,28 @@ export default function StaffListPage() {
         <title>Staff List</title>
       </Helmet>
 
-      <Stack spacing={3}>
-        {/* ─── Toolbar ─── */}
-        <Paper
+      <Paper
+        sx={
+          {
+            // px: 2,
+            // py: 1.5,
+            // display: 'flex',
+            // alignItems: 'flex-end',
+            // gap: 2,
+            // flexWrap: 'wrap',
+          }
+        }
+      >
+        <Box
           sx={{
-            px: 2,
-            py: 1.5,
-            borderRadius: 2,
             display: 'flex',
+            flexDirection: 'row',
             alignItems: 'flex-end',
-            gap: 2,
-            flexWrap: 'wrap',
+            flexGrow: 1,
+            gap: 3,
+            px: 2,
+            pt: 2,
+            pb: 4,
           }}
         >
           <Box sx={{ flex: '1 1 240px' }}>
@@ -83,17 +107,20 @@ export default function StaffListPage() {
               value={searchQuery}
               onChange={setSearchQuery}
               placeholder="Search staff…"
-              debounceMs={400}
+              debounceMs={500}
               sx={{ width: '100%' }}
             />
           </Box>
 
           <DateFilterDropdown label="Updated" value={dateFilter} onChange={setDateFilter} />
-        </Paper>
-
-        {/* ─── Table ─── */}
-        <StaffTable rows={filteredRows} isLoading={isLoading} />
-      </Stack>
+          <Box>
+            <FactoryButton component={RouterLink} to="sdfdsf">
+              Create
+            </FactoryButton>
+          </Box>
+        </Box>
+        <StaffTable rows={data?.data.staffs as any} isLoading={isLoading} />
+      </Paper>
     </>
   );
 }

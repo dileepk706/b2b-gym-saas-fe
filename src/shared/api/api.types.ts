@@ -74,4 +74,7 @@ export type UpdateUserResponseDto = ApiResponse<User>;
 
 export type UpdateUserDto = z.infer<typeof UpdateUserDtoSchema>;
 
-export type StaffSearchResponse = ApiResponse<Staffs[]>;
+export type StaffSearchResponse = ApiResponse<{
+  staffs: Staffs & { roleData: any }[];
+  total: number;
+}>;

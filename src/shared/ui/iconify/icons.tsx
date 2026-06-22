@@ -16,6 +16,7 @@ export const inconString = {
   building: 'solar:buildings-outline',
   thunder: 'solar:bolt-bold',
   employee: 'clarity:employee-line',
+  search: 'si:search-line',
 };
 
 export const ICONS = {
@@ -35,4 +36,5 @@ export const ICONS = {
   building: icon(inconString.building),
   thunder: icon(inconString.thunder),
   employee: icon(inconString.employee),
+  search: icon(inconString.search),
 };

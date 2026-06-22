@@ -54,8 +54,7 @@ export default function DateFilterDropdown({
   const [open, setOpen] = useState(false);
   const anchorRef = useRef<HTMLButtonElement>(null);
 
-  const selectedLabel =
-    OPTIONS.find((o) => o.value === value.option)?.label ?? 'Any time';
+  const selectedLabel = OPTIONS.find((o) => o.value === value.option)?.label ?? 'Any time';
 
   const handleToggle = () => setOpen((prev) => !prev);
 
@@ -96,7 +95,7 @@ export default function DateFilterDropdown({
           minWidth: 160,
           justifyContent: 'space-between',
           color: 'text.primary',
-          borderColor: 'divider',
+          borderColor: 'gray',
           fontWeight: 400,
           textTransform: 'none',
         }}
@@ -123,10 +122,7 @@ export default function DateFilterDropdown({
                       return (
                         <Box key={opt.value}>
                           {idx > 0 && <Divider sx={{ my: 0.5 }} />}
-                          <MenuItem
-                            onClick={() => handleSelect(opt.value)}
-                            sx={{ gap: 1, pr: 2 }}
-                          >
+                          <MenuItem onClick={() => handleSelect(opt.value)} sx={{ gap: 1, pr: 2 }}>
                             <Box sx={{ width: 20, display: 'flex', alignItems: 'center' }}>
                               {isSelected && <CheckIcon fontSize="small" color="warning" />}
                             </Box>

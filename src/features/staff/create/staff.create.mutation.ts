@@ -1,12 +1,20 @@
-import { useMutation, UseMutationOptions, DefaultError } from '@tanstack/react-query';
+import {
+  useMutation,
+  UseMutationOptions,
+  DefaultError,
+  useQueryClient,
+} from '@tanstack/react-query';
 import { createStaff } from 'shared/api/api.services';
 import { CreateStaffDto } from './staff.create.contracts';
 import { ApiResponse } from 'shared/api/api.types';
 
 export function useCreateStaffMutation(
-  options: Partial<UseMutationOptions<ApiResponse<unknown>, DefaultError, CreateStaffDto, unknown>> = {}
+  options: Partial<
+    UseMutationOptions<ApiResponse<unknown>, DefaultError, CreateStaffDto, unknown>
+  > = {}
 ) {
   const { mutationKey = [], onSuccess, onError, onSettled, onMutate } = options;
+  const queryClient = useQueryClient();
 
   return useMutation({
     mutationKey: ['staff', 'create', ...mutationKey],
@@ -15,7 +23,12 @@ export function useCreateStaffMutation(
       return response.data;
     },
     onMutate,
-    onSuccess,
+    onSuccess: (data, variables, context) => {
+      queryClient.invalidateQueries({ queryKey: ['staffs'] });
+      if (onSuccess) {
+        onSuccess(data, variables, context, undefined as any);
+      }
+    },
     onError,
     onSettled,
   });

@@ -12,7 +12,7 @@ import {
 import { pathKeys } from 'shared/routes';
 import { Button } from 'shared/ui/button';
 import { TextField, TextFieldLabel } from 'shared/ui/text-field';
-import { ICONS, inconString } from 'shared/ui/iconify/icons';
+import { IconsElement, icons } from 'shared/ui/iconify/icons';
 import Iconify from 'shared/ui/iconify';
 import CustomLink from 'shared/ui/link/CustomeLink';
 import { LogoPng } from 'shared/ui/logo';
@@ -71,7 +71,7 @@ export default function RegisterForm() {
             error={!!errors.name}
             errorMessage={errors.name?.message}
             disabled={loading}
-            startIcon={<Iconify icon={inconString.user} />}
+            startIcon={<Iconify icon={icons.user} />}
             {...register('name')}
           />
         </Box>
@@ -86,7 +86,7 @@ export default function RegisterForm() {
             error={!!errors.email}
             errorMessage={errors.email?.message}
             disabled={loading}
-            startIcon={<Iconify icon={inconString.email} />}
+            startIcon={<Iconify icon={icons.email} />}
             {...register('email')}
           />
         </Box>
@@ -105,7 +105,7 @@ export default function RegisterForm() {
             startIcon={<Iconify icon="solar:lock-bold-duotone" />}
             endIcon={
               <IconButton onClick={() => setShowPassword(!showPassword)} edge="end">
-                <Iconify icon={showPassword ? inconString.eyeOff : inconString.eye} />
+                <Iconify icon={showPassword ? icons.eyeOff : icons.eye} />
               </IconButton>
             }
             {...register('password')}
@@ -126,7 +126,7 @@ export default function RegisterForm() {
             startIcon={<Iconify icon="solar:lock-bold-duotone" />}
             endIcon={
               <IconButton onClick={() => setShowConfirmPassword(!showConfirmPassword)} edge="end">
-                <Iconify icon={showConfirmPassword ? inconString.eyeOff : inconString.eye} />
+                <Iconify icon={showConfirmPassword ? icons.eyeOff : icons.eye} />
               </IconButton>
             }
             {...register('confirmPassword')}
@@ -156,7 +156,7 @@ export default function RegisterForm() {
           size="small"
           disabled={loading}
           factoryVariant="primary"
-          endIcon={ICONS.arrowRight}
+          endIcon={IconsElement.arrowRight}
         >
           {loading ? <CircularProgress size={24} color="inherit" /> : 'Create your account'}
         </FactoryButton>

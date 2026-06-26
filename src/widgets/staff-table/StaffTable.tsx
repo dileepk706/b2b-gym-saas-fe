@@ -10,6 +10,8 @@ import { DataTable, ColumnDef } from 'shared/ui/data-table';
 import Iconify from 'shared/ui/iconify';
 import { RouterLink } from '@routes/components';
 import { pathKeys } from 'shared/routes';
+import { StaffDeleteButton } from 'features/staff/delete';
+import { icons } from 'shared/ui/iconify/icons';
 
 // ----------------------------------------------------------------------
 
@@ -89,12 +91,15 @@ const STAFF_COLUMNS: ColumnDef<Staffs & { roleData: any }>[] = [
     minWidth: 100,
     render: (row) => (
       <Box sx={{ display: 'flex', gap: 1 }}>
-        <IconButton component={RouterLink} to={pathKeys.staff.update(row.id)} size="small" color="primary">
-          <Iconify icon="solar:pen-bold" />
+        <IconButton
+          component={RouterLink as any}
+          to={pathKeys.staff.update(row.id)}
+          size="small"
+          color="primary"
+        >
+          <Iconify icon={icons.edit} />
         </IconButton>
-        <IconButton size="small" color="error" onClick={() => console.log('Delete staff', row.id)}>
-          <Iconify icon="solar:trash-bin-trash-bold" />
-        </IconButton>
+        <StaffDeleteButton staffId={row.id} staffName={row.name} />
       </Box>
     ),
   },

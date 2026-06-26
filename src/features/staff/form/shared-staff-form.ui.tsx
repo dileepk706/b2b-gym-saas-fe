@@ -18,13 +18,18 @@ interface SharedStaffFormProps {
 }
 
 export function SharedStaffForm({
-  form: { register, control, formState: { errors } },
+  form: {
+    register,
+    control,
+    formState: { errors },
+  },
   loading,
   mutationErrors,
   isError,
   onSubmit,
   title,
   submitText,
+  currentStaff,
 }: SharedStaffFormProps) {
   return (
     <Paper sx={{ p: { xs: 2.5, md: 3 } }}>
@@ -93,17 +98,18 @@ export function SharedStaffForm({
             disabled={loading}
             {...register('check_in_code', { valueAsNumber: true })}
           />
-
-          <TextField
-            label="Password"
-            type="password"
-            fullWidth
-            placeholder="Min. 6 characters (optional)"
-            error={!!errors.password}
-            errorMessage={errors.password?.message as string}
-            disabled={loading}
-            {...register('password')}
-          />
+          {!currentStaff && (
+            <TextField
+              label="Password"
+              type="password"
+              fullWidth
+              placeholder="Min. 6 characters (optional)"
+              error={!!errors.password}
+              errorMessage={errors.password?.message as string}
+              disabled={loading}
+              {...register('password')}
+            />
+          )}
         </Stack>
 
         <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 2 }}>

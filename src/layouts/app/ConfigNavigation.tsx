@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { useLocales } from '@locales';
 import { pathKeys } from 'shared/routes';
-import { ICONS } from 'shared/ui/iconify/icons';
+import { IconsElement } from 'shared/ui/iconify/icons';
 
 // ----------------------------------------------------------------------
 
@@ -16,27 +16,27 @@ export function useNavData() {
           {
             title: t('dashboard'),
             path: pathKeys.dashboard().root,
-            icon: ICONS.dashboard,
+            icon: IconsElement.dashboard,
           },
           {
             title: t('members'),
             path: pathKeys.members(true).root,
-            icon: ICONS.users,
+            icon: IconsElement.users,
           },
           {
             title: t('staffs'),
             path: pathKeys.staff.root,
-            icon: ICONS.employee,
+            icon: IconsElement.employee,
           },
           {
             title: t('gym'),
             path: pathKeys.gym(true).schedule,
-            icon: ICONS.gym,
+            icon: IconsElement.gym,
           },
           {
             title: t('account'),
             path: pathKeys.account(true).setting,
-            icon: ICONS.account,
+            icon: IconsElement.account,
           },
         ],
       },

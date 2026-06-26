@@ -4,7 +4,7 @@ import TextField from '@mui/material/TextField';
 import SearchIcon from '@mui/icons-material/Search';
 import ClearIcon from '@mui/icons-material/Clear';
 import IconButton from '@mui/material/IconButton';
-import { ICONS } from '../iconify/icons';
+import { IconsElement } from '../iconify/icons';
 
 // ----------------------------------------------------------------------
 
@@ -63,7 +63,7 @@ export default function SearchBar({
       onChange={handleChange}
       sx={{ width: 280, ...sx }}
       InputProps={{
-        startAdornment: <InputAdornment position="start">{ICONS.search}</InputAdornment>,
+        startAdornment: <InputAdornment position="start">{IconsElement.search}</InputAdornment>,
         endAdornment: inputValue ? (
           <InputAdornment position="end">
             <IconButton size="small" onClick={handleClear} edge="end" aria-label="clear search">

@@ -3,7 +3,7 @@ import { currentSubscriptionQueryOptions } from 'entities/subscription/subscript
 import { queryClient } from 'shared/queryClient';
 import { FactoryButton } from 'shared/ui';
 import Iconify from 'shared/ui/iconify';
-import { ICONS } from 'shared/ui/iconify/icons';
+import { IconsElement } from 'shared/ui/iconify/icons';
 
 // ----------------------------------------------------------------------
 
@@ -39,7 +39,7 @@ export function UpgradePlanButton({ planId, isCurrent = false, onSelect }: Props
       factoryVariant="primary"
       disabled={mutation.isPending}
       onClick={() => onSubmit(planId)}
-      startIcon={ICONS.thunder}
+      startIcon={IconsElement.thunder}
     >
       {mutation.isPending ? 'Upgrading...' : 'Upgrade plan'}
     </FactoryButton>

@@ -1,6 +1,6 @@
 import { Alert, Box, CircularProgress, Stack, Typography, Grid } from '@mui/material';
 import { TextField } from 'shared/ui/text-field';
-import { ICONS, inconString } from 'shared/ui/iconify/icons';
+import { IconsElement, icons } from 'shared/ui/iconify/icons';
 import Iconify from 'shared/ui/iconify';
 import { FactoryButton } from 'shared/ui';
 import { useAccountSettings } from 'features/user/update/use-user-update-from';
@@ -97,7 +97,7 @@ export default function AccountSettingsForm() {
                   disabled={loading}
                   endIcon={
                     <Iconify
-                      icon={showPassword ? inconString.eyeOff : inconString.eye}
+                      icon={showPassword ? icons.eyeOff : icons.eye}
                       onClick={() => setShowPassword(!showPassword)}
                       sx={{ cursor: 'pointer', color: 'text.secondary' }}
                     />

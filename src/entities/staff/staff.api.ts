@@ -28,5 +28,5 @@ export const getStaffByIdQueryOptions = (id: string) =>
     },
 
     initialData: () => queryClient.getQueryData<Staffs>(['staff', id]),
-    initialDataUpdatedAt: () => queryClient.getQueryState(['staffs', id])?.dataUpdatedAt,
+    initialDataUpdatedAt: () => queryClient.getQueryState(['staff', id])?.dataUpdatedAt,
   });

@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { standardSchemaResolver } from '@hookform/resolvers/standard-schema';
 import { useNavigate } from 'react-router-dom';
@@ -21,7 +22,26 @@ export function useStaffUpdateForm(currentStaff: Staffs) {
       check_in_code: currentStaff.check_in_code || undefined,
       password: '', // do not prepopulate password
     },
+    values: {
+      name: currentStaff.name || '',
+      email: currentStaff.email || '',
+      phone: currentStaff.phone || '',
+      role_id: currentStaff.role_id || '',
+      check_in_code: currentStaff.check_in_code || undefined,
+      password: '',
+    },
   });
+
+  useEffect(() => {
+    form.reset({
+      name: currentStaff.name || '',
+      email: currentStaff.email || '',
+      phone: currentStaff.phone || '',
+      role_id: currentStaff.role_id || '',
+      check_in_code: currentStaff.check_in_code || undefined,
+      password: '',
+    });
+  }, [currentStaff, form.reset]);
 
   const mutation = useUpdateStaffMutation(currentStaff.id, {
     onSuccess() {

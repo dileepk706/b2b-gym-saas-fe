@@ -141,7 +141,11 @@ export function createStaff(dto: unknown, config?: AxiosRequestConfig) {
 
 export function updateStaff(id: string, dto: unknown, config?: AxiosRequestConfig) {
   const data = CreateStaffDtoSchema.parse(dto);
-  return api.post(`/staff/${id}`, data, config);
+  return api.put(`/staff/${id}`, data, config);
+}
+
+export function deleteStaffById(id: string, config?: AxiosRequestConfig) {
+  return api.delete(`/staff/${id}`, config);
 }
 
 export function getRoles(config?: AxiosRequestConfig) {

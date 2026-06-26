@@ -2,7 +2,7 @@ import { useFormContext, useWatch } from 'react-hook-form';
 import { Box, Stack, Typography, Button, Alert } from '@mui/material';
 import { TextFieldLabel } from 'shared/ui/text-field';
 import { LoadingButton } from 'shared/ui/button';
-import { ICONS } from 'shared/ui/iconify/icons';
+import { IconsElement } from 'shared/ui/iconify/icons';
 import Iconify from 'shared/ui/iconify';
 import { HOST_URL } from 'config-global';
 import { TOnboarding } from './onboarding.types';
@@ -54,7 +54,7 @@ export default function GymCreateForm({
             fullWidth
             label="Gym Name"
             placeholder="FitZone Gym"
-            startIcon={ICONS.building}
+            startIcon={IconsElement.building}
             error={!!errors.name}
             errorMessage={errors.name?.message}
             {...register('name')}
@@ -84,7 +84,7 @@ export default function GymCreateForm({
             fullWidth
             label="City"
             placeholder="Select your city"
-            startIcon={ICONS.city}
+            startIcon={IconsElement.city}
             error={!!errors.city}
             errorMessage={errors.city?.message}
             {...register('city')}
@@ -119,7 +119,7 @@ export default function GymCreateForm({
             type="submit"
             size="large"
             appearance="primary"
-            endIcon={ICONS.arrowRight}
+            endIcon={IconsElement.arrowRight}
             loading={loading}
             sx={{
               fontWeight: 700,

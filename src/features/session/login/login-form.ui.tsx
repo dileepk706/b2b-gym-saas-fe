@@ -2,7 +2,7 @@ import { Alert, Box, CircularProgress, Divider, Stack, Typography } from '@mui/m
 import { pathKeys } from 'shared/routes';
 import { Button } from 'shared/ui/button';
 import { TextField } from 'shared/ui/text-field';
-import { ICONS, inconString } from 'shared/ui/iconify/icons';
+import { IconsElement, icons } from 'shared/ui/iconify/icons';
 import Iconify from 'shared/ui/iconify';
 import CustomLink from 'shared/ui/link/CustomeLink';
 import { LogoPng } from 'shared/ui/logo';
@@ -60,7 +60,7 @@ export default function LoginForm() {
           errorMessage={errors.email?.message}
           data-test="login-email"
           disabled={loading}
-          startIcon={ICONS.email}
+          startIcon={IconsElement.email}
           {...register('email')}
         />
 
@@ -73,10 +73,10 @@ export default function LoginForm() {
           errorMessage={errors.password?.message}
           data-test="login-password"
           disabled={loading}
-          startIcon={ICONS.password}
+          startIcon={IconsElement.password}
           endIcon={
             <Iconify
-              icon={showPassword ? inconString.eyeOff : inconString.eye}
+              icon={showPassword ? icons.eyeOff : icons.eye}
               onClick={() => setShowPassword(!showPassword)}
               sx={{ cursor: 'pointer' }}
             />

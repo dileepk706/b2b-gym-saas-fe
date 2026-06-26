@@ -2,7 +2,7 @@ import Iconify from './iconify';
 
 const icon = (name: string) => <Iconify icon={`${name}`} />;
 
-export const inconString = {
+export const icons = {
   email: 'fluent:mail-20-regular',
   eye: 'solar:eye-outline',
   eyeOff: 'solar:eye-off-outline',
@@ -17,24 +17,26 @@ export const inconString = {
   thunder: 'solar:bolt-bold',
   employee: 'clarity:employee-line',
   search: 'si:search-line',
+  delete: 'solar:trash-bin-trash-bold',
+  edit: 'solar:pen-bold',
 };
 
-export const ICONS = {
+export const IconsElement = {
   openai: icon('logos:openai-icon'),
   //
-  email: icon(inconString.email),
+  email: icon(icons.email),
   password: icon('solar:lock-outline'),
   eye: icon('solar:eye-outline'),
   eyeOff: icon('solar:eye-off-outline'),
-  user: icon(inconString.user),
-  dashboard: icon(inconString.dashboard),
-  users: icon(inconString.users),
-  gym: icon(inconString.gym),
-  account: icon(inconString.account),
-  arrowRight: icon(inconString.arrowRight),
-  city: icon(inconString.city),
-  building: icon(inconString.building),
-  thunder: icon(inconString.thunder),
-  employee: icon(inconString.employee),
-  search: icon(inconString.search),
+  user: icon(icons.user),
+  dashboard: icon(icons.dashboard),
+  users: icon(icons.users),
+  gym: icon(icons.gym),
+  account: icon(icons.account),
+  arrowRight: icon(icons.arrowRight),
+  city: icon(icons.city),
+  building: icon(icons.building),
+  thunder: icon(icons.thunder),
+  employee: icon(icons.employee),
+  search: icon(icons.search),
 };

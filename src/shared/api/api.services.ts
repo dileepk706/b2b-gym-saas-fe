@@ -38,6 +38,7 @@ import { Tenant } from 'entities/tenant/tenant.type';
 import { Gym } from 'entities/gym/gym.type';
 import { StaffSearchDto } from './api.dto';
 import { Role } from 'entities/roles/roles.contract';
+import { Staffs } from 'entities/staff/staff.contracts';
 
 export function loginUser(loginUserDto: LoginUserDto, config?: AxiosRequestConfig<LoginUserDto>) {
   const data = LoginUserDtoSchema.parse(loginUserDto);
@@ -129,9 +130,18 @@ export function searchStaff(sp: StaffSearchDto, config?: AxiosRequestConfig) {
   );
 }
 
+export function getStaffById(id: string, config?: AxiosRequestConfig) {
+  return api.get<ApiResponse<Staffs>>(`/staff/${id}`, config);
+}
+
 export function createStaff(dto: unknown, config?: AxiosRequestConfig) {
   const data = CreateStaffDtoSchema.parse(dto);
   return api.post('/staff', data, config);
+}
+
+export function updateStaff(id: string, dto: unknown, config?: AxiosRequestConfig) {
+  const data = CreateStaffDtoSchema.parse(dto);
+  return api.post(`/staff/${id}`, data, config);
 }
 
 export function getRoles(config?: AxiosRequestConfig) {

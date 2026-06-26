@@ -15,10 +15,6 @@ export default function StaffCreatePage() {
       </Helmet>
 
       <Box sx={{ maxWidth: 560 }}>
-        <Typography variant="h5" fontWeight={600} sx={{ mb: 3 }}>
-          Create Staff
-        </Typography>
-
         <StaffCreateForm />
       </Box>
     </>

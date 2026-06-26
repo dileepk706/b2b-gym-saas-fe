@@ -6,6 +6,8 @@ import StaffLayout from '@layouts/staff/staff.layout';
 import { staffListRoute } from '@pages/staff/list/staff-list.route';
 import { staffCreateRoute } from '@pages/staff/create/staff-create.route';
 
+import { staffUpdateRoute } from '@pages/staff/update/staff-update.route';
+
 // ----------------------------------------------------------------------
 
 export const staffRoutes: RouteObject = {
@@ -17,5 +19,5 @@ export const staffRoutes: RouteObject = {
       </Suspense>
     </StaffLayout>
   ),
-  children: [staffListRoute, staffCreateRoute],
+  children: [staffListRoute, staffCreateRoute, staffUpdateRoute],
 };

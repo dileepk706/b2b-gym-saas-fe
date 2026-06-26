@@ -1,3 +1,5 @@
+import Box from '@mui/material/Box';
+import IconButton from '@mui/material/IconButton';
 import Chip from '@mui/material/Chip';
 import Typography from '@mui/material/Typography';
 import { formatCamelCase } from '@utils/format-text';
@@ -5,6 +7,9 @@ import { fDate } from '@utils/format-time';
 import { Staffs } from 'entities/staff/staff.contracts';
 import { StaffSearchResponse } from 'shared/api/api.types';
 import { DataTable, ColumnDef } from 'shared/ui/data-table';
+import Iconify from 'shared/ui/iconify';
+import { RouterLink } from '@routes/components';
+import { pathKeys } from 'shared/routes';
 
 // ----------------------------------------------------------------------
 
@@ -76,6 +81,21 @@ const STAFF_COLUMNS: ColumnDef<Staffs & { roleData: any }>[] = [
       <Typography variant="body2" color="text.secondary">
         {fDate(row.updated_at)}
       </Typography>
+    ),
+  },
+  {
+    id: 'actions',
+    label: 'Actions',
+    minWidth: 100,
+    render: (row) => (
+      <Box sx={{ display: 'flex', gap: 1 }}>
+        <IconButton component={RouterLink} to={pathKeys.staff.update(row.id)} size="small" color="primary">
+          <Iconify icon="solar:pen-bold" />
+        </IconButton>
+        <IconButton size="small" color="error" onClick={() => console.log('Delete staff', row.id)}>
+          <Iconify icon="solar:trash-bin-trash-bold" />
+        </IconButton>
+      </Box>
     ),
   },
 ];

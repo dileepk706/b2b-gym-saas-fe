@@ -1,14 +1,11 @@
-import { Container, Stack } from '@mui/material';
-import { useLoaderData } from 'react-router-dom';
+import { Stack } from '@mui/material';
 import { Helmet } from 'react-helmet-async';
-import { PlanPageLoaderData } from './plan.loader';
 import { lazy } from 'react';
 import { useSubscriptionStore } from 'entities/subscription';
 
 const CurrentSubscriptionlWidget = lazy(() => import('widgets/current-plan/current-plan.ui'));
 
 export default function PlanPage() {
-  const { currentSubscription } = useLoaderData() as PlanPageLoaderData;
   const { subscription, invoice, plan } = useSubscriptionStore.getState();
   return (
     <>

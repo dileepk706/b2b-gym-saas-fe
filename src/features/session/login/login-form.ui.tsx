@@ -52,45 +52,37 @@ export default function LoginForm() {
       )}
 
       <Stack spacing={2.5}>
-        <Box>
-          <Typography variant="subtitle2" sx={{ mb: 1, fontWeight: 600 }}>
-            Email or Mobile Number
-          </Typography>
-          <TextField
-            fullWidth
-            placeholder="Email or mobile number"
-            error={!!errors.email}
-            errorMessage={errors.email?.message}
-            data-test="login-email"
-            disabled={loading}
-            startIcon={ICONS.email}
-            {...register('email')}
-          />
-        </Box>
+        <TextField
+          label={' Email or Mobile Number'}
+          fullWidth
+          placeholder="Email or mobile number"
+          error={!!errors.email}
+          errorMessage={errors.email?.message}
+          data-test="login-email"
+          disabled={loading}
+          startIcon={ICONS.email}
+          {...register('email')}
+        />
 
-        <Box>
-          <Typography variant="subtitle2" sx={{ mb: 1, fontWeight: 600 }}>
-            Password
-          </Typography>
-          <TextField
-            fullWidth
-            type={showPassword ? 'text' : 'password'}
-            placeholder="••••••••"
-            error={!!errors.password}
-            errorMessage={errors.password?.message}
-            data-test="login-password"
-            disabled={loading}
-            startIcon={ICONS.password}
-            endIcon={
-              <Iconify
-                icon={showPassword ? inconString.eyeOff : inconString.eye}
-                onClick={() => setShowPassword(!showPassword)}
-                sx={{ cursor: 'pointer' }}
-              />
-            }
-            {...register('password')}
-          />
-        </Box>
+        <TextField
+          label={'Password'}
+          fullWidth
+          type={showPassword ? 'text' : 'password'}
+          placeholder="••••••••"
+          error={!!errors.password}
+          errorMessage={errors.password?.message}
+          data-test="login-password"
+          disabled={loading}
+          startIcon={ICONS.password}
+          endIcon={
+            <Iconify
+              icon={showPassword ? inconString.eyeOff : inconString.eye}
+              onClick={() => setShowPassword(!showPassword)}
+              sx={{ cursor: 'pointer' }}
+            />
+          }
+          {...register('password')}
+        />
 
         <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
           <CustomLink

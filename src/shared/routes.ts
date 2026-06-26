@@ -38,6 +38,8 @@ export const pathKeys = {
   // staffs
   staff: {
     root: '/staffs',
+    create: 'create',
+    RCreate: '/staffs/create',
     RByStaffId: (id: string) => (id ? `staffs/${id}/` : `staffs/:id/`),
     RUpdate: (id?: string) => (id ? `staffs/update/${id}/` : `staffs/update/:id/`),
     byStaffId: (id: string) => (id ? `${id}/` : `:id/`),

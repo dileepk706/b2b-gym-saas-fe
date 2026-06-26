@@ -94,6 +94,15 @@ export const StaffSearchDtoSchema = z.object({
   query: z.string().optional(),
 });
 
+export const CreateStaffDtoSchema = z.object({
+  name: z.string().min(3),
+  email: z.string().email(),
+  phone: z.string().min(10).optional(),
+  role_id: z.string(),
+  check_in_code: z.number().min(1000).optional(),
+  password: z.string().min(6).optional(),
+});
+
 // Full response schemas
 export const LoginResponseSchema = createApiResponseSchema(LoginDataSchema);
 export const ProfileResponseSchema = createApiResponseSchema(ProfileDataSchema);

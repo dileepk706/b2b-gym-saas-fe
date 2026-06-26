@@ -4,6 +4,7 @@ import { SplashScreen } from 'shared/ui/loading';
 import { pathKeys } from 'shared/routes';
 import StaffLayout from '@layouts/staff/staff.layout';
 import { staffListRoute } from '@pages/staff/list/staff-list.route';
+import { staffCreateRoute } from '@pages/staff/create/staff-create.route';
 
 // ----------------------------------------------------------------------
 
@@ -16,5 +17,5 @@ export const staffRoutes: RouteObject = {
       </Suspense>
     </StaffLayout>
   ),
-  children: [staffListRoute],
+  children: [staffListRoute, staffCreateRoute],
 };

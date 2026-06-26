@@ -55,51 +55,25 @@ export default function AccountSettingsForm() {
             </Grid>
             <Grid item xs={12} md={8}>
               <Stack direction={{ xs: 'column', sm: 'row' }} spacing={3}>
-                <Box sx={{ flex: 1 }}>
-                  <Typography
-                    variant="caption"
-                    sx={{
-                      mb: 0.5,
-                      display: 'block',
-                      fontWeight: 700,
-                      color: 'text.secondary',
-                      textTransform: 'uppercase',
-                    }}
-                  >
-                    Full Name
-                  </Typography>
-                  <TextField
-                    fullWidth
-                    placeholder="Enter your full name"
-                    error={!!errors.name}
-                    errorMessage={errors.name?.message}
-                    disabled={loading}
-                    {...register('name')}
-                  />
-                </Box>
-                <Box sx={{ flex: 1 }}>
-                  <Typography
-                    variant="caption"
-                    sx={{
-                      mb: 0.5,
-                      display: 'block',
-                      fontWeight: 700,
-                      color: 'text.secondary',
-                      textTransform: 'uppercase',
-                    }}
-                  >
-                    Email
-                  </Typography>
-                  <TextField
-                    fullWidth
-                    type="email"
-                    placeholder="Enter your email address"
-                    error={!!errors.email}
-                    errorMessage={errors.email?.message}
-                    disabled={loading}
-                    {...register('email')}
-                  />
-                </Box>
+                <TextField
+                  label={'Full Name'}
+                  fullWidth
+                  placeholder="Enter your full name"
+                  error={!!errors.name}
+                  errorMessage={errors.name?.message}
+                  disabled={loading}
+                  {...register('name')}
+                />
+                <TextField
+                  label={'Email'}
+                  fullWidth
+                  type="email"
+                  placeholder="Enter your email address"
+                  error={!!errors.email}
+                  errorMessage={errors.email?.message}
+                  disabled={loading}
+                  {...register('email')}
+                />
               </Stack>
             </Grid>
           </Grid>
@@ -113,84 +87,45 @@ export default function AccountSettingsForm() {
             </Grid>
             <Grid item xs={12} md={8}>
               <Stack spacing={3}>
-                <Box>
-                  <Typography
-                    variant="caption"
-                    sx={{
-                      mb: 0.5,
-                      display: 'block',
-                      fontWeight: 700,
-                      color: 'text.secondary',
-                      textTransform: 'uppercase',
-                    }}
-                  >
-                    Current Password
-                  </Typography>
-                  <TextField
-                    fullWidth
-                    type={showPassword ? 'text' : 'password'}
-                    placeholder="••••••••••••••"
-                    error={!!(errors as any).currentPassword}
-                    errorMessage={(errors as any).currentPassword?.message}
-                    disabled={loading}
-                    endIcon={
-                      <Iconify
-                        icon={showPassword ? inconString.eyeOff : inconString.eye}
-                        onClick={() => setShowPassword(!showPassword)}
-                        sx={{ cursor: 'pointer', color: 'text.secondary' }}
-                      />
-                    }
-                    {...register('currentPassword' as any)}
-                  />
-                </Box>
+                <TextField
+                  label={'Current Password'}
+                  fullWidth
+                  type={showPassword ? 'text' : 'password'}
+                  placeholder="••••••••••••••"
+                  error={!!(errors as any).currentPassword}
+                  errorMessage={(errors as any).currentPassword?.message}
+                  disabled={loading}
+                  endIcon={
+                    <Iconify
+                      icon={showPassword ? inconString.eyeOff : inconString.eye}
+                      onClick={() => setShowPassword(!showPassword)}
+                      sx={{ cursor: 'pointer', color: 'text.secondary' }}
+                    />
+                  }
+                  {...register('currentPassword' as any)}
+                />
 
-                <Box>
-                  <Typography
-                    variant="caption"
-                    sx={{
-                      mb: 0.5,
-                      display: 'block',
-                      fontWeight: 700,
-                      color: 'text.secondary',
-                      textTransform: 'uppercase',
-                    }}
-                  >
-                    New Password
-                  </Typography>
-                  <TextField
-                    fullWidth
-                    type={showPassword ? 'text' : 'password'}
-                    placeholder=""
-                    error={!!errors.password}
-                    errorMessage={errors.password?.message}
-                    disabled={loading}
-                    {...register('password')}
-                  />
-                </Box>
+                <TextField
+                  label={'New Password'}
+                  fullWidth
+                  type={showPassword ? 'text' : 'password'}
+                  placeholder=""
+                  error={!!errors.password}
+                  errorMessage={errors.password?.message}
+                  disabled={loading}
+                  {...register('password')}
+                />
 
-                <Box>
-                  <Typography
-                    variant="caption"
-                    sx={{
-                      mb: 0.5,
-                      display: 'block',
-                      fontWeight: 700,
-                      color: 'text.secondary',
-                      textTransform: 'uppercase',
-                    }}
-                  >
-                    Confirm Password
-                  </Typography>
-                  <TextField
-                    fullWidth
-                    type={showPassword ? 'text' : 'password'}
-                    placeholder=""
-                    error={!!(errors as any).confirmPassword}
-                    errorMessage={(errors as any).confirmPassword?.message}
-                    disabled={loading}
-                    {...register('confirmPassword' as any)}
-                  />
-                </Box>
+                <TextField
+                  label={'Confirm Password'}
+                  fullWidth
+                  type={showPassword ? 'text' : 'password'}
+                  placeholder=""
+                  error={!!(errors as any).confirmPassword}
+                  errorMessage={(errors as any).confirmPassword?.message}
+                  disabled={loading}
+                  {...register('confirmPassword' as any)}
+                />
               </Stack>
             </Grid>
           </Grid>

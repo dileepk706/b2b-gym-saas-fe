@@ -1,8 +1,4 @@
-import { delay } from '@auth/utils';
-import {
-  currentSubscriptionQueryOptions,
-  subscriptionPlansQueryOptions,
-} from 'entities/subscription';
+import { currentSubscriptionQueryOptions } from 'entities/subscription';
 import { LoaderFunctionArgs } from 'react-router';
 import { queryClient } from 'shared/queryClient';
 

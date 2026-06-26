@@ -15,6 +15,7 @@ import {
   CheckoutCompleteDtoSchema,
   UpdateUserDtoSchema,
   StaffSearchDtoSchema,
+  CreateStaffDtoSchema,
 } from './api.contracts';
 import {
   CheckoutSessionResponse,
@@ -30,11 +31,13 @@ import {
   UpdateUserResponseDto,
   UpdateUserDto,
   StaffSearchResponse,
+  ApiResponse,
 } from './api.types';
 import { responseContract } from './api.lib';
 import { Tenant } from 'entities/tenant/tenant.type';
 import { Gym } from 'entities/gym/gym.type';
 import { StaffSearchDto } from './api.dto';
+import { Role } from 'entities/roles/roles.contract';
 
 export function loginUser(loginUserDto: LoginUserDto, config?: AxiosRequestConfig<LoginUserDto>) {
   const data = LoginUserDtoSchema.parse(loginUserDto);
@@ -124,4 +127,13 @@ export function searchStaff(sp: StaffSearchDto, config?: AxiosRequestConfig) {
     `/staff?query=${encodeURIComponent(data.query || '')}`,
     config
   );
+}
+
+export function createStaff(dto: unknown, config?: AxiosRequestConfig) {
+  const data = CreateStaffDtoSchema.parse(dto);
+  return api.post('/staff', data, config);
+}
+
+export function getRoles(config?: AxiosRequestConfig) {
+  return api.get<ApiResponse<Role[]>>('/roles', config);
 }

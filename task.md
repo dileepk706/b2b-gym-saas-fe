@@ -1,33 +1,21 @@
-https://app.factory.ai/ - welcome UI - this site page loading UI is super, imitate this with dumbel, bar, etc../ you can see there have 2 loading , one is page , second is api
-after login give a quik walkthrow
-table UI- https://app.factory.ai/settings/session-management
-bg UI acros the app use this app
-only use primary buttoon - reffer this one UI
-secondory button: https://app.factory.ai/analytics/readiness
-use the billing fpr account plan page, current plan, below the usage, and upgrade
+let arr=['rudra','duaa']
 
-<!-- all member mangement -->
+const st1=arr[0]
+const st2=arr[1]
 
-crud --
-membership
-attendance
-personal trainer
+let fm=new Map()
 
-<!-- staff mana --> crud, custome roles
+for(let i=0;i<st1.length;i++){
+fm.set(st1[i],(fm.get(st1[i])||0)+1)
+}
 
-<!-- subscription -->
+for(let i=0;i<st2.length;i++){
+if(fm.get(st2[i])){
+fm.set(st2[i],fm.get(st2)-1)
+}
+if(fm.get(st2[i])<0||!fm.get(st2[i])) return false
+}
 
-<!-- analitics -->
-
-<!-- gym settings -->
-
-<!-- ratelimiting, redis caching, que, docker -->
-
-<!-- user -->
-<!-- tenant -->
-<!-- current gym -->
-<!-- tenant gyms -->
-
-current subscription
-features
-staff permissions
+create fm for st 1
+itirate st2 and subt the f from fm
+if c is not exist or ==0 return false

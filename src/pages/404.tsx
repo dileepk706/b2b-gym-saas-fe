@@ -1,15 +1,10 @@
+import { Box, Button, TextField, Typography } from '@mui/material';
+import { memo, useEffect, useMemo, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 // sections
 
 // ----------------------------------------------------------------------
 
 export default function NotFoundPage() {
-  return (
-    <>
-      <Helmet>
-        <title> 404 Page Not Found!</title>
-      </Helmet>
-      <h1>not found page</h1>
-    </>
-  );
+  return <Box></Box>;
 }

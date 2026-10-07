@@ -1,4 +1,4 @@
-import { z } from 'zod';
+﻿import { z } from 'zod';
 import {
   ApiErrorDataDtoSchema,
   ApiErrorDataSchema,
@@ -8,6 +8,7 @@ import {
   CheckoutDtoSchema,
   CheckoutCompleteDtoSchema,
   UpdateUserDtoSchema,
+  CreateRoleDtoSchema,
 } from './api.contracts';
 import {
   CheckoutSession,
@@ -78,3 +79,5 @@ export type StaffSearchResponse = ApiResponse<{
   staffs: Staffs & { roleData: any }[];
   total: number;
 }>;
+
+export type CreateRoleDto = z.infer<typeof CreateRoleDtoSchema>;

@@ -1,4 +1,4 @@
-import { GymSchema } from 'entities/gym/gym.contracts';
+﻿import { GymSchema } from 'entities/gym/gym.contracts';
 import {
   TenantFeatureFlagSchema,
   PlanLimitSchema,
@@ -114,3 +114,6 @@ export const SubscriptionPlansResponseSchema = createApiResponseSchema(
   z.array(SubscriptionPlanSchema)
 );
 export const CurrentSubscriptionResponseSchema = createApiResponseSchema(SubscriptionPlanSchema);
+
+
+export const CreateRoleDtoSchema = z.object({ name: z.string().min(1) });

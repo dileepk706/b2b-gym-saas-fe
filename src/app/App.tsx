@@ -41,6 +41,7 @@ import ThemeProvider from '@theme/index';
 import MotionLazy from 'shared/ui/animate/MotionLazy';
 import { SettingsDrawer, SettingsProvider } from 'shared/ui/settings';
 import { BootstrappedRouter } from '../routes';
+import UserListUI from '../test/user.list.test.ui';
 
 // ----------------------------------------------------------------------
 
@@ -75,3 +76,8 @@ export default function App() {
     </AuthProvider>
   );
 }
+
+// UI
+// split UI
+// api hook (load and list and search)
+//

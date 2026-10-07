@@ -8,6 +8,11 @@ import { staffCreateRoute } from '@pages/staff/create/staff-create.route';
 
 import { staffUpdateRoute } from '@pages/staff/update/staff-update.route';
 
+import { roleListRoute } from '@pages/roles/list/role-list.route';
+import { roleCreateRoute } from '@pages/roles/create/role-create.route';
+import { roleUpdateRoute } from '@pages/roles/update/role-update.route';
+
+
 // ----------------------------------------------------------------------
 
 export const staffRoutes: RouteObject = {
@@ -19,5 +24,17 @@ export const staffRoutes: RouteObject = {
       </Suspense>
     </StaffLayout>
   ),
-  children: [staffListRoute, staffCreateRoute, staffUpdateRoute],
+  children: [
+    staffListRoute, 
+    staffCreateRoute, 
+    staffUpdateRoute,
+    {
+      path: 'roles',
+      children: [
+        roleListRoute,
+        roleCreateRoute,
+        roleUpdateRoute
+      ]
+    }
+  ],
 };

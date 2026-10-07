@@ -59,7 +59,7 @@ export default function StaffListPage() {
             />
           </Box>
 
-          <DateFilterDropdown label="Updated" value={dateFilter} onChange={setDateFilter} />
+          {/* <DateFilterDropdown label="Updated" value={dateFilter} onChange={setDateFilter} /> */}
           <Box>
             <FactoryButton component={RouterLink} to={pathKeys.staff.RCreate}>
               Create

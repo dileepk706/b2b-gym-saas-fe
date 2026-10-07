@@ -16,6 +16,7 @@ import {
   UpdateUserDtoSchema,
   StaffSearchDtoSchema,
   CreateStaffDtoSchema,
+  CreateRoleDtoSchema,
 } from './api.contracts';
 import {
   CheckoutSessionResponse,
@@ -30,6 +31,7 @@ import {
   CurentTenantResponseDto,
   UpdateUserResponseDto,
   UpdateUserDto,
+  CreateRoleDto,
   StaffSearchResponse,
   ApiResponse,
 } from './api.types';
@@ -150,4 +152,22 @@ export function deleteStaffById(id: string, config?: AxiosRequestConfig) {
 
 export function getRoles(config?: AxiosRequestConfig) {
   return api.get<ApiResponse<Role[]>>('/roles', config);
+}
+
+export function getRoleById(id: string, config?: AxiosRequestConfig) {
+  return api.get<ApiResponse<Role>>(`/roles/${id}`, config);
+}
+
+export function createRole(dto: CreateRoleDto, config?: AxiosRequestConfig) {
+  const data = CreateRoleDtoSchema.parse(dto);
+  return api.post('/roles', data, config);
+}
+
+export function updateRole(id: string, dto: CreateRoleDto, config?: AxiosRequestConfig) {
+  const data = CreateRoleDtoSchema.parse(dto);
+  return api.put(`/roles/${id}`, data, config);
+}
+
+export function deleteRoleById(id: string, config?: AxiosRequestConfig) {
+  return api.delete(`/roles/${id}`, config);
 }

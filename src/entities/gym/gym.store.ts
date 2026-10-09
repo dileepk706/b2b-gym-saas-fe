@@ -30,6 +30,8 @@ export const useGymStore = create<GymState>()(
 
 export const useCurrentGymStore = create<CurrentGymState>()((set) => ({
   currentGym: null,
-  setCurrentGym: (currentGym) => set({ currentGym }),
+  setCurrentGym: (currentGym) => {
+    set({ currentGym });
+  },
   clearCurrentGym: () => set({ currentGym: null }),
 }));

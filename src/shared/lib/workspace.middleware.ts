@@ -93,8 +93,8 @@ export async function workspaceMiddleware({ request }: MiddlewareArgs) {
   setSelectedGymId(selectedGymId);
 
   if (selectedGymId) {
-    await queryClient.ensureQueryData(gymByIdQueryOptions(selectedGymId));
-    setCurrentGym(queryClient.getQueryData(['gym', selectedGymId]) ?? null);
+    const gymData = await queryClient.ensureQueryData(gymByIdQueryOptions(selectedGymId));
+    setCurrentGym(gymData ?? null);
   }
 
   return null;

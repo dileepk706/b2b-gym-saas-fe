@@ -170,6 +170,14 @@ Avoid:
 
 ---
 
+## UI components (always use these, never raw MUI)
+
+- Section wrapper: use `Paper` from `@/shared/ui/Paper` to wrap every page section or card-like block. Do not use a plain <div> with custom card styling.
+- Buttons: use `Button` from `@/shared/ui/Button`. Never use a raw <button> or a third-party button.
+- Before creating any new UI component, check `src/shared/ui/` for an existing one.
+
+---
+
 # Component Rules
 
 Prefer:

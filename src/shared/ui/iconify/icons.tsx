@@ -19,6 +19,7 @@ export const icons = {
   search: 'si:search-line',
   delete: 'solar:trash-bin-trash-bold',
   edit: 'solar:pen-bold',
+  settings: 'carbon:settings',
 };
 
 export const IconsElement = {
@@ -39,4 +40,5 @@ export const IconsElement = {
   thunder: icon(icons.thunder),
   employee: icon(icons.employee),
   search: icon(icons.search),
+  settings: icon(icons.settings),
 };

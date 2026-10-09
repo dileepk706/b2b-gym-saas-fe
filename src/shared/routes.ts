@@ -10,6 +10,13 @@ export const pathKeys = {
   page404: '/404/',
   onboarding: '/onboarding/',
   billing: '/billing/',
+  settings: {
+    root: '/settings',
+    gym: '/settings/gym',
+    user: '/settings/user',
+  },
+  user: 'user',
+
   // dashboard
   dashboard(root?: boolean) {
     return {

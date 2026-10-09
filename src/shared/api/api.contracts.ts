@@ -1,4 +1,4 @@
-﻿import { GymSchema } from 'entities/gym/gym.contracts';
+import { GymSchema } from 'entities/gym/gym.contracts';
 import {
   TenantFeatureFlagSchema,
   PlanLimitSchema,
@@ -66,6 +66,20 @@ export const createGymDtoSchema = z.object({
   email: z.email().optional(),
   state: z.string().optional(),
   logo_url: z.string().optional(),
+});
+
+export const UpdateGymDtoSchema = z.object({
+  name: z.string().optional(),
+  gym_url: z.string().optional(),
+  city: z.string().optional(),
+  address: z.string().optional(),
+  email: z.string().email().optional(),
+  state: z.string().optional(),
+  logo_url: z.string().optional(),
+  opening_time: z.string().optional(),
+  closing_time: z.string().optional(),
+  maximum_capacity: z.number().optional(),
+  phone: z.string().optional(),
 });
 
 export const UpdateUserDtoSchema = z.object({

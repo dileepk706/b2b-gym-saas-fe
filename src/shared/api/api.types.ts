@@ -1,4 +1,4 @@
-﻿import { z } from 'zod';
+import { z } from 'zod';
 import {
   ApiErrorDataDtoSchema,
   ApiErrorDataSchema,
@@ -9,6 +9,7 @@ import {
   CheckoutCompleteDtoSchema,
   UpdateUserDtoSchema,
   CreateRoleDtoSchema,
+  UpdateGymDtoSchema,
 } from './api.contracts';
 import {
   CheckoutSession,
@@ -35,6 +36,7 @@ export type RegisterUserDto = z.infer<typeof RegisterUserDtoSchema>;
 export type OnboardingDto = z.infer<typeof OnboardingDtoSchema>;
 export type CheckoutDto = z.infer<typeof CheckoutDtoSchema>;
 export type CheckoutCompleteDto = z.infer<typeof CheckoutCompleteDtoSchema>;
+export type UpdateGymDto = z.infer<typeof UpdateGymDtoSchema>;
 
 export type CurrentSubscriptionResponseDto = ApiResponse<{
   subscription: Subscription;

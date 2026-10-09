@@ -10,6 +10,7 @@ import { gymRoutes } from './gym';
 import { workspaceMiddleware } from 'shared/lib/workspace.middleware';
 import { subscriptionMiddleware } from 'shared/lib/subscription.middleware';
 import { staffRoutes } from './staffs';
+import { settingsRoute } from './settings';
 // ----------------------------------------------------------------------
 
 export const userRoutes: RouteObject = {
@@ -25,7 +26,12 @@ export const userRoutes: RouteObject = {
       </Suspense>
     </AppLayout>
   ),
-  children: [gymRoutes, accountRoutes, staffRoutes],
+  children: [
+    // gymRoutes
+    accountRoutes,
+    staffRoutes,
+    settingsRoute,
+  ],
 };
 
 export const onboardingRoutes: RouteObject = {

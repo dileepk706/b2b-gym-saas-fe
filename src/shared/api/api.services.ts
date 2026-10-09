@@ -17,6 +17,7 @@ import {
   StaffSearchDtoSchema,
   CreateStaffDtoSchema,
   CreateRoleDtoSchema,
+  UpdateGymDtoSchema,
 } from './api.contracts';
 import {
   CheckoutSessionResponse,
@@ -34,6 +35,7 @@ import {
   CreateRoleDto,
   StaffSearchResponse,
   ApiResponse,
+  UpdateGymDto,
 } from './api.types';
 import { responseContract } from './api.lib';
 import { Tenant } from 'entities/tenant/tenant.type';
@@ -89,6 +91,11 @@ export function getGymsGlobal(config?: AxiosRequestConfig) {
 
 export function getGymByIdGlobal(gymId: string, config?: AxiosRequestConfig) {
   return api.get(`/gyms/global/${gymId}`, config).then(responseContract(GymByIdResponseSchema));
+}
+
+export function updateGym(gymId: string, dto: UpdateGymDto, config?: AxiosRequestConfig) {
+  const data = UpdateGymDtoSchema.parse(dto);
+  return api.put(`/gyms/${gymId}`, data, config).then(responseContract(GymByIdResponseSchema));
 }
 
 export function getSubscriptionPlans(config?: Parameters<typeof api.get>[1]) {

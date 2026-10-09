@@ -8,3 +8,11 @@ export const settingPageRoute: RouteObject = {
     return { Component };
   },
 };
+
+export const usersettingPageRoute: RouteObject = {
+  path: pathKeys.user,
+  lazy: async () => {
+    const Component = await import('./user-setting.page.ui.v2').then((module) => module.default);
+    return { Component };
+  },
+};

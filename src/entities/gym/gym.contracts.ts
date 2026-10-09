@@ -14,4 +14,7 @@ export const GymSchema = z.object({
   created_at: z.string(),
   updated_at: z.string(),
   deleted: z.boolean(),
+  opening_time: z.string().nullable(),
+  closing_time: z.string().nullable(),
+  maximum_capacity: z.number().nullable(),
 });

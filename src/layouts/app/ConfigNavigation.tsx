@@ -38,6 +38,11 @@ export function useNavData() {
             path: pathKeys.account(true).setting,
             icon: IconsElement.account,
           },
+          {
+            title: t('settings'),
+            path: pathKeys.settings.gym,
+            icon: IconsElement.settings,
+          },
         ],
       },
     ],
